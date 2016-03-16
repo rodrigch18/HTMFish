@@ -19,19 +19,24 @@ public class FishGameState extends GameState {
     private int currPos1;
     private int currPos2;
     private int currPos3;
-    private Hexagon[][] board;
+
+    private int currTileVal;
+
+    private boolean isLegalMove;
+    private Hexagon[] board;
 
 
-    public FishGameState(){
+    public FishGameState() {
         id = 0;
         p0score = 0;
         p1score = 0;
         p2score = 0;
         p3score = 0;
-        board = new Hexagon[8][8];
+        currTileVal = 1;
+        board = new Hexagon[60];
     }
 
-    public FishGameState(FishGameState fishGameState){
+    public FishGameState(FishGameState fishGameState) {
         this.id = fishGameState.getId();
         this.p0score = fishGameState.getP0score();
         this.p1score = fishGameState.getP1score();
@@ -41,6 +46,7 @@ public class FishGameState extends GameState {
         this.currPos1 = fishGameState.getCurrPos1();
         this.currPos2 = fishGameState.getCurrPos2();
         this.currPos3 = fishGameState.getCurrPos3();
+        this.
 
     }
 
@@ -116,14 +122,77 @@ public class FishGameState extends GameState {
         this.currPos3 = currPos3;
     }
 
-    public void checkIllegalMove(int currP){
+    /**
+     * need to check if it is player's penguin when tapped and highlight hex
+     * if not flash red?
+     */
+    public void highlightSelectedPeng(int tappedPos) {
+        if (tappedPos == currPos0 || tappedPos == currPos1 || tappedPos == currPos2
+                || tappedPos == currPos3 ) {
+            // highlight
+        }
+        else {
+            // ERROR - Toast Message
+        }
+    }
+
+    /**
+     * on second tap, check if penguin can move there with boolean hasNeighbors?
+     */
+    public void checkIsLegalMove(int currP) {
+        //if there is a straight path to tapped pos without jumps or penguins in the way
+        if(board[currP].isTouching() == 1) {
+            isLegalMove = true;
+        }
+    }
+
+    /**
+     * redraw penguin in new place and set new current position for this penguin
+     * if isIllegalMove is true
+     */
+    public void movePenguin(int penguin, int newPos) {
+
+
+        //check which player and value of cur pos and update score
+        if(getId() == 0){
+
+        }
+        else if(getId() == 1){
+
+        }
+        else if(getId() == 2){
+
+        }
+        else{
+
+        }
+
+        if (penguin == 0) {
+            int tileVal = board[getCurrPos0()].getCurrTileVal();
+            setCurrPos0(newPos);
+        } else if (penguin == 1) {
+            setCurrPos1(newPos);
+        } else if (penguin == 2) {
+            setCurrPos2(newPos);
+        } else if (penguin == 3) {
+            setCurrPos3(newPos);
+        }
 
     }
 
+    /**
+     * checks if all tiles have > 0 neighbors after every move
+     * if not, delete specific hex
+     */
+    public void checkRemoveIsland(Hexagon[] curBoard) {
+        for(int i=0; i < 60; i++){
+            if (curBoard[i].numNeighbors==0){
+                curBoard[i].disable();
+            }
+        }
+    }
 
-
-
-
+    public void
 
 
 }
