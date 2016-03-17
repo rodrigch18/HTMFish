@@ -1,198 +1,266 @@
 package edu.up.cs301.fish;
 
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
 import edu.up.cs301.game.infoMsg.GameState;
 
 /**
- * Created by gisellemarston on 3/14/16.
+ * Hey, That's My Fish GameState
+ *
+ * @author Giselle Marston
+ * @author Christian Rodriguez
+ * @author Elias Paraiso
+ * @author Elijah Fisher
+ * @version 3/16/16
  */
-public class FishGameState extends GameState {
+public class FishGameState extends GameState{
 
     private int id;
-    private int p0score;
-    private int p1score;
-    private int p2score;
-    private int p3score;
+    //score's for each player
+    private int playerScore[];
 
-    private int numPenguin;
+    protected int[] player = new int[4];
 
-    private int currPos0;
-    private int currPos1;
-    private int currPos2;
-    private int currPos3;
+    //number of penguins each player has
+    protected int numPenguin;
 
-    private int currTileVal;
+    //current positions of penguins of a given player
+    //assigns first few to player 0, second few to p1, etc
+    private int currPosX[];
+    private int currPosY[];
 
-    private boolean isLegalMove;
-    private Hexagon[] board;
 
+    protected boolean isLegalMove;
+    protected boolean isLegalSelection;
+
+    protected Hex[][] board;
 
     public FishGameState() {
         id = 0;
-        p0score = 0;
-        p1score = 0;
-        p2score = 0;
-        p3score = 0;
-        currTileVal = 1;
-        board = new Hexagon[60];
+        //creates 10 by 10 game board
+        board = new Hex[10][10];
+        //creates array list equal to the number of players for the scores
+        playerScore = new int[player.length];
+
+        /**
+         * Each player has:
+         * 4 penguins if there are 2 players
+         * 3 penguins if there are 3 players
+         * 2 penguins if there are 4 players
+         */
+        if(player.length == 2){
+            numPenguin = 4;
+        } else if(player.length == 3){
+            numPenguin = 3;
+        } else if(player.length == 4){
+            numPenguin = 2;
+        }
+
+
+        //arrays of all the positions of penguins in the game in order by player
+        currPosX = new int[numPenguin * player.length];
+        currPosY = new int[numPenguin * player.length];
     }
 
     public FishGameState(FishGameState fishGameState) {
+        board = new Hex[10][10];
         this.id = fishGameState.getId();
-        this.p0score = fishGameState.getP0score();
-        this.p1score = fishGameState.getP1score();
-        this.p2score = fishGameState.getP2score();
-        this.p3score = fishGameState.getP3score();
-        this.currPos0 = fishGameState.getCurrPos0();
-        this.currPos1 = fishGameState.getCurrPos1();
-        this.currPos2 = fishGameState.getCurrPos2();
-        this.currPos3 = fishGameState.getCurrPos3();
-        this.
-
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getP0score() {
-        return p0score;
-    }
-
-    public void setP0score(int p0score) {
-        this.p0score = p0score;
-    }
-
-    public int getP1score() {
-        return p1score;
-    }
-
-    public void setP1score(int p1score) {
-        this.p1score = p1score;
-    }
-
-    public int getP2score() {
-        return p2score;
-    }
-
-    public void setP2score(int p2score) {
-        this.p2score = p2score;
-    }
-
-    public int getP3score() {
-        return p3score;
-    }
-
-    public void setP3score(int p3score) {
-        this.p3score = p3score;
-    }
-
-    public int getCurrPos0() {
-        return currPos0;
-    }
-
-    public void setCurrPos0(int currPos0) {
-        this.currPos0 = currPos0;
-    }
-
-    public int getCurrPos1() {
-        return currPos1;
-    }
-
-    public void setCurrPos1(int currPos1) {
-        this.currPos1 = currPos1;
-    }
-
-    public int getCurrPos2() {
-        return currPos2;
-    }
-
-    public void setCurrPos2(int currPos2) {
-        this.currPos2 = currPos2;
-    }
-
-    public int getCurrPos3() {
-        return currPos3;
-    }
-
-    public void setCurrPos3(int currPos3) {
-        this.currPos3 = currPos3;
-    }
-
-    /**
-     * need to check if it is player's penguin when tapped and highlight hex
-     * if not flash red?
-     */
-    public void highlightSelectedPeng(int tappedPos) {
-        if (tappedPos == currPos0 || tappedPos == currPos1 || tappedPos == currPos2
-                || tappedPos == currPos3 ) {
-            // highlight
+        //gets all the currents scores of the players
+        for (int i=0; i<player.length; i++) {
+            this.playerScore[i] = fishGameState.getPlayerScore(i);
         }
-        else {
-            // ERROR - Toast Message
-        }
-    }
-
-    /**
-     * on second tap, check if penguin can move there with boolean hasNeighbors?
-     */
-    public void checkIsLegalMove(int currP) {
-        //if there is a straight path to tapped pos without jumps or penguins in the way
-        if(board[currP].isTouching() == 1) {
-            isLegalMove = true;
-        }
-    }
-
-    /**
-     * redraw penguin in new place and set new current position for this penguin
-     * if isIllegalMove is true
-     */
-    public void movePenguin(int penguin, int newPos) {
-
-
-        //check which player and value of cur pos and update score
-        if(getId() == 0){
-
-        }
-        else if(getId() == 1){
-
-        }
-        else if(getId() == 2){
-
-        }
-        else{
-
+        //same as before
+        if(player.length == 2){
+            numPenguin = 4;
+        } else if(player.length == 3){
+            numPenguin = 3;
+        } else if(player.length == 4){
+            numPenguin = 2;
         }
 
-        if (penguin == 0) {
-            int tileVal = board[getCurrPos0()].getCurrTileVal();
-            setCurrPos0(newPos);
-        } else if (penguin == 1) {
-            setCurrPos1(newPos);
-        } else if (penguin == 2) {
-            setCurrPos2(newPos);
-        } else if (penguin == 3) {
-            setCurrPos3(newPos);
-        }
-
-    }
-
-    /**
-     * checks if all tiles have > 0 neighbors after every move
-     * if not, delete specific hex
-     */
-    public void checkRemoveIsland(Hexagon[] curBoard) {
-        for(int i=0; i < 60; i++){
-            if (curBoard[i].numNeighbors==0){
-                curBoard[i].disable();
+        //Sets the positions of the penguins
+        for(int p=0; p<player.length; p++) {
+            for (int peng=0; peng<numPenguin; peng++) {
+                this.currPosX[p * numPenguin + peng] = fishGameState.getCurrPosX(p,peng);
+                this.currPosY[p * numPenguin + peng] = fishGameState.getCurrPosY(p,peng);
             }
         }
     }
 
-    public void
+    //player ID
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int i) {
+        this.id = i;
+    }
+
+    //player score dependent on ID
+    public int getPlayerScore(int id) {
+        return playerScore[id];
+    }
+
+    public void setPlayerScore(int id, int newScore) {
+        this.playerScore[id] = newScore;
+    }
+
+    //position of a player's penguin
+    public int getCurrPosX(int id, int penguin) {
+        int i = id * numPenguin;
+        return currPosX[i+penguin];
+    }
+
+    public void setCurrPosX(int id, int penguin, int newCurrPosX) {
+        int i = id * numPenguin;
+        currPosX[i+penguin] = newCurrPosX;
+    }
+
+    public int getCurrPosY(int id, int penguin) {
+        int i = id * numPenguin;
+        return currPosY[i+penguin];
+    }
+
+    public void setCurrPosY(int id, int penguin, int newCurrPosY) {
+        int i = id * numPenguin;
+        currPosY[i+penguin] = newCurrPosY;
+    }
+
+
+
+    /**
+     * Checks if a tapped position is the player's penguin whose turn it is
+     * is illegal if it is another player's penguin or an empty tile
+     *
+     * @param id - player id
+     * @param tappedPosX -x corrdinate of tapped spot
+     * @param tappedPosX -x corrdinate of tapped spot
+     */
+    public void checkSelectedPeng(int id, int tappedPosX, int tappedPosY) {
+        for(int i=0; i<numPenguin; i++)
+        {
+            if (tappedPosX == currPosX[id * numPenguin +i] && tappedPosY == currPosY[id * numPenguin +i])
+            {
+                isLegalSelection=true;
+                return;
+            }
+        }
+        isLegalSelection=false;
+    }
+
+
+    /**
+     * External Citation
+     * Date: 16 March 2016
+     * Needed help to check possible paths that penguin can move to.
+     * Resource:
+     * Dr. Andrew Nuxoll
+     */
+
+    /**
+     * Create list of tiles adjacent to current tile in defined direction
+     *
+     * @param x- current x coordinate
+     * @param y- current x coordinate
+     * @param xDelta - change in x coordinates
+     * @param yDelta - change in y coordinates
+     * @param results - list of positions on board that are valid places to move to
+     * @return
+     */
+    public ArrayList<Hex> findAdjInDir(int x, int y,  int xDelta, int yDelta, ArrayList<Hex> results)
+    {
+        do
+        {
+            x = x + xDelta;
+            y = y + yDelta;
+            if (board[x][y] != null)
+            {
+                results.add(board[x][y]);
+            }
+        }
+        while(board[x][y] != null);
+
+        return results;
+    }
+
+    /**
+     * Checks if the tapped spot is a valid move from current position using findAdjInDir,
+     * which is used to make lists of valid moves in all 6 directions from hex
+     *
+     * @param currPX
+     * @param currPY
+     * @param tappedPosX
+     * @param tappedPosY
+     */
+    public void checkIsLegalMove(int currPX,int currPY, int tappedPosX, int tappedPosY) {
+
+        ArrayList<Hex> results = new ArrayList<Hex>();
+
+        findAdjInDir(currPX, currPY, 1, 0, results);
+        findAdjInDir(currPX, currPY, -1, 0, results);
+        findAdjInDir(currPX, currPY, 1, 1, results);
+        findAdjInDir(currPX, currPY, 0, 1, results);
+        findAdjInDir(currPX, currPY, 1, -1, results);
+        findAdjInDir(currPX, currPY, 0, -1, results);
+
+        if(results.contains(board[tappedPosX][tappedPosY])) {
+            isLegalMove = true;
+        }
+        else {
+            isLegalMove = false;
+        }
+    }
+
+
+
+    /**
+     * Set new current position for a given penguin of a given player and add old tile value to
+     * score
+     *
+     * @param id player id
+     * @param peng penguin number of a player
+     * @param currPX current x coordinate of penguin
+     * @param currPY current y coordinate of penguin
+     * @param newPosX new x position that penguin will move to
+     * @param newPosY new y position that penguin will move to
+     */
+    public void movePeng(int id, int peng, int currPX, int currPY, int newPosX, int newPosY) {
+
+        //gets value of current tile
+        if(board[currPX][currPY]!=null) {
+            int val = board[currPX][currPY].getTileVal();
+            //add value of curr tile to score of right player
+            setPlayerScore(id, getPlayerScore(id) + val);
+        }
+
+        //sets new position of penguin --moves it
+        setCurrPosX(id,peng,newPosX);
+        setCurrPosY(id,peng,newPosY);
+
+    }
+
+
+    /**
+     * Makes one-tile islands null if there are all adjacent tiles are null
+     *
+     * @param currBoard - current board with any gaps
+     * @return new board when islands are taken out
+     */
+    public Hex[][] removeIsland(Hex[][] currBoard) {
+
+        for(int x=1; x < 9; x++){
+            for(int y=1; y<9; y++){
+                if (currBoard[x+1][y] == null && currBoard[x+1][y+1] == null
+                        && currBoard[x+1][y-1] == null && currBoard[x][y-1] == null
+                        && currBoard[x][y+1] == null && currBoard[x-1][y] == null){
+
+                    currBoard[x][y] = null;
+                }
+            }
+        }
+        return currBoard;
+    }
 
 }

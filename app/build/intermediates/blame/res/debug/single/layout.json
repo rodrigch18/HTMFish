@@ -12,10 +12,6 @@
         "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/layout/game_player_list_row.xml"
     },
     {
-        "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/layout/counter_human_player.xml",
-        "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/layout/counter_human_player.xml"
-    },
-    {
         "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/layout/game_local_tab.xml",
         "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/layout/game_local_tab.xml"
     },
