@@ -1,5 +1,7 @@
 package edu.up.cs301.fish;
 
+import android.graphics.Canvas;
+
 /**
  * Class for Hex, each tile on the board is a hex
  * @author gisellemarston
@@ -17,4 +19,9 @@ public class Hex {
         return tileVal;
     }
 
+    public void drawHex(Canvas canvas){
+
+    }
+
 }
+

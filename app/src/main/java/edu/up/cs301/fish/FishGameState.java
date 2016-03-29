@@ -36,6 +36,7 @@ public class FishGameState extends GameState{
     protected boolean isLegalSelection;
 
     protected Hex[][] board;
+    protected Penguin[] penguin;
 
     public FishGameState() {
         id = 0;
@@ -81,10 +82,10 @@ public class FishGameState extends GameState{
         }
 
         //Sets the positions of the penguins
-        for(int p=0; p<player.length; p++) {
+        for(int p=0; p<player.length; p++) {    //TEST
             for (int peng=0; peng<numPenguin; peng++) {
-                this.currPosX[p * numPenguin + peng] = fishGameState.getCurrPosX(p,peng);
-                this.currPosY[p * numPenguin + peng] = fishGameState.getCurrPosY(p,peng);
+                this.currPosX[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosX();
+                this.currPosY[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosY();
             }
         }
     }
@@ -107,28 +108,6 @@ public class FishGameState extends GameState{
         this.playerScore[id] = newScore;
     }
 
-    //position of a player's penguin
-    public int getCurrPosX(int id, int penguin) {
-        int i = id * numPenguin;
-        return currPosX[i+penguin];
-    }
-
-    public void setCurrPosX(int id, int penguin, int newCurrPosX) {
-        int i = id * numPenguin;
-        currPosX[i+penguin] = newCurrPosX;
-    }
-
-    public int getCurrPosY(int id, int penguin) {
-        int i = id * numPenguin;
-        return currPosY[i+penguin];
-    }
-
-    public void setCurrPosY(int id, int penguin, int newCurrPosY) {
-        int i = id * numPenguin;
-        currPosY[i+penguin] = newCurrPosY;
-    }
-
-
 
     /**
      * Checks if a tapped position is the player's penguin whose turn it is
@@ -139,9 +118,9 @@ public class FishGameState extends GameState{
      * @param tappedPosX -x corrdinate of tapped spot
      */
     public void checkSelectedPeng(int id, int tappedPosX, int tappedPosY) {
-        for(int i=0; i<numPenguin; i++)
+        for(int i=0; i<penguin.length; i++)
         {
-            if (tappedPosX == currPosX[id * numPenguin +i] && tappedPosY == currPosY[id * numPenguin +i])
+            if (tappedPosX == penguin[i].getCurrPosX() && tappedPosY == penguin[i].getCurrPosX() )
             {
                 isLegalSelection=true;
                 return;
@@ -220,24 +199,22 @@ public class FishGameState extends GameState{
      * score
      *
      * @param id player id
-     * @param peng penguin number of a player
-     * @param currPX current x coordinate of penguin
-     * @param currPY current y coordinate of penguin
+     * @param p Penguin selected
      * @param newPosX new x position that penguin will move to
      * @param newPosY new y position that penguin will move to
      */
-    public void movePeng(int id, int peng, int currPX, int currPY, int newPosX, int newPosY) {
+    public void movePeng(int id, Penguin p, int newPosX, int newPosY) {
 
         //gets value of current tile
-        if(board[currPX][currPY]!=null) {
-            int val = board[currPX][currPY].getTileVal();
+        if(board[p.getCurrPosX()][p.getCurrPosY()]!=null) {
+            int val = board[p.getCurrPosX()][p.getCurrPosY()].getTileVal();
             //add value of curr tile to score of right player
             setPlayerScore(id, getPlayerScore(id) + val);
         }
 
         //sets new position of penguin --moves it
-        setCurrPosX(id,peng,newPosX);
-        setCurrPosY(id,peng,newPosY);
+        p.setCurrPosX(newPosX);
+        p.setCurrPosY(newPosY);
 
     }
 
