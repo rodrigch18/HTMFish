@@ -56,8 +56,17 @@ public class FishGameState extends GameState{
 
     public FishGameState() {
         id = 0;
+
         //creates 10 by 10 game board
         board = new Hex[10][10];
+        for(int i = 0; i < 10; i ++)
+        {
+            for(int j = 0; j < 10; j++)
+            {
+                board[i][j] = new Hex();
+            }
+        }
+
         //creates array list equal to the number of players for the scores
         playerScore = new int[player.length];
 
@@ -82,7 +91,15 @@ public class FishGameState extends GameState{
     }
 
     public FishGameState(FishGameState fishGameState) {
-        board = new Hex[10][10];
+        if(fishGameState.board != null) {
+            Hex[][] board = new Hex[fishGameState.board.length][fishGameState.board.length];
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    board[i][j] = fishGameState.board[i][j];
+                }
+            }
+        }
+
         this.id = fishGameState.getId();
         //gets all the currents scores of the players
         for (int i=0; i<player.length; i++) {

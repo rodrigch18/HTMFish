@@ -28,6 +28,10 @@ public class Hex {
         tileVal = (int)(Math.random()*3+1);
     }
 
+    public Hex(int tileVal){
+        this.tileVal = tileVal;
+    }
+
     // tile values
     public int getTileVal() {
         return tileVal;
