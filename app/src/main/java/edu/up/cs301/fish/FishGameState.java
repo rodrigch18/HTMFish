@@ -9,18 +9,31 @@ import edu.up.cs301.game.infoMsg.GameState;
 /**
  * Hey, That's My Fish GameState
  *
+ * The GameState class is where the magic happens! It checks
+ * to make sure that the move being attempted is valid or invalid.
+ * An invalid move is either moving to or through an already
+ * occupied spot, moving to a spot that no longer exists
+ * because it has liquid water instead of solid ice. It also
+ * does not allow for a player to move in a direction that is not
+ * in a straight line from the hexagon. It also keeps the players'
+ * scores updated. It even takes care of the situation when an
+ * island is created, where the tile values are added to the player's
+ * score and the penguin is no longer in play.
+ *
  * @author Giselle Marston
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/16/16
+ * @version 3/28/16
  */
 public class FishGameState extends GameState{
 
+    //player id
     private int id;
     //score's for each player
     private int playerScore[];
 
+    //amount of players possible
     protected int[] player = new int[4];
 
     //number of penguins each player has
@@ -31,11 +44,14 @@ public class FishGameState extends GameState{
     private int currPosX[];
     private int currPosY[];
 
-
+    //make sure the player move is legal
     protected boolean isLegalMove;
+    //make sure the selected tile is legal
     protected boolean isLegalSelection;
 
     protected Hex[][] board;
+
+    //penguin array that holds all the penguins in the game
     protected Penguin[] penguin;
 
     public FishGameState() {

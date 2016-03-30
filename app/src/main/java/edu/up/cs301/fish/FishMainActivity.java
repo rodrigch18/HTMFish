@@ -7,7 +7,16 @@ import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
 
 /**
- * Created by gisellemarston on 3/28/16.
+ * Hey, That's My Fish MainActivity
+ *
+ * This class is the primary activity for
+ * Hey That's My Fish.
+ *
+ * @author Giselle Marston
+ * @author Christian Rodriguez
+ * @author Elias Paraiso
+ * @author Elijah Fisher
+ * @version 3/28/16
  */
 public class FishMainActivity {
 
@@ -17,6 +26,13 @@ public class FishMainActivity {
         GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Pig", PORT_NUMBER);
         return defaultConfig;
     }
+
+    /**
+     * create a local game
+     *
+     * @return the local game, a Hey That's My Fish game
+     *
+     */
     public LocalGame createLocalGame(){
         return new FishLocalGame();
     }
