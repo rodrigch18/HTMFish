@@ -8,6 +8,26 @@
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\layout\\game_config_tabhost.xml"
     },
     {
+        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_config_main.xml",
+        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\layout\\game_config_main.xml"
+    },
+    {
+        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\htmfish_layout.xml",
+        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\layout\\htmfish_layout.xml"
+    },
+    {
+        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_no_gui.xml",
+        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\layout\\game_no_gui.xml"
+    },
+    {
+        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_config_tabhost.xml",
+        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\layout\\game_config_tabhost.xml"
+    },
+    {
+        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_player_list_row.xml",
+        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\layout\\game_player_list_row.xml"
+    },
+    {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\htmfish_layout.xml",
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\layout\\htmfish_layout.xml"
     },
@@ -16,12 +36,20 @@
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\layout\\game_local_tab.xml"
     },
     {
+        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_remote_tab.xml",
+        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\layout\\game_remote_tab.xml"
+    },
+    {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_no_gui.xml",
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\layout\\game_no_gui.xml"
     },
     {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_player_list_row.xml",
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\layout\\game_player_list_row.xml"
+    },
+    {
+        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_local_tab.xml",
+        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\layout\\game_local_tab.xml"
     },
     {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\layout\\game_config_main.xml",

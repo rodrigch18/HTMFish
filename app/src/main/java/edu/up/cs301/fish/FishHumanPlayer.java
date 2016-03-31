@@ -1,5 +1,6 @@
 package edu.up.cs301.fish;
 
+import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -51,7 +52,15 @@ public class FishHumanPlayer extends GameHumanPlayer{
      * @param info - info from the game
      */
     public void receiveInfo(GameInfo info){
-
+        if (info instanceof FishGameState) {
+            FishGameState newState = (FishGameState) info;
+            for (int i = 0; i < newState.player.length; i++) {
+                playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
+            }
+        }
+        else {
+            flash(0xFFFF0000, 33);
+        }
     }
 
     /**
@@ -60,6 +69,10 @@ public class FishHumanPlayer extends GameHumanPlayer{
      * @param event - touch/tap
      */
     public boolean onTouchEvent(MotionEvent event){
+        int ea = event.getAction();
+        //coordinates of tapped spot
+        int X = (int) event.getX();
+        int Y = (int) event.getY();
         return true;
     }
 
@@ -70,6 +83,17 @@ public class FishHumanPlayer extends GameHumanPlayer{
      * @param activity - activity under which we are running
      */
     public void setAsGui(GameMainActivity activity){
+        // remember the activity
+        myActivity = activity;
+
+        // Load the layout resource for our GUI
+//        activity.setContentView(R.layout.pig_layout);
+
+        //Initialize the widget reference member variables
+//        this.playerScoreTextView = (TextView)activity.findViewById(R.id.yourScoreValue);
+//        this.oppScoreTextView    = (TextView)activity.findViewById(R.id.oppScoreValue);
+//        this.turnTotalTextView   = (TextView)activity.findViewById(R.id.turnTotalValue);
+//        this.messageTextView     = (TextView)activity.findViewById(R.id.messageTextView);
 
     }
 

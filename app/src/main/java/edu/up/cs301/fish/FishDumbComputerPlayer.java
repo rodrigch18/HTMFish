@@ -1,5 +1,8 @@
 package edu.up.cs301.fish;
 
+import java.util.Random;
+
+import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
@@ -16,18 +19,18 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 3/31/16
  */
 
-public class FishDumbComputerPlayer {
+public class FishDumbComputerPlayer extends GameComputerPlayer {
 
     /**
      * Dumb Computer Player constructor
      *
      * @param name - player name
-    */
+     */
     public FishDumbComputerPlayer(String name){
-
+        super(name);
     }
 
     /**
@@ -36,6 +39,15 @@ public class FishDumbComputerPlayer {
      * @param info - info from the game
      */
     protected void receiveInfo(GameInfo info){
-
+        if(info instanceof FishGameState) {
+            FishGameState newState = (FishGameState) info;
+            sleep(1000);
+            if (newState.getId() != this.playerNum)
+                return;
+            else {
+                FishMovePenguinAction move = new FishMovePenguinAction(this);
+                game.sendAction(move);
+            }
+        }
     }
 }

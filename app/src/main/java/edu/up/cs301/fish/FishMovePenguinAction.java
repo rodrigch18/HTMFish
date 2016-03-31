@@ -1,6 +1,7 @@
 package edu.up.cs301.fish;
 
 import edu.up.cs301.game.GamePlayer;
+import edu.up.cs301.game.actionMsg.GameAction;
 
 /**
  * Hey, That's My Fish MovePenguinAction
@@ -14,7 +15,7 @@ import edu.up.cs301.game.GamePlayer;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishMovePenguinAction {
+public class FishMovePenguinAction  extends GameAction {
 
     /**
      * Move Penguin Action constructor
@@ -22,7 +23,7 @@ public class FishMovePenguinAction {
      * @param gamePlayer - player
      */
     public FishMovePenguinAction(GamePlayer gamePlayer){
-
+        super(gamePlayer);
     }
 
 }
