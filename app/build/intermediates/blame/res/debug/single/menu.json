@@ -1,10 +1,14 @@
 [
     {
-        "merged": "P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\menu\\game_main.xml",
-        "source": "P:\\cs371\\HTMFish\\app\\src\\main\\res\\menu\\game_main.xml"
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/menu/game_main.xml",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/menu/game_main.xml"
     },
     {
-        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\menu\\game_main.xml",
-        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\menu\\game_main.xml"
+        "merged": "/home/christian/StudioProjects/HTMFish/P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\menu\\game_main.xml",
+        "source": "/home/christian/StudioProjects/HTMFish/P:\\cs371\\HTMFish\\app\\src\\main\\res\\menu\\game_main.xml"
+    },
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\menu\\game_main.xml",
+        "source": "/home/christian/StudioProjects/HTMFish/C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\menu\\game_main.xml"
     }
 ]

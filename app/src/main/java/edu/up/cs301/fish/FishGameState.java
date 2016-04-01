@@ -1,5 +1,7 @@
 package edu.up.cs301.fish;
 
+import android.app.Activity;
+import android.content.Context;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -55,16 +57,17 @@ public class FishGameState extends GameState{
     protected Penguin[] penguin;
 
     public FishGameState() {
+
         id = 0;
 
         //creates 10 by 10 game board
         board = new Hex[10][10];
         for(int i = 0; i < 10; i ++)
         {
-            for(int j = 0; j < 10; j++)
-            {
-                board[i][j] = new Hex();
-            }
+//            for(int j = 0; j < 10; j++)
+//            {
+//                board[i][j] = new Hex();
+//            }
         }
 
         //creates array list equal to the number of players for the scores

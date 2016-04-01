@@ -2,6 +2,8 @@ package edu.up.cs301.fish;
 
 import java.util.ArrayList;
 
+import edu.up.cs301.game.GameMainActivity;
+import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
@@ -18,12 +20,24 @@ import edu.up.cs301.game.config.GamePlayerType;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishMainActivity {
+public class FishMainActivity extends GameMainActivity {
 
     private int PORT_NUMBER = 512018;
     public GameConfig createDefaultConfig(){
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
-        GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Pig", PORT_NUMBER);
+
+        // Pig has two player types:  human and computer
+        playerTypes.add(new GamePlayerType("Local Human Player") {
+            public GamePlayer createPlayer(String name) {
+                return new FishHumanPlayer(name);
+            }});
+
+
+        // Create a game configuration class for Pig:
+        GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Hey, That's my Fish", PORT_NUMBER);
+        defaultConfig.addPlayer("Human", 0); // player 1: a human player
+        defaultConfig.setRemoteData("Remote Human Player", "", 0);
+
         return defaultConfig;
     }
 

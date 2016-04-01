@@ -24,7 +24,7 @@ public class FishLocalGame extends LocalGame{
      * Fish Local Game constructor that takes no parameters
      */
     public FishLocalGame(){
-
+        fishGameState = new FishGameState();
     }
 
     /**

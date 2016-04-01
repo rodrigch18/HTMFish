@@ -1,6 +1,13 @@
 package edu.up.cs301.fish;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
+import edu.up.cs301.game.R;
 
 /**
  * Hey, That's My Fish Hex
@@ -17,15 +24,38 @@ import android.graphics.Canvas;
  */
 public class Hex {
 
+    Bitmap myBitmap;
+    Canvas canvas;
+    private Paint   mBitmapPaint;
+    Paint p= new Paint();
+
     protected int tileVal;
+    boolean fullTile;
+    private int x;
+    private int y;
+
 
     /**
      * Hex constructor that takes no parameters
      * It sets the tile values randomly (1,2, or 3)
      */
-    public Hex() {
+    public Hex(Context context, int xPos, int yPos) {
         //sets tileVal to either 1, 2 , or 3
+
+        x = xPos;
+        y = yPos;
+
         tileVal = (int)(Math.random()*3+1);
+
+        switch (tileVal) {
+            case 1:
+                myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.one_fish); //decode bitmap in constructor
+            case 2:
+                myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.two_fish); //decode bitmap in constructor
+            case 3:
+                myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.three_fish); //decode bitmap in constructor
+        }
+
     }
 
     public Hex(int tileVal){
@@ -45,6 +75,8 @@ public class Hex {
      */
     public void drawHex(Canvas canvas){
 
+        canvas.drawColor(Color.BLACK);
+        canvas.drawBitmap(myBitmap, x,y, p);
     }
 
 }
