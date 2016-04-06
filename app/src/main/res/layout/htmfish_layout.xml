@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_weight="5">
 
-            <edu.up.cs301.animation.AnimationSurface
+            <edu.up.cs301.animation.HexagonSurfaceView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/viewBoard"

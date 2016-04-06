@@ -22,7 +22,7 @@ import edu.up.cs301.game.config.GamePlayerType;
  */
 public class FishMainActivity extends GameMainActivity {
 
-    private int PORT_NUMBER = 512018;
+    private int PORT_NUMBER = 5120;
     public GameConfig createDefaultConfig(){
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
@@ -53,6 +53,7 @@ public class FishMainActivity extends GameMainActivity {
      * @return the local game, a Hey That's My Fish game
      *
      */
+    @Override
     public LocalGame createLocalGame(){
         return new FishLocalGame();
     }

@@ -82,6 +82,9 @@ public class FishGameState extends GameState{
 
         //creates array list equal to the number of players for the scores
         playerScore = new int[player.length];
+        for(int i = 0; i < 4; i++){
+            playerScore[i] = 0;
+        }
 
         /**
          * Each player has:
@@ -115,9 +118,9 @@ public class FishGameState extends GameState{
 
         this.id = fishGameState.getId();
         //gets all the currents scores of the players
-        for (int i=0; i<player.length; i++) {
-            this.playerScore[i] = fishGameState.getPlayerScore(i);
-        }
+     //   for (int i=0; i<player.length; i++) {
+     //       this.playerScore[i] = fishGameState.getPlayerScore(i);
+     //   }
         //same as before
         if(player.length == 2){
             numPenguin = 4;
@@ -128,12 +131,12 @@ public class FishGameState extends GameState{
         }
 
         //Sets the positions of the penguins
-        for(int p=0; p<player.length; p++) {    //TEST
-            for (int peng=0; peng<numPenguin; peng++) {
-                this.currPosX[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosX();
-                this.currPosY[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosY();
-            }
-        }
+   //     for(int p=0; p<player.length; p++) {    //TEST
+   //         for (int peng=0; peng<numPenguin; peng++) {
+    //            this.currPosX[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosX();
+    //            this.currPosY[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosY();
+     //       }
+     //   }
     }
 
     //player ID

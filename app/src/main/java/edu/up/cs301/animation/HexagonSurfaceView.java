@@ -110,7 +110,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     @Override
     public void onDraw(Canvas canvas) {
 
-        Hex aHex = new Hex(getContext(),50, 50);
+        Hex aHex = new Hex(getContext(),100, 100);
 
         aHex.drawHex(canvas);
 

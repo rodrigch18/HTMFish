@@ -54,8 +54,13 @@ public class FishHumanPlayer extends GameHumanPlayer{
     public void receiveInfo(GameInfo info){
         if (info instanceof FishGameState) {
             FishGameState newState = (FishGameState) info;
-            for (int i = 0; i < newState.player.length; i++) {
-                playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
+   //         for (int i = 0; i < newState.player.length; i++) {
+    //            playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
+    //        }
+            for(int i = 0; i < 10; i++){
+                for(int j = 0; j < 10; j++){
+               //     newState.board[i][j]
+                }
             }
         }
         else {
@@ -85,6 +90,9 @@ public class FishHumanPlayer extends GameHumanPlayer{
     public void setAsGui(GameMainActivity activity){
         // remember the activity
         myActivity = activity;
+
+        activity.setContentView(R.layout.htmfish_layout);
+
 
         // Load the layout resource for our GUI
 //        activity.setContentView(R.layout.pig_layout);
