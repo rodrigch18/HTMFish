@@ -33,7 +33,8 @@ public class FishLocalGame extends LocalGame{
      * @param p - a player
      */
     protected void sendUpdatedStateTo(GamePlayer p){
-
+        FishGameState temp = new FishGameState(fishGameState);
+        p.sendInfo(temp);
     }
 
     /**
