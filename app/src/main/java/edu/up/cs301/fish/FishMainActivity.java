@@ -32,10 +32,16 @@ public class FishMainActivity extends GameMainActivity {
                 return new FishHumanPlayer(name);
             }});
 
+        playerTypes.add(new GamePlayerType("Dumb Computer Player") {
+            public GamePlayer createPlayer(String name) {
+                return new FishDumbComputerPlayer(name);
+            }});
+
 
         // Create a game configuration class for Pig:
         GameConfig defaultConfig = new GameConfig(playerTypes, 1, 2, "Hey, That's my Fish", PORT_NUMBER);
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
+        defaultConfig.addPlayer("Computer", 1); // player 1: a human player
         defaultConfig.setRemoteData("Remote Human Player", "", 0);
 
         return defaultConfig;
