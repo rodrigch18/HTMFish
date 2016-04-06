@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/home/christian/StudioProjects/HTMFish/P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
+        "outputFile": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/values-v14/values-v14.xml",
         "map": [
             {
                 "to": {
@@ -11,7 +11,31 @@
                     "endOffset": 127
                 },
                 "from": {
-                    "file": "/home/christian/StudioProjects/HTMFish/P:\\cs371\\HTMFish\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "file": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/values-v14/styles.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 17,
+                        "endColumn": 77,
+                        "endOffset": 90
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "outputFile": "/home/christian/StudioProjects/HTMFish/C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 76,
+                    "endOffset": 127
+                },
+                "from": {
+                    "file": "/home/christian/StudioProjects/HTMFish/C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\values-v14\\styles.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
@@ -48,7 +72,7 @@
         ]
     },
     {
-        "outputFile": "/home/christian/StudioProjects/HTMFish/C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
+        "outputFile": "/home/christian/StudioProjects/HTMFish/P:\\cs371\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\values-v14\\values-v14.xml",
         "map": [
             {
                 "to": {
@@ -59,7 +83,7 @@
                     "endOffset": 127
                 },
                 "from": {
-                    "file": "/home/christian/StudioProjects/HTMFish/C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\values-v14\\styles.xml",
+                    "file": "/home/christian/StudioProjects/HTMFish/P:\\cs371\\HTMFish\\app\\src\\main\\res\\values-v14\\styles.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,

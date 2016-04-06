@@ -64,10 +64,20 @@ public class FishGameState extends GameState{
         board = new Hex[10][10];
         for(int i = 0; i < 10; i ++)
         {
-//            for(int j = 0; j < 10; j++)
-//            {
-//                board[i][j] = new Hex();
-//            }
+            for(int j = 0; j < 10; j++)
+            {
+                if(i==0 || i==9 || j==0 || j==9){  //initialize outer border of null hex objects
+                    board[i][j] = null;
+                }
+                //4 special tiles for the shift on rows with 7 tiles
+                else if((i==2 && j==1) || (i==4 && j==1) || (i==6 && j==1) || (i==8 && j==1)) {
+                    board[i][j] = null;
+                }
+                else { //initialize rest of board (60 tiles)
+                    //board[i][j] = new Hex(Context context, i, j);
+                }
+            }
+
         }
 
         //creates array list equal to the number of players for the scores
