@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/red_penguin.png",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-hdpi/red_penguin.png"
+    },
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/blue_penguin.png",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-hdpi/blue_penguin.png"
+    },
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/three_fish.png",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-hdpi/three_fish.png"
+    },
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/two_fish.png",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-hdpi/two_fish.png"
+    },
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/one_fish.png",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-hdpi/one_fish.png"
+    },
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/fish_launcher.png",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-hdpi/fish_launcher.png"
+    }
+]
