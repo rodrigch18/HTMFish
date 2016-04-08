@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import edu.up.cs301.animation.HexagonSurfaceView;
 import edu.up.cs301.game.GameHumanPlayer;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.R;
@@ -29,6 +30,7 @@ public class FishHumanPlayer extends GameHumanPlayer{
     private ArrayList<TextView> playerScoreTextView;
     private TextView turnTextView;
     private GameMainActivity myActivity;
+    HexagonSurfaceView boardView = null;
 
     /**
      * Fish Human Player constructor
@@ -54,14 +56,13 @@ public class FishHumanPlayer extends GameHumanPlayer{
     public void receiveInfo(GameInfo info){
         if (info instanceof FishGameState) {
             FishGameState newState = (FishGameState) info;
+            boardView.setTheState(newState);
+
+            this.boardView.invalidate();
    //         for (int i = 0; i < newState.player.length; i++) {
     //            playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
     //        }
-            for(int i = 0; i < 10; i++){
-                for(int j = 0; j < 10; j++){
-               //     newState.board[i][j]
-                }
-            }
+
         }
         else {
             flash(0xFFFF0000, 33);
@@ -92,6 +93,7 @@ public class FishHumanPlayer extends GameHumanPlayer{
         myActivity = activity;
 
         activity.setContentView(R.layout.htmfish_layout);
+        boardView = (HexagonSurfaceView)activity.findViewById(R.id.viewBoard);
 
 
         // Load the layout resource for our GUI

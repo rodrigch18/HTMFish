@@ -56,6 +56,8 @@ public class Hex {
                 myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.three_fish); //decode bitmap in constructor
         }
 
+        myBitmap.createScaledBitmap(myBitmap, 50, 50, false);
+
     }
 
     public Hex(int tileVal){

@@ -11,6 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
+import edu.up.cs301.fish.FishGameState;
 import edu.up.cs301.fish.FishMainActivity;
 import edu.up.cs301.fish.Hex;
 import edu.up.cs301.game.R;
@@ -20,6 +21,7 @@ import edu.up.cs301.game.R;
  */
 public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
+    FishGameState theState = null;
 
 
     /**
@@ -60,6 +62,8 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         setFocusable(true);
         setWillNotDraw(false);
     }
+
+    public void setTheState(FishGameState newState) { this.theState = newState; }
 
     /**
      * Surface Holder Changes
@@ -110,9 +114,18 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     @Override
     public void onDraw(Canvas canvas) {
 
-        Hex aHex = new Hex(getContext(),100, 100);
+        if (theState == null) {
+            // TODO
+            return;
+        }
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 10; j++) {
+                Hex aHex = new Hex(getContext(), (i*50), (j*50));
+                aHex.drawHex(canvas);
+            }
+        }
 
-        aHex.drawHex(canvas);
+
 
 
 
