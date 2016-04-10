@@ -43,7 +43,12 @@ public class FishLocalGame extends LocalGame{
      * @param playerIdx - specific player
      */
     protected boolean canMove(int playerIdx){
-        return true;
+
+        if(playerIdx == fishGameState.getId()) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -52,7 +57,21 @@ public class FishLocalGame extends LocalGame{
      *          if game is not over
      */
     protected String checkIfGameOver(){
-        return "";
+
+        if (fishGameState.board == null) {
+
+            int maxScore = fishGameState.player[0];
+            int winner =0;
+            for (int i = 1; i < fishGameState.player.length; i++) {
+                if (fishGameState.getPlayerScore(i) > maxScore) {
+                    maxScore = fishGameState.getPlayerScore(i);
+                    winner = i;
+                }
+            }
+            return playerNames[winner] + " wins with a score of " + maxScore;
+        }
+        return null;
+
     }
 
     /**
@@ -61,7 +80,10 @@ public class FishLocalGame extends LocalGame{
      * @param action - the action a player takes
      */
     protected boolean makeMove(GameAction action){
-        return true;
+        if (fishGameState.getId() == 0) {
+            return true;
+        }
+        return false;
     }
 
 }

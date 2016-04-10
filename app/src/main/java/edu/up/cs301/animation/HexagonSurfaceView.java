@@ -118,10 +118,24 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             // TODO
             return;
         }
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 10; j++) {
-                Hex aHex = new Hex(getContext(), (i*50), (j*50));
-                aHex.drawHex(canvas);
+
+        Hex[][] hexB = new Hex[10][10];
+
+
+
+        for(int i = 1; i < 9; i++) {  //i represents the columns of the tiles
+            for(int j = 1; j < 9; j++) {//j represents the rows
+                if (i==1 && j%2==1) { // does not draw the first tile of the odd rows
+                    //do nothing
+                }
+                else if (j%2==0){ // shifts and draws the even rows by the radius
+                    hexB[i][j] = new Hex(getContext(), (i*130)+65, (j*130));
+                    hexB[i][j].drawHex(canvas);
+                }
+                else{ //draws the odd rows
+                    hexB[i][j] = new Hex(getContext(), (i*130), (j*130));
+                    hexB[i][j].drawHex(canvas);
+                }
             }
         }
 

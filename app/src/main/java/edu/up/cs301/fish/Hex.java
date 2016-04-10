@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 
 import edu.up.cs301.game.R;
 
@@ -24,7 +25,7 @@ import edu.up.cs301.game.R;
  */
 public class Hex {
 
-    Bitmap myBitmap;
+    Bitmap resizedBitmap;
     Canvas canvas;
     private Paint   mBitmapPaint;
     Paint p= new Paint();
@@ -44,19 +45,24 @@ public class Hex {
 
         x = xPos;
         y = yPos;
+        Bitmap myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.one_fish);
 
-        tileVal = (int)(Math.random()*3+1);
+        tileVal = (int)(Math.random()*3)+1;
+        Log.i("tileval", ""+tileVal);
 
         switch (tileVal) {
             case 1:
                 myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.one_fish); //decode bitmap in constructor
+                break;
             case 2:
                 myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.two_fish); //decode bitmap in constructor
+                break;
             case 3:
                 myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.three_fish); //decode bitmap in constructor
+                break;
         }
 
-        myBitmap.createScaledBitmap(myBitmap, 50, 50, false);
+        resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 400, 400, false);
 
     }
 
@@ -77,8 +83,8 @@ public class Hex {
      */
     public void drawHex(Canvas canvas){
 
-        canvas.drawColor(Color.BLACK);
-        canvas.drawBitmap(myBitmap, x,y, p);
+        //canvas.drawColor(Color.BLACK);
+        canvas.drawBitmap(resizedBitmap,x-125,y-125,p);
     }
 
 }
