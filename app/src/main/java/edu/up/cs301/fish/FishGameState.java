@@ -6,6 +6,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import edu.up.cs301.animation.HexagonSurfaceView;
+import edu.up.cs301.game.R;
 import edu.up.cs301.game.infoMsg.GameState;
 
 /**
@@ -30,15 +32,17 @@ import edu.up.cs301.game.infoMsg.GameState;
  */
 public class FishGameState extends GameState{
 
-    FishLocalGame game = new FishLocalGame();
+
 
     //player id
     private int id;
     //score's for each player
     private int playerScore[];
 
+    int numOfPlayers;
+
     //amount of players possible
-    protected int[] player = new int[game.numPlayers];
+    protected int[] player = new int[numOfPlayers];
 
     //number of penguins each player has
     protected int numPenguin;
@@ -53,17 +57,34 @@ public class FishGameState extends GameState{
     //make sure the selected tile is legal
     protected boolean isLegalSelection;
 
-    protected Hex[][] board;
+    public Hex[][] board;
 
     //penguin array that holds all the penguins in the game
     protected Penguin[] penguin;
 
-    public FishGameState() {
+    public FishGameState(int numPlayers) {
 
+        numOfPlayers = numPlayers;
         id = 0;
 
         //creates 10 by 10 game board
         board = new Hex[10][10];
+
+        for(int i = 0; i < 10; i++) {  //i represents the columns of the tiles
+            for(int j = 0; j < 10; j++) {//j represents the rows
+                if (i==0||i==9||j==0||j==9||i==1 && j%2==1) { // does not draw the first tile of the odd rows
+                    board[i][j] = null;
+                }
+                else if (j%2==0){ // shifts and draws the even rows by the radius
+                  //  board[i][j] = new Hex(R.layout.htmfish_layout, (i*130)+65, (j*130));
+                }
+                else{ //draws the odd rows
+                   // board[i][j] = new Hex(R.layout.htmfish_layout, (i*130), (j*130));
+
+                }
+            }
+        }
+
         for(int i = 0; i < 10; i ++)
         {
             for(int j = 0; j < 10; j++)

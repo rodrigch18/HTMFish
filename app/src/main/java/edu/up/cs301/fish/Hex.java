@@ -45,23 +45,11 @@ public class Hex {
 
         x = xPos;
         y = yPos;
-        Bitmap myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.one_fish);
+
 
         tileVal = (int)(Math.random()*3)+1;
 
-        switch (tileVal) {
-            case 1:
-                myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.one_fish); //decode bitmap in constructor
-                break;
-            case 2:
-                myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.two_fish); //decode bitmap in constructor
-                break;
-            case 3:
-                myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.three_fish); //decode bitmap in constructor
-                break;
-        }
 
-        resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 400, 400, false);
 
     }
 
@@ -75,16 +63,6 @@ public class Hex {
     }
 
 
-    /**
-     * draws the hexagonal board, 1 at a time
-     *
-     * @param canvas - canvas for surfaceView
-     */
-    public void drawHex(Canvas canvas){
-
-        //canvas.drawColor(Color.BLACK);
-        canvas.drawBitmap(resizedBitmap,x-125,y-125,p);
-    }
 
 }
 

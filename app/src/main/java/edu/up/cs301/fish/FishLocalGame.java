@@ -19,13 +19,14 @@ import edu.up.cs301.game.actionMsg.GameAction;
 public class FishLocalGame extends LocalGame{
 
     FishGameState fishGameState;
-    int numPlayers = this.players.length;
+    int numPlayers;
 
     /**
      * Fish Local Game constructor that takes no parameters
      */
-    public FishLocalGame(){
-        fishGameState = new FishGameState();
+    public FishLocalGame(int numPlayers){
+        this.numPlayers = numPlayers;
+        fishGameState = new FishGameState(numPlayers);
     }
 
     /**
