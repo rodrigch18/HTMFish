@@ -55,7 +55,7 @@ public class FishMainActivity extends GameMainActivity {
      */
     @Override
     public LocalGame createLocalGame(){
-        return new FishLocalGame(-1); //need to perform check later
+        return new FishLocalGame(); //need to perform check later
     }
 
 }

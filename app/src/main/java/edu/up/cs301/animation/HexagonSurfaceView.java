@@ -1,6 +1,8 @@
 package edu.up.cs301.animation;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import edu.up.cs301.fish.FishGameState;
 import edu.up.cs301.fish.FishMainActivity;
 import edu.up.cs301.fish.Hex;
+import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.R;
 
 /**
@@ -125,15 +128,43 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             for(int j = 0; j < 10; j++){
                 if(hexB[i][j] != null) {
                     hexB[i][j] = theState.board[i][j];
-                    hexB[i][j].drawHex(canvas);
                 }
             }
         }
 
+      //  makeBoard(hexB,canvas,theState);
+    }
 
+    public void makeBoard(Hex[][] aBoard, Canvas canvas, GameMainActivity myActivity){
 
+        for(int i = 0; i < 10; i++) {
+            for(int j = 0; j < 10; j++) {
 
+                Bitmap myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.one_fish);
+                Bitmap resizedBitmap;
 
+                switch (aBoard[i][j].getTileVal()) {
+                    case 1:
+                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.one_fish); //decode bitmap in constructor
+                        break;
+                    case 2:
+                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.two_fish); //decode bitmap in constructor
+                        break;
+                    case 3:
+                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.three_fish); //decode bitmap in constructor
+                        break;
+                }
+
+                resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 400, 400, false);
+
+                drawHex(aBoard[i][j], canvas, resizedBitmap);
+            }
+        }
+    }
+
+    public void drawHex(Hex aHex, Canvas canvas, Bitmap resizedBitmap){
+
+      //  canvas.drawBitmap(resizedBitmap,aHex.x-125,aHex.y-125,p);
     }
 
 

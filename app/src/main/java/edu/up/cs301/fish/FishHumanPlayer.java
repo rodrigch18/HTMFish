@@ -78,37 +78,37 @@ public class FishHumanPlayer extends GameHumanPlayer{
         }
     }
 
-    public void makeBoard(Hex[][] aBoard, Canvas canvas){
-
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 10; j++) {
-
-                Bitmap myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.one_fish);
-                Bitmap resizedBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.one_fish);
-
-                switch (aBoard[i][j].getTileVal()) {
-                    case 1:
-                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.one_fish); //decode bitmap in constructor
-                        break;
-                    case 2:
-                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.two_fish); //decode bitmap in constructor
-                        break;
-                    case 3:
-                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.three_fish); //decode bitmap in constructor
-                        break;
-                }
-
-                resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 400, 400, false);
-
-                drawHex(aBoard[i][j], canvas, resizedBitmap);
-            }
-        }
-    }
-
-    public void drawHex(Hex aHex, Canvas canvas, Bitmap resizedBitmap){
-
-        canvas.drawBitmap(resizedBitmap,aHex.x-125,aHex.y-125,p);
-    }
+//    public void makeBoard(Hex[][] aBoard, Canvas canvas, GameMainActivity activity){
+//
+//        for(int i = 0; i < 10; i++) {
+//            for(int j = 0; j < 10; j++) {
+//
+//                Bitmap myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.one_fish);
+//                Bitmap resizedBitmap;
+//
+//                switch (aBoard[i][j].getTileVal()) {
+//                    case 1:
+//                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.one_fish); //decode bitmap in constructor
+//                        break;
+//                    case 2:
+//                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.two_fish); //decode bitmap in constructor
+//                        break;
+//                    case 3:
+//                        myBitmap = BitmapFactory.decodeResource(myActivity.getResources(), R.mipmap.three_fish); //decode bitmap in constructor
+//                        break;
+//                }
+//
+//                resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 400, 400, false);
+//
+//                drawHex(aBoard[i][j], canvas, resizedBitmap);
+//            }
+//        }
+//    }
+//
+//    public void drawHex(Hex aHex, Canvas canvas, Bitmap resizedBitmap){
+//
+//        canvas.drawBitmap(resizedBitmap,aHex.x-125,aHex.y-125,p);
+//    }
 
     /**
      * Check where the player touches/taps

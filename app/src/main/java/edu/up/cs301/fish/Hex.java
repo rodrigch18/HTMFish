@@ -32,8 +32,8 @@ public class Hex {
 
     protected int tileVal;
     boolean fullTile;
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
 
 
     /**
