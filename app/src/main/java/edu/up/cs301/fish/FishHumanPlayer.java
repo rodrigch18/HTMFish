@@ -27,10 +27,11 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  */
 public class FishHumanPlayer extends GameHumanPlayer{
 
-    private ArrayList<TextView> playerScoreTextView;
+    private ArrayList<TextView> playerScoreTextView = new ArrayList<TextView>();
     private TextView turnTextView;
     private GameMainActivity myActivity;
     HexagonSurfaceView boardView = null;
+
 
     /**
      * Fish Human Player constructor
@@ -58,10 +59,11 @@ public class FishHumanPlayer extends GameHumanPlayer{
             FishGameState newState = (FishGameState) info;
             boardView.setTheState(newState);
 
+            for(int i=0; i<newState.player.length; i++) {
+                playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
+            }
+
             this.boardView.invalidate();
-   //         for (int i = 0; i < newState.player.length; i++) {
-    //            playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
-    //        }
 
         }
         else {
@@ -92,18 +94,19 @@ public class FishHumanPlayer extends GameHumanPlayer{
         // remember the activity
         myActivity = activity;
 
+        // Load the layout resource for our GUI
         activity.setContentView(R.layout.htmfish_layout);
+
         boardView = (HexagonSurfaceView)activity.findViewById(R.id.viewBoard);
 
 
-        // Load the layout resource for our GUI
-//        activity.setContentView(R.layout.pig_layout);
-
         //Initialize the widget reference member variables
-//        this.playerScoreTextView = (TextView)activity.findViewById(R.id.yourScoreValue);
-//        this.oppScoreTextView    = (TextView)activity.findViewById(R.id.oppScoreValue);
-//        this.turnTotalTextView   = (TextView)activity.findViewById(R.id.turnTotalValue);
-//        this.messageTextView     = (TextView)activity.findViewById(R.id.messageTextView);
+        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore1));
+        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore2));
+        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore3));
+        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore4));
+
+
 
     }
 

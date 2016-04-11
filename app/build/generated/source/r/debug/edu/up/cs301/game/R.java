@@ -36,35 +36,34 @@ public final class R {
         public static final int ipCodeLabel=0x7f0a000a;
         public static final int localGameTab=0x7f0a0004;
         public static final int localTabLayout=0x7f0a0005;
-        public static final int menu_settings=0x7f0a0023;
+        public static final int menu_settings=0x7f0a0022;
         public static final int playGameButton=0x7f0a0002;
         public static final int playerNameEditText=0x7f0a0010;
         public static final int playerNameHeadingText=0x7f0a000c;
         public static final int playerTypeHeadingText=0x7f0a000d;
         public static final int playerTypeSpinner=0x7f0a0011;
-        public static final int quitButton=0x7f0a001a;
         public static final int remoteGameTab=0x7f0a0006;
         public static final int remoteIPCodeEditText=0x7f0a0017;
         public static final int remoteNameEditText=0x7f0a0014;
         public static final int remoteTabLayout=0x7f0a0007;
         public static final int remote_player_spinner=0x7f0a0015;
-        public static final int restartButton=0x7f0a001b;
         public static final int saveConfigButton=0x7f0a0001;
         public static final int serverIPCode=0x7f0a0016;
         public static final int tabHost=0x7f0a0000;
         public static final int tableDataRow=0x7f0a0013;
         public static final int tableHeadingRow=0x7f0a000b;
-        public static final int textElement=0x7f0a0022;
-        public static final int textPlayerTurn=0x7f0a0021;
         public static final int textView1=0x7f0a0009;
         public static final int textView2=0x7f0a000f;
-        public static final int textYourTurn=0x7f0a001e;
         public static final int top_gui_layout=0x7f0a0018;
         public static final int viewBoard=0x7f0a0019;
-        public static final int viewPlayer1=0x7f0a001c;
-        public static final int viewPlayer2=0x7f0a001f;
-        public static final int viewScore2=0x7f0a0020;
-        public static final int viewYourScore=0x7f0a001d;
+        public static final int viewPlayer1=0x7f0a001a;
+        public static final int viewPlayer2=0x7f0a001c;
+        public static final int viewPlayer3=0x7f0a001e;
+        public static final int viewPlayer4=0x7f0a0020;
+        public static final int viewScore1=0x7f0a001b;
+        public static final int viewScore2=0x7f0a001d;
+        public static final int viewScore3=0x7f0a001f;
+        public static final int viewScore4=0x7f0a0021;
     }
     public static final class layout {
         public static final int game_config_main=0x7f040000;
@@ -79,12 +78,14 @@ public final class R {
         public static final int game_main=0x7f090000;
     }
     public static final class mipmap {
-        public static final int blue_penguin=0x7f030000;
-        public static final int fish_launcher=0x7f030001;
-        public static final int one_fish=0x7f030002;
-        public static final int red_penguin=0x7f030003;
-        public static final int three_fish=0x7f030004;
-        public static final int two_fish=0x7f030005;
+        public static final int angel_peng=0x7f030000;
+        public static final int drunk_peng=0x7f030001;
+        public static final int fish_launcher=0x7f030002;
+        public static final int hula_peng=0x7f030003;
+        public static final int one_fish=0x7f030004;
+        public static final int painter_peng=0x7f030005;
+        public static final int three_fish=0x7f030006;
+        public static final int two_fish=0x7f030007;
     }
     public static final class string {
         public static final int add_player=0x7f080000;

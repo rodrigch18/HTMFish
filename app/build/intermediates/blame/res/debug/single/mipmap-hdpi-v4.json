@@ -4,23 +4,31 @@
         "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/three_fish.png"
     },
     {
-        "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/red_penguin.png",
-        "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/red_penguin.png"
-    },
-    {
-        "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/blue_penguin.png",
-        "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/blue_penguin.png"
+        "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/angel_peng.png",
+        "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/angel_peng.png"
     },
     {
         "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/one_fish.png",
         "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/one_fish.png"
     },
     {
+        "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/drunk_peng.png",
+        "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/drunk_peng.png"
+    },
+    {
         "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/two_fish.png",
         "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/two_fish.png"
     },
     {
+        "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/hula_peng.png",
+        "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/hula_peng.png"
+    },
+    {
         "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/fish_launcher.png",
         "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/fish_launcher.png"
+    },
+    {
+        "merged": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/painter_peng.png",
+        "source": "/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/res/mipmap-hdpi/painter_peng.png"
     }
 ]

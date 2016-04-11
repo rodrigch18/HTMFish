@@ -48,7 +48,6 @@ public class Hex {
         Bitmap myBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.one_fish);
 
         tileVal = (int)(Math.random()*3)+1;
-        Log.i("tileval", ""+tileVal);
 
         switch (tileVal) {
             case 1:

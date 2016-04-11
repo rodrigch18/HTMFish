@@ -1,5 +1,11 @@
 package edu.up.cs301.fish;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import edu.up.cs301.game.R;
+
 /**
  * Hey, That's My Fish Penguin
  *
@@ -20,11 +26,27 @@ public class Penguin {
     // x,y coordinates of given penguin
     protected int currPosX;
     protected int currPosY;
+    protected Bitmap pengBitmap;
 
     /**
      * Penguin Constructor that takes no parameters
      */
-    public Penguin(){
+    public Penguin(Context context, int x, int y){
+
+        switch (player) {
+            case 1:
+                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.angel_peng); //decode bitmap in constructor
+                break;
+            case 2:
+                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.hula_peng); //decode bitmap in constructor
+                break;
+            case 3:
+                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.painter_peng); //decode bitmap in constructor
+                break;
+            case 4:
+                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.drunk_peng); //decode bitmap in constructor
+                break;
+        }
 
     }
 

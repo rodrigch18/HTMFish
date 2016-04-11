@@ -30,13 +30,15 @@ import edu.up.cs301.game.infoMsg.GameState;
  */
 public class FishGameState extends GameState{
 
+    FishLocalGame game = new FishLocalGame();
+
     //player id
     private int id;
     //score's for each player
     private int playerScore[];
 
     //amount of players possible
-    protected int[] player = new int[4];
+    protected int[] player = new int[game.numPlayers];
 
     //number of penguins each player has
     protected int numPenguin;
@@ -82,7 +84,7 @@ public class FishGameState extends GameState{
 
         //creates array list equal to the number of players for the scores
         playerScore = new int[player.length];
-        for(int i = 0; i < 4; i++){
+        for(int i = 0; i < player.length; i++){
             playerScore[i] = 0;
         }
 
