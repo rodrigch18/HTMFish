@@ -26,16 +26,13 @@ public class Penguin {
     // x,y coordinates of given penguin
     protected int currPosX;
     protected int currPosY;
-    //bitmap for penguins
-    protected Bitmap pengBitmap;
-    //resized bitmap to fit the screen
-    protected Bitmap resizedBitmap;
 
     /**
      * Penguin Constructor that takes no parameters
      */
     public Penguin(int x, int y){
-
+        this.currPosX = x;
+        this.currPosY = y;
 
     }
 
@@ -45,7 +42,8 @@ public class Penguin {
      * @param p - a given penguin on the board
      */
     public Penguin(Penguin p){
-
+        this.currPosX = p.getCurrPosX();
+        this.currPosY = p.getCurrPosY();
     }
 
     //position of a player's penguin
@@ -54,7 +52,7 @@ public class Penguin {
     }
 
     public void setCurrPosX(int newCurrPosX) {
-        currPosX = newCurrPosX;
+        this.currPosX = newCurrPosX;
     }
 
     public int getCurrPosY() {
@@ -62,7 +60,7 @@ public class Penguin {
     }
 
     public void setCurrPosY(int newCurrPosY) {
-        currPosY = newCurrPosY;
+        this.currPosY = newCurrPosY;
     }
 
 }

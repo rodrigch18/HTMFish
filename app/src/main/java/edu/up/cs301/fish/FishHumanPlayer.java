@@ -31,14 +31,15 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishHumanPlayer extends GameHumanPlayer{
+public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchListener {
 
     private ArrayList<TextView> playerScoreTextView = new ArrayList<TextView>();
     private ArrayList<TextView> playerPlayerTextView = new ArrayList<TextView>();
     private TextView turnTextView;
     private GameMainActivity myActivity;
+    FishGameState newState;
     HexagonSurfaceView boardView = null;
-    Hex[][] humanBoard = new Hex[10][10];
+    Hex[][] humanBoard;
     Paint p = new Paint();
 
 
@@ -65,11 +66,26 @@ public class FishHumanPlayer extends GameHumanPlayer{
      */
     public void receiveInfo(GameInfo info){
         if (info instanceof FishGameState) {
-            FishGameState newState = (FishGameState) info;
+            newState = (FishGameState) info;
+            humanBoard = new Hex[10][10];
+
+            if(newState.board != null) {
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+                        if(newState.board[i][j] != null) {
+                            humanBoard[i][j] = newState.board[i][j];
+                        }
+                        else{
+                            humanBoard[i][j] = null;
+                        }
+                    }
+                }
+            }
+
             boardView.setTheState(newState);
             boardView.setMyAct(myActivity);
 
-            Log.i("Number of Players","" + newState.numOfPlayers);
+            boardView.setOnTouchListener(this);
 
             switch (newState.numOfPlayers){
                 case 2:
@@ -121,20 +137,41 @@ public class FishHumanPlayer extends GameHumanPlayer{
      *
      * @param event - touch/tap
      */
-    public boolean onTouchEvent(MotionEvent event){
-        int ea = event.getAction();
-        //coordinates of tapped spot
-        int X = (int) event.getX();
-        int Y = (int) event.getY();
+    public boolean onTouch(View v, MotionEvent event){
 
-        FishGameState gameState = new FishGameState();
+        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+            int xTouch = (int) event.getX();
+            int yTouch = (int) event.getY();
 
-        if(gameState.onStart = true){
-            gameState.setPeng(new Penguin(X,Y),X,Y);
+            Log.i("IS TOUCHED", xTouch + " " + yTouch);
+
+            //coordinates of tapped spot
+            for (int i = 0; i < 10; i++) {
+                for (int j = 0; j < 10; j++) {
+                    if (humanBoard[i][j] != null) {
+                        if ((xTouch - (humanBoard[i][j].x + 65)) *
+                                (xTouch - (humanBoard[i][j].x + 65)) +
+                                (yTouch - (humanBoard[i][j].y + 65)) *
+                                        (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
+                            newState.setPeng(new Penguin(xTouch, yTouch), xTouch, yTouch, this.playerNum);
+                            Log.i("TOUCH", xTouch + " " + yTouch);
+                        }
+                    }
+                }
+            }
+
+            boardView.invalidate();
+
+            //FishGameState gameState = new FishGameState();
+
+//        if(newState.onStart = true){
+//            newState.setPeng(new Penguin(X,Y),X,Y);
+//        }
+
+
+            return true;
         }
-
-
-        return true;
+        return false;
     }
 
     /**

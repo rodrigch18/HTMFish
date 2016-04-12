@@ -12,11 +12,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 
 import edu.up.cs301.fish.FishGameState;
 import edu.up.cs301.fish.FishMainActivity;
 import edu.up.cs301.fish.Hex;
+import edu.up.cs301.fish.Penguin;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.R;
 
@@ -27,6 +29,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
     FishGameState theState = null;
     GameMainActivity myAct = null;
+    //MotionEvent event = null;
 
     Paint paint = new Paint();
 
@@ -74,6 +77,8 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     public void setTheState(FishGameState newState) { this.theState = newState; }
 
     public void setMyAct(GameMainActivity newAct){this.myAct = newAct; }
+
+    //public MotionEvent getEvent(){return this.event;}
 
     /**
      * Surface Holder Changes
@@ -126,6 +131,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
         Hex[][] hexB = new Hex[10][10];
 
+
         if (theState == null) {
             // TODO
             return;
@@ -138,6 +144,12 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             // TODO
             return;
         }
+        if (theState.pengA == null) {
+            // TODO
+            return;
+        }
+
+        Penguin[][] pengB = new Penguin[theState.player.length][theState.pengA[0].length];
 
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 10; j++){
@@ -155,10 +167,21 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         makeBoard(hexB,canvas);
 
         for(int player=0; player<theState.player.length;player++){
-            for(int peng=0; peng<theState.numPenguin;peng++) {
-                drawPenguin(canvas, theState.getId(), tappedx, tappedy);
+            for(int peng=0; peng<theState.pengA[0].length;peng++) {
+
+                if(theState.pengA[player][peng] != null) {
+
+                    pengB[player][peng] = theState.pengA[player][peng];
+
+                }
+                else{
+                    pengB[player][peng] = null;
+                }
             }
         }
+
+        drawPenguin(pengB,canvas);
+
         theState.onStart = false;
 
 
@@ -190,9 +213,9 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                             break;
                     }
 
-                    resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 400, 400, true);
+                    resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 170, 170, true);
 
-                    canvas.drawBitmap(resizedBitmap, aBoard[i][j].x - 125, aBoard[i][j].y - 125, paint);
+                    canvas.drawBitmap(resizedBitmap, aBoard[i][j].x - 20, aBoard[i][j].y - 75, paint);
                 }
                 else {
                     aBoard[i][j] = null;
@@ -201,33 +224,46 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         }
     }
 
-    public void drawPenguin(Canvas canvas, int playerId, int tappedx, int tappedy){
+    public void drawPenguin(Penguin[][] aPeng, Canvas canvas){
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inScaled = false;
+        for(int player=0; player<theState.player.length;player++) {
+            for (int peng = 0; peng < theState.pengA[0].length; peng++) {
 
-        Bitmap pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options);
-        Bitmap resizedBitmap;
+                if (theState.pengA[player][peng] != null) {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inScaled = false;
 
-        switch (playerId) {
-            case 0:
-                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
-                break;
-            case 1:
-                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
-                break;
-            case 2:
-                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
-                break;
-            case 3:
-                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
-                break;
+                    Bitmap pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options);
+                    Bitmap resizedBitmap;
+
+                    switch (player) {
+                        case 0:
+                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
+                            break;
+                        case 1:
+                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
+                            break;
+                        case 2:
+                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
+                            break;
+                        case 3:
+                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
+                            break;
+                    }
+
+                    resizedBitmap = Bitmap.createScaledBitmap(pengBitmap, 200, 200, true);
+                    canvas.drawBitmap(resizedBitmap, aPeng[player][peng].getCurrPosX(), aPeng[player][peng].getCurrPosY(), paint);
+                }
+            }
         }
-
-        resizedBitmap = Bitmap.createScaledBitmap(pengBitmap, 200, 200, true);
-        canvas.drawBitmap(resizedBitmap,tappedx,tappedy, paint);
     }
 
+//    public boolean onTouch(View v, MotionEvent event) {
+//
+//        this.event = event;
+//
+//        return true;
+//    };
 
 }
 

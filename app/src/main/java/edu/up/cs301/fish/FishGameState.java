@@ -48,6 +48,7 @@ public class FishGameState extends GameState{
     private int[] playerScore;
 
     //number of penguins each player has
+
     public int numPenguin;
 
     //current positions of penguins of a given player
@@ -62,10 +63,10 @@ public class FishGameState extends GameState{
 
     public boolean onStart;
 
-    public Hex[][] board = new Hex[10][10];
+    public Hex[][] board;
 
     //penguin array that holds all the penguins in the game
-    protected Penguin[] penguin;
+    public Penguin[][] pengA;
 
     public FishGameState(int numPlayers, String[] playersNames) {
 
@@ -84,26 +85,24 @@ public class FishGameState extends GameState{
                     board[i][j] = null;
                 }
                 else if (j%2==0){ // shifts and draws the even rows by the radius
-                    board[i][j] = new Hex((i*130)+65, (j*130));
+                    board[i][j] = new Hex((i*135)+70, (j*130));
                 }
                 else{ //draws the odd rows
-                    board[i][j] = new Hex((i*130), (j*130));
+                    board[i][j] = new Hex((i*135), (j*130));
 
                 }
-//                if (i==0 || i==9 || j==0 || j==9) { // does not draw the first tile of the odd rows
-//                    board[i][j] = null;
-//                }
-//                else if((i==2 && j==1) || (i==4 && j==1) || (i==6 && j==1) || (i==8 && j==1)) {
-//                    board[i][j] = null;
-//                }
-//                else if (j%2==0){ // shifts and draws the even rows by the radius
-//                    board[i][j] = new Hex((i*130)+65, (j*130));
-//                }
-//                else{ //draws the odd rows
-//                   board[i][j] = new Hex((i*130), (j*130));
-//
-//                }
             }
+        }
+
+        switch (numOfPlayers){
+            case 2:
+                pengA = new Penguin[2][4];
+                break;
+            case 3:
+                pengA = new Penguin[3][3];
+                break;
+            case 4:
+                pengA = new Penguin[4][2];
         }
 
 
@@ -153,6 +152,17 @@ public class FishGameState extends GameState{
                     }
                 }
             }
+        }
+
+        switch (numOfPlayers){
+            case 2:
+                pengA = new Penguin[2][4];
+                break;
+            case 3:
+                pengA = new Penguin[3][3];
+                break;
+            case 4:
+                pengA = new Penguin[4][2];
         }
 
         this.id = fishGameState.getId();
@@ -214,12 +224,12 @@ public class FishGameState extends GameState{
      * @param tappedPosX -x corrdinate of tapped spot
      */
     public void checkSelectedPeng(int id, int tappedPosX, int tappedPosY) {
-        for(int i=0; i<penguin.length; i++)
-        {
-            if (tappedPosX == penguin[i].getCurrPosX() && tappedPosY == penguin[i].getCurrPosX() )
-            {
-                isLegalSelection=true;
-                return;
+        for(int i=0; i<numOfPlayers; i++) {
+            for (int j = 0; j < pengA[0].length; j++) {
+                if (tappedPosX == pengA[i][j].getCurrPosX() && tappedPosY == pengA[i][j].getCurrPosX()) {
+                    isLegalSelection = true;
+                    return;
+                }
             }
         }
         isLegalSelection=false;
@@ -289,9 +299,16 @@ public class FishGameState extends GameState{
     }
 
 
-    public void setPeng(Penguin p, int newPosX, int newPosY) {
+    public void setPeng(Penguin p, int newPosX, int newPosY, int playerIndex) {
+
         p.setCurrPosX(newPosX);
         p.setCurrPosY(newPosY);
+
+        for(int i = 0; i < pengA[0].length; i++) {
+            if(pengA[playerIndex][i] == null){
+                pengA[playerIndex][i] = p;
+            }
+        }
     }
 
     /**

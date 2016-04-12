@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/christian/StudioProjects/HTMFish/app/src/main/assets"/></dataSet><dataSet config="debug"><source path="/home/christian/StudioProjects/HTMFish/app/src/debug/assets"/></dataSet></merger>
