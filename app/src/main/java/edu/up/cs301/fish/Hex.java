@@ -25,22 +25,17 @@ import edu.up.cs301.game.R;
  */
 public class Hex {
 
-    Bitmap resizedBitmap;
-    Canvas canvas;
-    private Paint   mBitmapPaint;
-    Paint p= new Paint();
-
     protected int tileVal;
-    boolean fullTile;
-    protected int x;
-    protected int y;
+
+    public int x;
+    public int y;
 
 
     /**
      * Hex constructor that takes no parameters
      * It sets the tile values randomly (1,2, or 3)
      */
-    public Hex(Context context, int xPos, int yPos) {
+    public Hex(int xPos, int yPos) {
         //sets tileVal to either 1, 2 , or 3
 
         x = xPos;
@@ -48,8 +43,6 @@ public class Hex {
 
 
         tileVal = (int)(Math.random()*3)+1;
-
-
 
     }
 
@@ -60,6 +53,10 @@ public class Hex {
     // tile values
     public int getTileVal() {
         return tileVal;
+    }
+
+    public String toString(){
+        return (x + " " + y);
     }
 
 

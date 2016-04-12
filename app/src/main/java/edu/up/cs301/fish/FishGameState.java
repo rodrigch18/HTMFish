@@ -2,6 +2,7 @@ package edu.up.cs301.fish;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,12 +38,14 @@ public class FishGameState extends GameState{
     //player id
     private int id;
     //score's for each player
-    private int playerScore[];
+
 
     int numOfPlayers;
+    String[] playerName;
 
     //amount of players possible
     protected int[] player = new int[numOfPlayers];
+    private int[] playerScore;
 
     //number of penguins each player has
     protected int numPenguin;
@@ -57,15 +60,18 @@ public class FishGameState extends GameState{
     //make sure the selected tile is legal
     protected boolean isLegalSelection;
 
-    public Hex[][] board;
+    public Hex[][] board = new Hex[10][10];
 
     //penguin array that holds all the penguins in the game
     protected Penguin[] penguin;
 
-    public FishGameState(int numPlayers) {
+    public FishGameState(int numPlayers, String[] playersNames) {
 
         numOfPlayers = numPlayers;
+        playerName = playersNames;
+       // Log.i("Number of Players","" + numOfPlayers);
         id = 0;
+
 
         //creates 10 by 10 game board
         board = new Hex[10][10];
@@ -76,36 +82,33 @@ public class FishGameState extends GameState{
                     board[i][j] = null;
                 }
                 else if (j%2==0){ // shifts and draws the even rows by the radius
-                  //  board[i][j] = new Hex(R.layout.htmfish_layout, (i*130)+65, (j*130));
+                    board[i][j] = new Hex((i*130)+65, (j*130));
                 }
                 else{ //draws the odd rows
-                   // board[i][j] = new Hex(R.layout.htmfish_layout, (i*130), (j*130));
+                    board[i][j] = new Hex((i*130), (j*130));
 
                 }
+//                if (i==0 || i==9 || j==0 || j==9) { // does not draw the first tile of the odd rows
+//                    board[i][j] = null;
+//                }
+//                else if((i==2 && j==1) || (i==4 && j==1) || (i==6 && j==1) || (i==8 && j==1)) {
+//                    board[i][j] = null;
+//                }
+//                else if (j%2==0){ // shifts and draws the even rows by the radius
+//                    board[i][j] = new Hex((i*130)+65, (j*130));
+//                }
+//                else{ //draws the odd rows
+//                   board[i][j] = new Hex((i*130), (j*130));
+//
+//                }
             }
         }
 
-        for(int i = 0; i < 10; i ++)
-        {
-            for(int j = 0; j < 10; j++)
-            {
-                if(i==0 || i==9 || j==0 || j==9){  //initialize outer border of null hex objects
-                    board[i][j] = null;
-                }
-                //4 special tiles for the shift on rows with 7 tiles
-                else if((i==2 && j==1) || (i==4 && j==1) || (i==6 && j==1) || (i==8 && j==1)) {
-                    board[i][j] = null;
-                }
-                else { //initialize rest of board (60 tiles)
-                    //board[i][j] = new Hex(Context context, i, j);
-                }
-            }
 
-        }
 
         //creates array list equal to the number of players for the scores
-        playerScore = new int[player.length];
-        for(int i = 0; i < player.length; i++){
+        playerScore = new int[numOfPlayers];
+        for(int i = 0; i < numOfPlayers; i++){
             playerScore[i] = 0;
         }
 
@@ -115,46 +118,64 @@ public class FishGameState extends GameState{
          * 3 penguins if there are 3 players
          * 2 penguins if there are 4 players
          */
-        if(player.length == 2){
+        if(numOfPlayers == 2){
             numPenguin = 4;
-        } else if(player.length == 3){
+        } else if(numOfPlayers == 3){
             numPenguin = 3;
-        } else if(player.length == 4){
+        } else if(numOfPlayers == 4){
             numPenguin = 2;
         }
 
+        player = new int[numOfPlayers];
+
 
         //arrays of all the positions of penguins in the game in order by player
-        currPosX = new int[numPenguin * player.length];
-        currPosY = new int[numPenguin * player.length];
+        currPosX = new int[numPenguin * numOfPlayers];
+        currPosY = new int[numPenguin * numOfPlayers];
     }
 
-    public FishGameState(FishGameState fishGameState) {
+    public FishGameState(FishGameState fishGameState, int numPlayers, String[] playersNames) {
+        numOfPlayers = numPlayers;
+        playerName = playersNames;
+
+        board = new Hex[10][10];
+
         if(fishGameState.board != null) {
-            Hex[][] board = new Hex[fishGameState.board.length][fishGameState.board.length];
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
-                    board[i][j] = fishGameState.board[i][j];
+                    if(fishGameState.board[i][j] != null) {
+                        board[i][j] = fishGameState.board[i][j];
+                    }
+                    else{
+                        board[i][j] = null;
+                    }
                 }
             }
         }
 
         this.id = fishGameState.getId();
         //gets all the currents scores of the players
-     //   for (int i=0; i<player.length; i++) {
+     //   for (int i=0; i<numOfPlayers; i++) {
      //       this.playerScore[i] = fishGameState.getPlayerScore(i);
      //   }
         //same as before
-        if(player.length == 2){
+        if(numOfPlayers == 2){
             numPenguin = 4;
-        } else if(player.length == 3){
+        } else if(numOfPlayers == 3){
             numPenguin = 3;
-        } else if(player.length == 4){
+        } else if(numOfPlayers == 4){
             numPenguin = 2;
         }
 
+        player = new int[numOfPlayers];
+
+        playerScore = new int[numOfPlayers];
+        for(int i = 0; i < numOfPlayers; i++){
+            playerScore[i] = getPlayerScore(i);
+        }
+
         //Sets the positions of the penguins
-   //     for(int p=0; p<player.length; p++) {    //TEST
+   //     for(int p=0; p<numOfPlayers; p++) {    //TEST
    //         for (int peng=0; peng<numPenguin; peng++) {
     //            this.currPosX[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosX();
     //            this.currPosY[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosY();
@@ -175,6 +196,7 @@ public class FishGameState extends GameState{
     public int getPlayerScore(int id) {
         return playerScore[id];
     }
+
 
     public void setPlayerScore(int id, int newScore) {
         this.playerScore[id] = newScore;

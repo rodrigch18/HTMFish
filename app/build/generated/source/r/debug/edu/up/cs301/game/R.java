@@ -24,9 +24,15 @@ public final class R {
         public static final int table_row_vert_pad=0x7f070005;
     }
     public static final class drawable {
-        public static final int ic_action_search=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int purple_delete_button=0x7f020002;
+        public static final int angel_peng=0x7f020000;
+        public static final int drunk_peng=0x7f020001;
+        public static final int fish_launcher=0x7f020002;
+        public static final int hula_peng=0x7f020003;
+        public static final int one_fish=0x7f020004;
+        public static final int painter_peng=0x7f020005;
+        public static final int purple_delete_button=0x7f020006;
+        public static final int three_fish=0x7f020007;
+        public static final int two_fish=0x7f020008;
     }
     public static final class id {
         public static final int addPlayerButton=0x7f0a000e;

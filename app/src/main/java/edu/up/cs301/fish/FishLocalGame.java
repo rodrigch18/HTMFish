@@ -20,6 +20,7 @@ public class FishLocalGame extends LocalGame{
 
     FishGameState fishGameState;
     int numPlayers;
+    String[] playersNames;
 
     /**
      * Fish Local Game constructor that takes no parameters
@@ -36,10 +37,14 @@ public class FishLocalGame extends LocalGame{
      */
     protected void sendUpdatedStateTo(GamePlayer p){
         if(fishGameState == null){
-            this.numPlayers = this.players.length;
-            fishGameState = new FishGameState(numPlayers);
+            this.numPlayers = Integer.valueOf(this.players.length);
+            playersNames= new String[this.numPlayers];
+            for(int i=0; i<this.numPlayers; i++){
+                this.playersNames[i] = new String(this.playerNames[i]);
+            }
+            fishGameState = new FishGameState(numPlayers, playersNames);
         }
-        FishGameState temp = new FishGameState(fishGameState);
+        FishGameState temp = new FishGameState(fishGameState, numPlayers, playersNames);
         p.sendInfo(temp);
     }
 
