@@ -73,37 +73,37 @@ public class FishHumanPlayer extends GameHumanPlayer{
 
             switch (newState.numOfPlayers){
                 case 2:
-                    playerScoreTextView.get(0).setText("" + newState.getPlayerScore(0));
-                    playerScoreTextView.get(1).setText("" + newState.getPlayerScore(1));
+
+                    for(int i=0; i<2; i++){
+                        playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
+                        playerPlayerTextView.get(i).setText("" + newState.playerName[i]);
+                    }
                     playerScoreTextView.get(2).setText(" ");
                     playerScoreTextView.get(3).setText(" ");
 
-                    playerPlayerTextView.get(0).setText("" + newState.playerName[0]);
-                    playerPlayerTextView.get(1).setText("" + newState.playerName[1]);
                     playerPlayerTextView.get(2).setText(" ");
                     playerPlayerTextView.get(3).setText(" ");
                     break;
+
                 case 3:
-                    playerScoreTextView.get(0).setText("" + newState.getPlayerScore(0));
-                    playerScoreTextView.get(1).setText("" + newState.getPlayerScore(1));
-                    playerScoreTextView.get(2).setText("" + newState.getPlayerScore(2));
+
+                    for(int i=0; i<3; i++){
+                        playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
+                        playerPlayerTextView.get(i).setText("" + newState.playerName[i]);
+                    }
+
                     playerScoreTextView.get(3).setText(" ");
-
-                    playerPlayerTextView.get(0).setText("" + newState.playerName[0]);
-                    playerPlayerTextView.get(1).setText("" + newState.playerName[1]);
-                    playerPlayerTextView.get(2).setText("" + newState.playerName[2]);
                     playerPlayerTextView.get(3).setText(" ");
-                    break;
-                case 4:
-                    playerScoreTextView.get(0).setText("" + newState.getPlayerScore(0));
-                    playerScoreTextView.get(1).setText("" + newState.getPlayerScore(1));
-                    playerScoreTextView.get(2).setText("" + newState.getPlayerScore(2));
-                    playerScoreTextView.get(3).setText("" + newState.getPlayerScore(3));
 
-                    playerPlayerTextView.get(0).setText("" + newState.playerName[0]);
-                    playerPlayerTextView.get(1).setText("" + newState.playerName[1]);
-                    playerPlayerTextView.get(2).setText("" + newState.playerName[2]);
-                    playerPlayerTextView.get(3).setText("" + newState.playerName[3]);
+                    break;
+
+                case 4:
+
+                    for(int i=0; i<4; i++){
+                        playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
+                        playerPlayerTextView.get(i).setText("" + newState.playerName[i]);
+                    }
+
                     break;
             }
 
@@ -126,6 +126,14 @@ public class FishHumanPlayer extends GameHumanPlayer{
         //coordinates of tapped spot
         int X = (int) event.getX();
         int Y = (int) event.getY();
+
+        FishGameState gameState = new FishGameState();
+
+        if(gameState.onStart = true){
+            gameState.setPeng(new Penguin(X,Y),X,Y);
+        }
+
+
         return true;
     }
 

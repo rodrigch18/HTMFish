@@ -44,11 +44,11 @@ public class FishGameState extends GameState{
     String[] playerName;
 
     //amount of players possible
-    protected int[] player = new int[numOfPlayers];
+    public int[] player = new int[numOfPlayers];
     private int[] playerScore;
 
     //number of penguins each player has
-    protected int numPenguin;
+    public int numPenguin;
 
     //current positions of penguins of a given player
     //assigns first few to player 0, second few to p1, etc
@@ -59,6 +59,8 @@ public class FishGameState extends GameState{
     protected boolean isLegalMove;
     //make sure the selected tile is legal
     protected boolean isLegalSelection;
+
+    public boolean onStart;
 
     public Hex[][] board = new Hex[10][10];
 
@@ -287,6 +289,10 @@ public class FishGameState extends GameState{
     }
 
 
+    public void setPeng(Penguin p, int newPosX, int newPosY) {
+        p.setCurrPosX(newPosX);
+        p.setCurrPosY(newPosY);
+    }
 
     /**
      * Set new current position for a given penguin of a given player and add old tile value to
@@ -297,7 +303,7 @@ public class FishGameState extends GameState{
      * @param newPosX new x position that penguin will move to
      * @param newPosY new y position that penguin will move to
      */
-    public void movePeng(int id, Penguin p, int newPosX, int newPosY) {
+    public void placePeng(int id, Penguin p, int newPosX, int newPosY) {
 
         //gets value of current tile
         if(board[p.getCurrPosX()][p.getCurrPosY()]!=null) {

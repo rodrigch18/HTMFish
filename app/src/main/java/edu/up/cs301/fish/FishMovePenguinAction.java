@@ -15,7 +15,7 @@ import edu.up.cs301.game.actionMsg.GameAction;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishMovePenguinAction  extends GameAction {
+public class FishMovePenguinAction extends GameAction {
 
     /**
      * Move Penguin Action constructor

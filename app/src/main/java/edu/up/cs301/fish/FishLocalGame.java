@@ -26,8 +26,11 @@ public class FishLocalGame extends LocalGame{
      * Fish Local Game constructor that takes no parameters
      */
     public FishLocalGame(){
-        //this.numPlayers = numPlayers;
-       // fishGameState = new FishGameState();
+        //this.numPlayers = Integer.valueOf(this.players.length);
+        //playersNames= new String[this.numPlayers];
+        //fishGameState = new FishGameState(this.numPlayers, playersNames);
+
+
     }
 
     /**
@@ -90,11 +93,15 @@ public class FishLocalGame extends LocalGame{
      *
      * @param action - the action a player takes
      */
-    protected boolean makeMove(GameAction action){
-        if (fishGameState.getId() == 0) {
-            return true;
+    protected boolean makeMove(GameAction action) {
+
+        if (action instanceof FishMovePenguinAction){
+            if (fishGameState.getId() == 0) {
+                return true;
+            }
         }
         return false;
+
     }
 
 }

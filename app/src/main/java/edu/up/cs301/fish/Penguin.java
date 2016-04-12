@@ -21,32 +21,21 @@ import edu.up.cs301.game.R;
  */
 
 public class Penguin {
-
-    protected int player; // player that owns given penguin
+    // player that owns given penguin
+    protected int player;
     // x,y coordinates of given penguin
     protected int currPosX;
     protected int currPosY;
+    //bitmap for penguins
     protected Bitmap pengBitmap;
+    //resized bitmap to fit the screen
+    protected Bitmap resizedBitmap;
 
     /**
      * Penguin Constructor that takes no parameters
      */
-    public Penguin(Context context, int x, int y){
+    public Penguin(int x, int y){
 
-        switch (player) {
-            case 1:
-                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.angel_peng); //decode bitmap in constructor
-                break;
-            case 2:
-                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.hula_peng); //decode bitmap in constructor
-                break;
-            case 3:
-                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.painter_peng); //decode bitmap in constructor
-                break;
-            case 4:
-                pengBitmap = BitmapFactory.decodeResource(context.getResources(), R.mipmap.drunk_peng); //decode bitmap in constructor
-                break;
-        }
 
     }
 

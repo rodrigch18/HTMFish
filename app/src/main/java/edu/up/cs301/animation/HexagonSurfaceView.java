@@ -154,6 +154,14 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
         makeBoard(hexB,canvas);
 
+        for(int player=0; player<theState.player.length;player++){
+            for(int peng=0; peng<theState.numPenguin;peng++) {
+                drawPenguin(canvas, theState.getId(), tappedx, tappedy);
+            }
+        }
+        theState.onStart = false;
+
+
     }
 
     public void makeBoard(Hex[][] aBoard, Canvas canvas){
@@ -191,6 +199,33 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                 }
             }
         }
+    }
+
+    public void drawPenguin(Canvas canvas, int playerId, int tappedx, int tappedy){
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inScaled = false;
+
+        Bitmap pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options);
+        Bitmap resizedBitmap;
+
+        switch (playerId) {
+            case 0:
+                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
+                break;
+            case 1:
+                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
+                break;
+            case 2:
+                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
+                break;
+            case 3:
+                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
+                break;
+        }
+
+        resizedBitmap = Bitmap.createScaledBitmap(pengBitmap, 200, 200, true);
+        canvas.drawBitmap(resizedBitmap,tappedx,tappedy, paint);
     }
 
 
