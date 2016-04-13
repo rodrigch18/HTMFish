@@ -4,12 +4,12 @@
         "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-mdpi/angel_peng.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/drunk_peng.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-mdpi/drunk_peng.png"
-    },
-    {
         "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/two_fish.png",
         "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-mdpi/two_fish.png"
+    },
+    {
+        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/drunk_peng.png",
+        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-mdpi/drunk_peng.png"
     },
     {
         "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-mdpi-v4/painter_peng.png",

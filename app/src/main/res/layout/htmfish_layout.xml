@@ -31,6 +31,16 @@
 
             <TextView
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="whoseTurn"
+                android:id="@+id/whoseTurn"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:singleLine="false" />
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="PLAYER 1 Score"

@@ -35,6 +35,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
     private ArrayList<TextView> playerScoreTextView = new ArrayList<TextView>();
     private ArrayList<TextView> playerPlayerTextView = new ArrayList<TextView>();
+    TextView whosTurn;
     private TextView turnTextView;
     private GameMainActivity myActivity;
     FishGameState newState;
@@ -192,6 +193,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
             boardView.setTheState(newState);
             boardView.setMyAct(myActivity);
+            whosTurn.setText("Player: "+allPlayerNames[newState.getId()]+"'s Turn");
 
             this.boardView.invalidate();
 
@@ -214,9 +216,9 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
             int xTouch = (int) event.getX();
             int yTouch = (int) event.getY();
 
-            Log.i("IS TOUCHED", xTouch + " " + yTouch);
+           // Log.i("IS TOUCHED", xTouch + " " + yTouch);
 
-            Log.i("peng", "" + pengsOwned);
+           // Log.i("peng", "" + pengsOwned);
 
             //coordinates of tapped spot
             outerloop:
@@ -278,6 +280,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                             //this.j = j;
                                             this.k = k;
                                             firstTouch = true;
+                                           // Log.i("Penguin Selected", "stuff");
                                             return true;
                                         }
                                     }
@@ -300,7 +303,8 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                             FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
                                             humanBoard[i][j].x, humanBoard[i][j].y, this.k);
                                     humanBoard[i][j].occupied = true;
-                                    Log.i("SECOND TOUCH", "stuff");
+                                  //  Log.i("SECOND TOUCH", "stuff");
+                                  //  Log.i("SECOND TOUCH", "Set Happens");
                                     game.sendAction(movePenguinAction);
                                     //boardView.invalidate();
                                     return true;
@@ -339,6 +343,8 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
         activity.setContentView(R.layout.htmfish_layout);
 
         boardView = (HexagonSurfaceView)activity.findViewById(R.id.viewBoard);
+
+        this.whosTurn = (TextView)activity.findViewById(R.id.whoseTurn);
 
         //Initialize the widget reference member variables
         this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore1));

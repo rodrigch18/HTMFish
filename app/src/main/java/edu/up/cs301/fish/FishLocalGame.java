@@ -52,7 +52,7 @@ public class FishLocalGame extends LocalGame{
             fishGameState = new FishGameState(numPlayers, playersNames);
         }
         FishGameState temp = new FishGameState(fishGameState, numPlayers, playersNames);
-        Log.i("SENDING INFO", "some");
+       // Log.i("SENDING INFO", "some");
         p.sendInfo(temp);
     }
 
@@ -63,7 +63,7 @@ public class FishLocalGame extends LocalGame{
      */
     protected boolean canMove(int playerIdx){
 
-        Log.i("Can Move","" + playerIdx + fishGameState.getId());
+        //Log.i("Can Move","" + playerIdx + fishGameState.getId());
 
         if(playerIdx == fishGameState.getId()) {
             return true;
@@ -80,33 +80,42 @@ public class FishLocalGame extends LocalGame{
      */
     protected String checkIfGameOver() {
         boolean isEnd = false;
+        boolean allOc = true;
+        int totalScore = 0;
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (fishGameState.board[i][j] != null) {
-                    numTile++;
-                }
-            }
+//        for (int i = 0; i < 10; i++) {
+//            for (int j = 0; j < 10; j++) {
+//                if (fishGameState.board[i][j] != null) {
+//                    if(fishGameState.board[i][j].getOccupied() == false){
+//                        allOc = false;
+//                    }
+//                    numTile++;
+//                }
+//            }
+//        }
+//
+//        for (int i = 0; i < fishGameState.numOfPlayers; i++) {
+//            for (int j = 0; j < fishGameState.numPenguin; j++) {
+//                if (fishGameState.pengA[i][j] != null) {
+//                    numPeng++;
+//                }
+//            }
+//        }
+//
+//        if(numTile == numPeng){
+//            isEnd = true;
+//        }
+
+        for(int i = 0; i < fishGameState.numOfPlayers; i++){
+            totalScore = fishGameState.getPlayerScore(i) + totalScore;
         }
 
-        for (int i = 0; i < fishGameState.numOfPlayers; i++) {
-            for (int j = 0; j < fishGameState.numPenguin; j++) {
-                if (fishGameState.pengA[i][j] != null) {
-                    numPeng++;
-                }
-            }
-        }
 
-        if(numTile == numPeng){
-            isEnd = true;
-        }
-
-
-        if (isEnd == true) {
+        if (totalScore >= 50) {
 
             int maxScore = fishGameState.player[0];
             int winner = 0;
-            for (int i = 1; i < fishGameState.player.length; i++) {
+            for (int i = 0; i < fishGameState.player.length; i++) {
                 if (fishGameState.getPlayerScore(i) > maxScore) {
                     maxScore = fishGameState.getPlayerScore(i);
                     winner = i;
@@ -160,8 +169,8 @@ public class FishLocalGame extends LocalGame{
             else {
                 fishGameState.setId(i);
             }
-            Log.i("New PLAYER ID", "" + fishGameState.getId());
-            Log.i("RETURNING TRUE", "some");
+           // Log.i("New PLAYER ID", "" + fishGameState.getId());
+            //Log.i("RETURNING TRUE", "some");
             return true;
 
 

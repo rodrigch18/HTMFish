@@ -2,6 +2,7 @@ package edu.up.cs301.fish;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import edu.up.cs301.animation.HexagonSurfaceView;
@@ -29,7 +30,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 
     int pengsOwned = 0;
     FishGameState newState;
-   // Hex[][] newState.board;
+    ArrayList<Hex> listOfTiles;
     int xBoard;
     int yBoard;
 
@@ -56,7 +57,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 
             newState = (FishGameState) info;
 
-            Log.i("CPU PLAYER ID", "" + newState.getId());
+            //Log.i("CPU PLAYER ID", "" + newState.getId());
 //            newState.board = new Hex[10][10];
 //
 //            if (newState.board != null) {
@@ -73,7 +74,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 
 
             sleep(1000);
-            Log.i("CPU WOKE", newState.getId() + " " + this.playerNum);
+            //Log.i("CPU WOKE", newState.getId() + " " + this.playerNum);
             if (newState.getId() != this.playerNum) {
                 return;
             } else {
@@ -86,53 +87,68 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 //                    return;
 //                }
 
-                int x;
-                int y;
-
-                boolean inHex = false;
-                do {
-                    x = (int) (Math.random() * 1000) + 335;
-                    y = (int) (Math.random() * 1000) + 150;
-
-                    inHex =checkIfInHex(x,y);
-                    Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
-                }
-                while(inHex != true);
 
                 //creates pengs -giselle thinks
-                if(onStart) {
+                if(this.onStart) {
+
+                    int x;
+                    int y;
+
+                    boolean inHex = false;
+                    do {
+                        x = (int) (Math.random() * 1000) + 335;
+                        y = (int) (Math.random() * 1000) + 150;
+
+                        inHex =checkIfInHex(x,y);
+                        Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
+                    }
+                    while(inHex != true);
+
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
                             new Penguin(getXboard(), getYboard()),getXboard(), getYboard(), this.playerNum);
                     newState.setPeng(newState.getPeng(this.playerNum, pengsOwned), getXboard(),
                             getYboard(), this.playerNum);
 
 
-                    Log.i("CPU set", x + " " + y);
+                    //Log.i("CPU set", x + " " + y);
                     game.sendAction(setPenguinAction);
 
                     pengsOwned++;
-                    Log.i("peng Owned by Comp", pengsOwned + " " + newState.numPenguin);
+                    //Log.i("peng Owned by Comp", pengsOwned + " " + newState.numPenguin);
                     if (pengsOwned == newState.numPenguin) {
                         this.onStart=false;
                         Log.i("On Start", "" + onStart);
 
                     }
                 }
-                else if (!onStart)
+                else if (!this.onStart)
                 {
                     int randPeng = (int) (Math.random() * pengsOwned );
-                    Log.i("CPU MOVE", getXboard() + " " + getYboard() + " " + randPeng);
-                    do {
-                        x = (int) (Math.random() * 1000) + 335;
-                        y = (int) (Math.random() * 1000) + 150;
 
-                        inHex = checkIfInHex(x,y);
+//                    Log.i("CPU MOVE", getXboard() + " " + getYboard() + " " + randPeng);
+//                    do {
+//                        x = (int) (Math.random() * 1000) + 335;
+//                        y = (int) (Math.random() * 1000) + 150;
+//
+//                        inHex = checkIfInHex(x,y);
+//                    }
+//                    while(inHex != true);
+
+                    ArrayList<Hex> listOfTiles = new ArrayList<Hex>();
+                    for (int i = 0; i< 10; i++){
+                        for (int j = 0; j< 10; j++){
+                            if(newState.board[i][j] != null && newState.board[i][j].getOccupied() == false){
+                                listOfTiles.add(newState.board[i][j]);
+                            }
+                        }
                     }
-                    while(inHex != true);
+
+                    int randI = (int) (Math.random() * listOfTiles.size());
+
 
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
-                            newState.getPeng(this.playerNum, randPeng), getXboard(), getYboard(),randPeng);
+                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).x, listOfTiles.get(randI).y,randPeng);
                     //newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
                     //       getXboard(), getYboard(), randPeng);
 
@@ -156,7 +172,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
         yBoard = newY;
     }
     public boolean getOnStart(){
-        return onStart;
+        return this.onStart;
     }
     public void setOnStart(boolean onStartNow){
         onStart = onStartNow;
@@ -172,7 +188,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
                             (y - (newState.board[i][j].y + 65)) * (y - (newState.board[i][j].y + 65))
                             <= 65 * 65)) {
                         if(!newState.board[i][j].occupied) {
-                            if(onStart==true){
+                            if(this.onStart==true){
                                 if(newState.board[i][j].getTileVal()==1) {
                                     setXboard(newState.board[i][j].x);
                                     setYboard(newState.board[i][j].y);

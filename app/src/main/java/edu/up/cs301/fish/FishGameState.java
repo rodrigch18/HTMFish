@@ -381,7 +381,7 @@ public class FishGameState extends GameState{
      */
     public void movePeng(int id, Penguin p, int newPosX, int newPosY, int pengIndex) {
 
-        Log.i("MOVING", "THE PENGUIN");
+       // Log.i("MOVING", "THE PENGUIN");
         int val = 0;
 
         for(int i = 0; i < 10; i++){
