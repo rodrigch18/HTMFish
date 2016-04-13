@@ -16,23 +16,23 @@ public class FishSetPenguinAction extends GameAction {
      *
      * @param gamePlayer - player
      */
-    public FishSetPenguinAction(GamePlayer gamePlayer, Penguin penguin, int aPlayersNum){
+    public FishSetPenguinAction(GamePlayer gamePlayer, Penguin penguin,int newX, int newY, int aPlayersNum){
 
         super(gamePlayer);
 
         this.aPlayersNum=aPlayersNum;
-        this.x = penguin.getCurrPosX();
-        this.y = penguin.getCurrPosY();
+        this.x = newX;
+        this.y = newY;
         this.penguin=penguin;
 
     }
 
     public int getX(){
-        return x;
+        return this.x;
     }
 
     public int getY(){
-        return y;
+        return this.y;
     }
 
     public Penguin getPenguin(){

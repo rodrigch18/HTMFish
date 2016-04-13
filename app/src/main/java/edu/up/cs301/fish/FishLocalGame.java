@@ -50,6 +50,7 @@ public class FishLocalGame extends LocalGame{
             fishGameState = new FishGameState(numPlayers, playersNames);
         }
         FishGameState temp = new FishGameState(fishGameState, numPlayers, playersNames);
+        Log.i("SENDING INFO", "some");
         p.sendInfo(temp);
     }
 
@@ -105,6 +106,8 @@ public class FishLocalGame extends LocalGame{
             fishGameState.setPeng(((FishSetPenguinAction) action).getPenguin(),
                     ((FishSetPenguinAction) action).getX(),((FishSetPenguinAction) action).getY(),
                     ((FishSetPenguinAction) action).getaPlayersNum());
+
+
             int i = fishGameState.getId()+1;
             if(i==numPlayers) {
                 fishGameState.setId(0);
@@ -116,16 +119,24 @@ public class FishLocalGame extends LocalGame{
 
         }
         else if (action instanceof FishMovePenguinAction){
-            fishGameState.movePeng(fishGameState.getId(), ((FishMovePenguinAction) action).penguin,
-                    ((FishMovePenguinAction) action).x, ((FishMovePenguinAction) action).y,
+
+            fishGameState.movePeng(fishGameState.getId(), ((FishMovePenguinAction) action).getPenguin(),
+                    ((FishMovePenguinAction) action).getX(), ((FishMovePenguinAction) action).getY(),
                     ((FishMovePenguinAction) action).pengIndex);
+
+            //newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
+             //       getXboard(), getYboard(), randPeng);
+
             int i = fishGameState.getId()+1;
+
             if(i==numPlayers) {
                 fishGameState.setId(0);
             }
             else {
                 fishGameState.setId(i);
             }
+            Log.i("New PLAYER ID", "" + fishGameState.getId());
+            Log.i("RETURNING TRUE", "some");
             return true;
 
 

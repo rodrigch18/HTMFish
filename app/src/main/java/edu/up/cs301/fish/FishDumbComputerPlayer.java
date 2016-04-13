@@ -29,7 +29,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 
     int pengsOwned = 0;
     FishGameState newState;
-    Hex[][] compBoard;
+   // Hex[][] newState.board;
     int xBoard;
     int yBoard;
 
@@ -48,36 +48,43 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
      *
      * @param info - info from the game
      */
-    protected void receiveInfo(GameInfo info) {
+    protected void receiveInfo(GameInfo info)
+    {
+        Log.i("CPU recieve info", "info");
         if (info instanceof FishGameState) {
-            newState = (FishGameState) info;
-            compBoard = new Hex[10][10];
+            Log.i("CPU FishGameState", "info");
 
-            if (newState.board != null) {
-                for (int i = 0; i < 10; i++) {
-                    for (int j = 0; j < 10; j++) {
-                        if (newState.board[i][j] != null) {
-                            compBoard[i][j] = newState.board[i][j];
-                        } else {
-                            compBoard[i][j] = null;
-                        }
-                    }
-                }
-            }
+            newState = (FishGameState) info;
+
+            Log.i("CPU PLAYER ID", "" + newState.getId());
+//            newState.board = new Hex[10][10];
+//
+//            if (newState.board != null) {
+//                for (int i = 0; i < 10; i++) {
+//                    for (int j = 0; j < 10; j++) {
+//                        if (newState.board[i][j] != null) {
+//                            newState.board[i][j] = newState.board[i][j];
+//                        } else {
+//                            newState.board[i][j] = null;
+//                        }
+//                    }
+//                }
+//            }
 
 
             sleep(1000);
+            Log.i("CPU WOKE", newState.getId() + " " + this.playerNum);
             if (newState.getId() != this.playerNum) {
                 return;
             } else {
 
-                if(newState.numOfPlayers == 2 && pengsOwned == 4){
-                    return;
-                } else if(newState.numOfPlayers == 3 && pengsOwned == 3){
-                    return;
-                } else if(newState.numOfPlayers == 4 && pengsOwned == 2){
-                    return;
-                }
+//                if(newState.numOfPlayers == 2 && pengsOwned == 4){
+//                    return;
+//                } else if(newState.numOfPlayers == 3 && pengsOwned == 3){
+//                    return;
+//                } else if(newState.numOfPlayers == 4 && pengsOwned == 2){
+//                    return;
+//                }
 
                 int x;
                 int y;
@@ -95,24 +102,26 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
                 //creates pengs -giselle thinks
                 if(onStart) {
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                            new Penguin(getXboard(), getYboard()), this.playerNum);
+                            new Penguin(getXboard(), getYboard()),getXboard(), getYboard(), this.playerNum);
                     newState.setPeng(newState.getPeng(this.playerNum, pengsOwned), getXboard(),
                             getYboard(), this.playerNum);
-                    pengsOwned++;
 
+
+                    Log.i("CPU set", x + " " + y);
+                    game.sendAction(setPenguinAction);
+
+                    pengsOwned++;
+                    Log.i("peng Owned by Comp", pengsOwned + " " + newState.numPenguin);
                     if (pengsOwned == newState.numPenguin) {
                         this.onStart=false;
                         Log.i("On Start", "" + onStart);
 
                     }
-
-                    Log.i("CPU set", x + " " + y);
-                    game.sendAction(setPenguinAction);
                 }
-                if (!onStart)
+                else if (!onStart)
                 {
-                    int randPeng = (int) (Math.random() * pengsOwned);
-                    Log.i("CPU move", getXboard() + " " + getYboard());
+                    int randPeng = (int) (Math.random() * pengsOwned );
+                    Log.i("CPU MOVE", getXboard() + " " + getYboard() + " " + randPeng);
                     do {
                         x = (int) (Math.random() * 1000) + 335;
                         y = (int) (Math.random() * 1000) + 150;
@@ -124,8 +133,8 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
                             newState.getPeng(this.playerNum, randPeng), getXboard(), getYboard(),randPeng);
-                    newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
-                           getXboard(), getYboard(), randPeng);
+                    //newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
+                    //       getXboard(), getYboard(), randPeng);
 
                     game.sendAction(movePenguinAction);
                 }
@@ -157,24 +166,24 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                if (compBoard[i][j] != null) {
+                if (newState.board[i][j] != null) {
 
-                    if (((x - (compBoard[i][j].x + 65)) * (x - (compBoard[i][j].x + 65)) +
-                            (y - (compBoard[i][j].y + 65)) * (y - (compBoard[i][j].y + 65))
+                    if (((x - (newState.board[i][j].x + 65)) * (x - (newState.board[i][j].x + 65)) +
+                            (y - (newState.board[i][j].y + 65)) * (y - (newState.board[i][j].y + 65))
                             <= 65 * 65)) {
-                        if(!compBoard[i][j].occupied) {
+                        if(!newState.board[i][j].occupied) {
                             if(onStart==true){
-                                if(compBoard[i][j].getTileVal()==1) {
-                                    setXboard(compBoard[i][j].x);
-                                    setYboard(compBoard[i][j].y);
-                                    compBoard[i][j].occupied = true;
+                                if(newState.board[i][j].getTileVal()==1) {
+                                    setXboard(newState.board[i][j].x);
+                                    setYboard(newState.board[i][j].y);
+                                    newState.board[i][j].occupied = true;
                                     return true;
                                 }
                             }
                             else {
-                                    setXboard(compBoard[i][j].x);
-                                    setYboard(compBoard[i][j].y);
-                                    compBoard[i][j].occupied = true;
+                                    setXboard(newState.board[i][j].x);
+                                    setYboard(newState.board[i][j].y);
+                                    newState.board[i][j].occupied = true;
                                     return true;
                             }
 

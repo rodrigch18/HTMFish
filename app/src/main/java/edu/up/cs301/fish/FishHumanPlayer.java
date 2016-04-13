@@ -95,7 +95,9 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
      * @param info - info from the game
      */
     public void receiveInfo(GameInfo info){
+        Log.i("HUMAN Recieving", " Info");
         if (info instanceof FishGameState) {
+            Log.i("HUMAN Recieving", " FishGameState");
             newState = (FishGameState) info;
             humanBoard = new Hex[10][10];
             penArray = new Penguin[newState.numOfPlayers][newState.numPenguin];
@@ -228,10 +230,10 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                         (yTouch - (humanBoard[i][j].y + 65)) *
                                                 (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
 
-                                    newState.setPeng(newState.getPeng(this.playerNum, pengsOwned),
-                                            humanBoard[i][j].x, humanBoard[i][j].y, this.playerNum);
+//                                    newState.setPeng(newState.getPeng(this.playerNum, pengsOwned),
+//                                            humanBoard[i][j].x, humanBoard[i][j].y, this.playerNum);
                                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                                            newState.getPeng(this.playerNum, pengsOwned), this.playerNum);
+                                            newState.getPeng(this.playerNum, pengsOwned),humanBoard[i][j].x, humanBoard[i][j].y, this.playerNum);
                                     pengsOwned++;
                                     //Log.i("TOUCH", humanBoard[i][j].x + " " + humanBoard[i][j].y);
 
@@ -289,11 +291,13 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                         (yTouch - (humanBoard[i][j].y + 65)) *
                                                 (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
 
-                                    newState.movePeng(this.playerNum, penArray[this.playerNum][this.k],
-                                            humanBoard[i][j].x, humanBoard[i][j].y, this.k);
+                                   // newState.movePeng(this.playerNum, penArray[this.playerNum][this.k],
+                                    //        humanBoard[i][j].x, humanBoard[i][j].y, this.k);
                                     firstTouch = false;
+
+
                                     FishMovePenguinAction movePenguinAction = new
-                                            FishMovePenguinAction(this, penArray[this.playerNum][k],
+                                            FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
                                             humanBoard[i][j].x, humanBoard[i][j].y, this.k);
                                     humanBoard[i][j].occupied = true;
                                     Log.i("SECOND TOUCH", "stuff");

@@ -56,7 +56,7 @@ public class FishMovePenguinAction extends GameAction {
     public void setY(int newY){ y = newY; }
 
     public Penguin getPenguin(){
-        return penguin;
+        return this.penguin;
     }
 
 
