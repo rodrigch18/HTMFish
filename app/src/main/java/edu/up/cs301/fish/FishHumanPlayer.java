@@ -41,7 +41,8 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
     HexagonSurfaceView boardView = null;
     Hex[][] humanBoard;
     Paint p = new Paint();
-
+    int pengsOwned = 0;
+    boolean firstTouch;
 
     /**
      * Fish Human Player constructor
@@ -56,7 +57,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
      * Returns the GUI's top view object
      */
     public View getTopView(){
-        return myActivity.findViewById(R.id.top_gui_layout);
+        return myActivity.findViewById(R.id.viewBoard);
     }
 
     /**
@@ -127,7 +128,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
         }
         else {
-            flash(0xFFFF0000, 33);
+            flash(-65636, 33);
         }
     }
 
@@ -140,21 +141,62 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
     public boolean onTouch(View v, MotionEvent event){
 
         if(event.getAction() == MotionEvent.ACTION_DOWN) {
+
+            if(newState.numOfPlayers == 2 && pengsOwned == 4){
+                return false;
+            } else if(newState.numOfPlayers == 3 && pengsOwned == 3){
+                return false;
+            } else if(newState.numOfPlayers == 4 && pengsOwned == 2){
+                return false;
+            }
+
             int xTouch = (int) event.getX();
             int yTouch = (int) event.getY();
 
             Log.i("IS TOUCHED", xTouch + " " + yTouch);
 
+            Log.i("peng", "" + pengsOwned);
+
             //coordinates of tapped spot
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     if (humanBoard[i][j] != null) {
-                        if ((xTouch - (humanBoard[i][j].x + 65)) *
-                                (xTouch - (humanBoard[i][j].x + 65)) +
-                                (yTouch - (humanBoard[i][j].y + 65)) *
-                                        (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
-                            newState.setPeng(new Penguin(xTouch, yTouch), xTouch, yTouch, this.playerNum);
-                            Log.i("TOUCH", xTouch + " " + yTouch);
+                        if (humanBoard[i][j].getOccupied() == false) {
+                            if ((xTouch - (humanBoard[i][j].x + 65)) *
+                                    (xTouch - (humanBoard[i][j].x + 65)) +
+                                    (yTouch - (humanBoard[i][j].y + 65)) *
+                                            (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
+                                newState.setPeng(newState.getPeng(this.playerNum, pengsOwned), humanBoard[i][j].x, humanBoard[i][j].y, this.playerNum);
+                                FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
+                                        newState.getPeng(this.playerNum, pengsOwned));
+                                pengsOwned++;
+                                Log.i("TOUCH", humanBoard[i][j].x + " " + humanBoard[i][j].y);
+
+                                humanBoard[i][j].occupied = true;
+                                game.sendAction(setPenguinAction);
+                            }
+                        }
+                        //to select peng
+                        else {
+                            if (firstTouch == false) {
+                                if ((xTouch - (humanBoard[i][j].x + 65)) *
+                                        (xTouch - (humanBoard[i][j].x + 65)) +
+                                        (yTouch - (humanBoard[i][j].y + 65)) *
+                                                (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
+                                    
+                                    for (int p = 0; p < newState.pengA[this.playerNum].length; p++){
+                                        if (newState.pengA[this.playerNum][p].getCurrPosX() == humanBoard[i][j].x
+                                                && newState.pengA[this.playerNum][p].getCurrPosY() == humanBoard[i][j].y) {
+                                            firstTouch = true;
+                                            return true;
+                                        }
+                                    }
+                                }
+                                    newState.movePeng(this.playerNum, newState.pengA[this.playerNum][p], );
+                                    //
+
+                            }
+
                         }
                     }
                 }

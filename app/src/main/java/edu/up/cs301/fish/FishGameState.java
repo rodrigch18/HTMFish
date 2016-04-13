@@ -97,12 +97,28 @@ public class FishGameState extends GameState{
         switch (numOfPlayers){
             case 2:
                 pengA = new Penguin[2][4];
+                for (int i = 0; i < 2; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        pengA[i][j]= new Penguin();
+                    }
+                }
                 break;
             case 3:
                 pengA = new Penguin[3][3];
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        pengA[i][j]= new Penguin();
+                    }
+                }
                 break;
             case 4:
                 pengA = new Penguin[4][2];
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 2; j++) {
+                        pengA[i][j]= new Penguin();
+                    }
+                }
+                break;
         }
 
 
@@ -157,12 +173,43 @@ public class FishGameState extends GameState{
         switch (numOfPlayers){
             case 2:
                 pengA = new Penguin[2][4];
+                for (int i = 0; i < 2; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        if(fishGameState.pengA[i][j] != null) {
+                            pengA[i][j] = fishGameState.pengA[i][j];
+                        }
+                        else{
+                            pengA[i][j] = null;
+                        }
+                    }
+                }
                 break;
             case 3:
                 pengA = new Penguin[3][3];
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        if(fishGameState.pengA[i][j] != null) {
+                            pengA[i][j] = fishGameState.pengA[i][j];
+                        }
+                        else{
+                            pengA[i][j] = null;
+                        }
+                    }
+                }
                 break;
             case 4:
                 pengA = new Penguin[4][2];
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 2; j++) {
+                        if(fishGameState.pengA[i][j] != null) {
+                            pengA[i][j] = fishGameState.pengA[i][j];
+                        }
+                        else{
+                            pengA[i][j] = null;
+                        }
+                    }
+                }
+                break;
         }
 
         this.id = fishGameState.getId();
@@ -265,7 +312,7 @@ public class FishGameState extends GameState{
                 results.add(board[x][y]);
             }
         }
-        while(board[x][y] != null);
+        while(board[x][y] != null && board[x][y].getOccupied() == false);
 
         return results;
     }
@@ -301,6 +348,7 @@ public class FishGameState extends GameState{
 
     public void setPeng(Penguin p, int newPosX, int newPosY, int playerIndex) {
 
+
         p.setCurrPosX(newPosX);
         p.setCurrPosY(newPosY);
 
@@ -309,7 +357,18 @@ public class FishGameState extends GameState{
                 pengA[playerIndex][i] = p;
             }
         }
+
     }
+
+    public Penguin getPeng(int id, int pengidx){
+        return pengA[id][pengidx];
+    }
+
+    public boolean checkIfOccupied(Hex selectedHex){
+        return selectedHex.occupied;
+    }
+
+
 
     /**
      * Set new current position for a given penguin of a given player and add old tile value to
@@ -320,7 +379,7 @@ public class FishGameState extends GameState{
      * @param newPosX new x position that penguin will move to
      * @param newPosY new y position that penguin will move to
      */
-    public void placePeng(int id, Penguin p, int newPosX, int newPosY) {
+    public void movePeng(int id, Penguin p, int newPosX, int newPosY) {
 
         //gets value of current tile
         if(board[p.getCurrPosX()][p.getCurrPosY()]!=null) {

@@ -24,16 +24,26 @@ public class Penguin {
     // player that owns given penguin
     protected int player;
     // x,y coordinates of given penguin
-    protected int currPosX;
-    protected int currPosY;
+    private int currPosX;
+    private int currPosY;
+    private Penguin aPeng;
+
+    public Penguin(){
+
+    }
+
+    public Penguin(int x, int y){
+        this.currPosX = x;
+        this.currPosY = y;
+    }
 
     /**
      * Penguin Constructor that takes no parameters
      */
-    public Penguin(int x, int y){
+    public Penguin(int x, int y, Penguin peng){
+        this.aPeng = peng;
         this.currPosX = x;
         this.currPosY = y;
-
     }
 
     /**

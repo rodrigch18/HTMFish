@@ -30,7 +30,7 @@ public class Hex {
     public int x;
     public int y;
 
-
+    public boolean occupied;
     /**
      * Hex constructor that takes no parameters
      * It sets the tile values randomly (1,2, or 3)
@@ -40,20 +40,23 @@ public class Hex {
 
         x = xPos;
         y = yPos;
-
+        occupied = false;
 
         tileVal = (int)(Math.random()*3)+1;
 
     }
 
-    public Hex(int tileVal){
+    public Hex(int tileVal, boolean occupied){
         this.tileVal = tileVal;
+        this.occupied = occupied;
     }
 
     // tile values
     public int getTileVal() {
         return tileVal;
     }
+
+    public boolean getOccupied() { return occupied;}
 
     public String toString(){
         return (x + " " + y);

@@ -229,7 +229,11 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         for(int player=0; player<theState.player.length;player++) {
             for (int peng = 0; peng < theState.pengA[0].length; peng++) {
 
-                if (theState.pengA[player][peng] != null) {
+                if ((theState.pengA[player][peng] != null) &&
+                        ((theState.pengA[player][peng].getCurrPosX() != 0) ||
+                        (theState.pengA[player][peng].getCurrPosY() != 0))) {
+                    Log.i("DRAWPENG", theState.pengA[player][peng].getCurrPosX() + " " + theState.pengA[player][peng].getCurrPosY());
+
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inScaled = false;
 
@@ -251,8 +255,9 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                             break;
                     }
 
-                    resizedBitmap = Bitmap.createScaledBitmap(pengBitmap, 200, 200, true);
-                    canvas.drawBitmap(resizedBitmap, aPeng[player][peng].getCurrPosX(), aPeng[player][peng].getCurrPosY(), paint);
+                    resizedBitmap = Bitmap.createScaledBitmap(pengBitmap, 100, 100, true);
+
+                    canvas.drawBitmap(resizedBitmap, aPeng[player][peng].getCurrPosX() + 10, aPeng[player][peng].getCurrPosY() - 30, paint);
                 }
             }
         }

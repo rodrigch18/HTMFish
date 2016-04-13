@@ -17,13 +17,42 @@ import edu.up.cs301.game.actionMsg.GameAction;
  */
 public class FishMovePenguinAction extends GameAction {
 
+    private int x;
+    private int y;
+    private Penguin penguin;
+
     /**
      * Move Penguin Action constructor
      *
      * @param gamePlayer - player
      */
-    public FishMovePenguinAction(GamePlayer gamePlayer){
+    public FishMovePenguinAction(GamePlayer gamePlayer, Penguin penguin){
+
         super(gamePlayer);
+        x = penguin.getCurrPosX();
+        y = penguin.getCurrPosY();
+        this.penguin=penguin;
     }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    public void setX(int newX){
+         x= newX;
+    }
+
+    public void setY(int newY){
+         y = newY;
+    }
+
+    public Penguin getPenguin(){
+        return penguin;
+    }
+
 
 }

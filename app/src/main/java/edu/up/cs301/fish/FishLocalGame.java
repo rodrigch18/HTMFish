@@ -96,9 +96,31 @@ public class FishLocalGame extends LocalGame{
     protected boolean makeMove(GameAction action) {
 
         if (action instanceof FishMovePenguinAction){
-            if (fishGameState.getId() == 0) {
-                return true;
+            //if (fishGameState.getId() == 0) {
+
+                //fishGameState.setPeng();
+                //return true;
+           // }
+        }
+        else if (action instanceof FishSetPenguinAction){
+
+            fishGameState.setPeng(((FishSetPenguinAction) action).getPenguin(),
+                    ((FishSetPenguinAction) action).getX(),((FishSetPenguinAction) action).getY(),
+                    ((FishSetPenguinAction) action).getPenguin().player);
+            int i = fishGameState.getId()+1;
+            if(i==numPlayers) {
+                fishGameState.setId(0);
             }
+            else {
+                fishGameState.setId(i);
+            }
+            return true;
+
+        }
+        else if( action instanceof FishSelectPenguinAction){
+
+
+
         }
         return false;
 

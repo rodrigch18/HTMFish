@@ -8,7 +8,28 @@ import edu.up.cs301.game.actionMsg.GameAction;
  */
 public class FishSelectPenguinAction extends GameAction{
 
-    public FishSelectPenguinAction(GamePlayer gamePlayer){
+    private int x;
+    private int y;
+    private Penguin penguin;
+
+    public FishSelectPenguinAction(GamePlayer gamePlayer, Penguin penguin){
+
         super(gamePlayer);
+        x = penguin.getCurrPosX();
+        y = penguin.getCurrPosY();
+        this.penguin=penguin;
+
+    }
+
+    public int getX(){
+        return x;
+    }
+
+    public int getY(){
+        return y;
+    }
+
+    public Penguin getPenguin(){
+        return penguin;
     }
 }
