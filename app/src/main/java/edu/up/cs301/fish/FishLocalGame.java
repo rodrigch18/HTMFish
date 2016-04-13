@@ -1,5 +1,7 @@
 package edu.up.cs301.fish;
 
+import android.util.Log;
+
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.actionMsg.GameAction;
@@ -58,9 +60,12 @@ public class FishLocalGame extends LocalGame{
      */
     protected boolean canMove(int playerIdx){
 
+        Log.i("Can Move","" + playerIdx + fishGameState.getId());
+
         if(playerIdx == fishGameState.getId()) {
             return true;
         }
+
 
         return false;
     }
@@ -95,18 +100,11 @@ public class FishLocalGame extends LocalGame{
      */
     protected boolean makeMove(GameAction action) {
 
-        if (action instanceof FishMovePenguinAction){
-            //if (fishGameState.getId() == 0) {
-
-                //fishGameState.setPeng();
-                //return true;
-           // }
-        }
-        else if (action instanceof FishSetPenguinAction){
+        if (action instanceof FishSetPenguinAction){
 
             fishGameState.setPeng(((FishSetPenguinAction) action).getPenguin(),
                     ((FishSetPenguinAction) action).getX(),((FishSetPenguinAction) action).getY(),
-                    ((FishSetPenguinAction) action).getPenguin().player);
+                    ((FishSetPenguinAction) action).getaPlayersNum());
             int i = fishGameState.getId()+1;
             if(i==numPlayers) {
                 fishGameState.setId(0);
@@ -117,8 +115,18 @@ public class FishLocalGame extends LocalGame{
             return true;
 
         }
-        else if( action instanceof FishSelectPenguinAction){
-
+        else if (action instanceof FishMovePenguinAction){
+            fishGameState.movePeng(fishGameState.getId(), ((FishMovePenguinAction) action).penguin,
+                    ((FishMovePenguinAction) action).x, ((FishMovePenguinAction) action).y,
+                    ((FishMovePenguinAction) action).pengIndex);
+            int i = fishGameState.getId()+1;
+            if(i==numPlayers) {
+                fishGameState.setId(0);
+            }
+            else {
+                fishGameState.setId(i);
+            }
+            return true;
 
 
         }

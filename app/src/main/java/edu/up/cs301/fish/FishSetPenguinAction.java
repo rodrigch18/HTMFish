@@ -10,16 +10,19 @@ public class FishSetPenguinAction extends GameAction {
     private int x;
     private int y;
     private Penguin penguin;
+    private int aPlayersNum;
     /**
      * Move Penguin Action constructor
      *
      * @param gamePlayer - player
      */
-    public FishSetPenguinAction(GamePlayer gamePlayer, Penguin penguin){
+    public FishSetPenguinAction(GamePlayer gamePlayer, Penguin penguin, int aPlayersNum){
 
         super(gamePlayer);
-        x = penguin.getCurrPosX();
-        y = penguin.getCurrPosY();
+
+        this.aPlayersNum=aPlayersNum;
+        this.x = penguin.getCurrPosX();
+        this.y = penguin.getCurrPosY();
         this.penguin=penguin;
 
     }
@@ -33,7 +36,11 @@ public class FishSetPenguinAction extends GameAction {
     }
 
     public Penguin getPenguin(){
-        return penguin;
+        return this.penguin;
+    }
+
+    public int getaPlayersNum(){
+        return this.aPlayersNum;
     }
 
 

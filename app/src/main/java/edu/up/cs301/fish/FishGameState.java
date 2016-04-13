@@ -230,7 +230,7 @@ public class FishGameState extends GameState{
 
         playerScore = new int[numOfPlayers];
         for(int i = 0; i < numOfPlayers; i++){
-            playerScore[i] = getPlayerScore(i);
+            playerScore[i] = fishGameState.getPlayerScore(i);
         }
 
         //Sets the positions of the penguins
@@ -258,7 +258,7 @@ public class FishGameState extends GameState{
 
 
     public void setPlayerScore(int id, int newScore) {
-        this.playerScore[id] = newScore;
+        this.playerScore[id] = this.playerScore[id] + newScore;
     }
 
 
@@ -379,18 +379,31 @@ public class FishGameState extends GameState{
      * @param newPosX new x position that penguin will move to
      * @param newPosY new y position that penguin will move to
      */
-    public void movePeng(int id, Penguin p, int newPosX, int newPosY) {
+    public void movePeng(int id, Penguin p, int newPosX, int newPosY, int pengIndex) {
 
-        //gets value of current tile
-        if(board[p.getCurrPosX()][p.getCurrPosY()]!=null) {
-            int val = board[p.getCurrPosX()][p.getCurrPosY()].getTileVal();
-            //add value of curr tile to score of right player
-            setPlayerScore(id, getPlayerScore(id) + val);
+        Log.i("MOVING", "THE PENGUIN");
+        int val = 0;
+
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                if(board[i][j] != null){
+                    if(p.getCurrPosX() == board[i][j].x && p.getCurrPosY() == board[i][j].y) {
+                        val = board[i][j].getTileVal();
+                        board[i][j]=null;
+                    }
+                }
+            }
         }
 
+        //add value of curr tile to score of right player
+       // setPlayerScore(id, getPlayerScore(id) + val);
+        setPlayerScore(id, val);
+
+        pengA[id][pengIndex] = new Penguin(newPosX,newPosY);
+
         //sets new position of penguin --moves it
-        p.setCurrPosX(newPosX);
-        p.setCurrPosY(newPosY);
+       p.setCurrPosX(newPosX);
+       p.setCurrPosY(newPosY);
 
     }
 

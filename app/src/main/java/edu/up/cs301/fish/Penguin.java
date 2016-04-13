@@ -42,8 +42,8 @@ public class Penguin {
      */
     public Penguin(int x, int y, Penguin peng){
         this.aPeng = peng;
-        this.currPosX = x;
-        this.currPosY = y;
+        peng.setCurrPosX(x);
+        peng.setCurrPosY(y);
     }
 
     /**

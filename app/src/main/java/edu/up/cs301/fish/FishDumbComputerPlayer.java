@@ -33,7 +33,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
     int xBoard;
     int yBoard;
 
-    boolean onStart= true;
+    public boolean onStart= true;
     /**
      * Dumb Computer Player constructor
      *
@@ -95,34 +95,38 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
                 //creates pengs -giselle thinks
                 if(onStart) {
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                            new Penguin(getXboard(), getYboard()));
+                            new Penguin(getXboard(), getYboard()), this.playerNum);
                     newState.setPeng(newState.getPeng(this.playerNum, pengsOwned), getXboard(),
                             getYboard(), this.playerNum);
                     pengsOwned++;
-                    Log.i("Num Peng", "" + newState.numPenguin);
+
                     if (pengsOwned == newState.numPenguin) {
-                        setOnStart(false);
+                        this.onStart=false;
+                        Log.i("On Start", "" + onStart);
+
                     }
+
                     Log.i("CPU set", x + " " + y);
                     game.sendAction(setPenguinAction);
                 }
-                else
+                if (!onStart)
                 {
                     int randPeng = (int) (Math.random() * pengsOwned);
-                    FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
-                            newState.getPeng(this.playerNum, randPeng));
-
+                    Log.i("CPU move", getXboard() + " " + getYboard());
                     do {
                         x = (int) (Math.random() * 1000) + 335;
                         y = (int) (Math.random() * 1000) + 150;
 
-                        inHex =checkIfInHex(x,y);
-                        Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
+                        inHex = checkIfInHex(x,y);
                     }
                     while(inHex != true);
 
+
+                    FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
+                            newState.getPeng(this.playerNum, randPeng), getXboard(), getYboard(),randPeng);
                     newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
-                            getXboard(), getYboard() );
+                           getXboard(), getYboard(), randPeng);
+
                     game.sendAction(movePenguinAction);
                 }
 

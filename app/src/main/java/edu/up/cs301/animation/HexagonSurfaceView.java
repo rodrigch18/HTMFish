@@ -232,7 +232,6 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                 if ((theState.pengA[player][peng] != null) &&
                         ((theState.pengA[player][peng].getCurrPosX() != 0) ||
                         (theState.pengA[player][peng].getCurrPosY() != 0))) {
-                    Log.i("DRAWPENG", theState.pengA[player][peng].getCurrPosX() + " " + theState.pengA[player][peng].getCurrPosY());
 
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inScaled = false;
