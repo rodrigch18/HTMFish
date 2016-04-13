@@ -23,6 +23,8 @@ public class FishLocalGame extends LocalGame{
     FishGameState fishGameState;
     int numPlayers;
     String[] playersNames;
+    int numTile = 0;
+    int numPeng = 0;
 
     /**
      * Fish Local Game constructor that takes no parameters
@@ -76,12 +78,34 @@ public class FishLocalGame extends LocalGame{
      * @return message to inform the users who has won or null
      *          if game is not over
      */
-    protected String checkIfGameOver(){
+    protected String checkIfGameOver() {
+        boolean isEnd = false;
 
-        if (fishGameState.board == null) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (fishGameState.board[i][j] != null) {
+                    numTile++;
+                }
+            }
+        }
+
+        for (int i = 0; i < fishGameState.numOfPlayers; i++) {
+            for (int j = 0; j < fishGameState.numPenguin; j++) {
+                if (fishGameState.pengA[i][j] != null) {
+                    numPeng++;
+                }
+            }
+        }
+
+        if(numTile == numPeng){
+            isEnd = true;
+        }
+
+
+        if (isEnd == true) {
 
             int maxScore = fishGameState.player[0];
-            int winner =0;
+            int winner = 0;
             for (int i = 1; i < fishGameState.player.length; i++) {
                 if (fishGameState.getPlayerScore(i) > maxScore) {
                     maxScore = fishGameState.getPlayerScore(i);
@@ -90,6 +114,7 @@ public class FishLocalGame extends LocalGame{
             }
             return playerNames[winner] + " wins with a score of " + maxScore;
         }
+
         return null;
 
     }
