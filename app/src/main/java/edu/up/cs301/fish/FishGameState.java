@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.cs301.animation.HexagonSurfaceView;
@@ -31,7 +32,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishGameState extends GameState{
+public class FishGameState extends GameState implements Serializable{
 
 
 

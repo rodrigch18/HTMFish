@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
+import java.io.Serializable;
+
 import edu.up.cs301.game.R;
 
 /**
@@ -23,7 +25,7 @@ import edu.up.cs301.game.R;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class Hex {
+public class Hex implements Serializable{
 
     protected int tileVal;
 

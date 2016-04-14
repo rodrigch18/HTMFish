@@ -1,5 +1,6 @@
 package edu.up.cs301.fish;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.cs301.game.GameMainActivity;
@@ -20,7 +21,7 @@ import edu.up.cs301.game.config.GamePlayerType;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishMainActivity extends GameMainActivity {
+public class FishMainActivity extends GameMainActivity implements Serializable {
 
     private int PORT_NUMBER = 5120;
     public GameConfig createDefaultConfig(){

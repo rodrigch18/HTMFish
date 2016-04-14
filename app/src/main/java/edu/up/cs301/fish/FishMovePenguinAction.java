@@ -1,5 +1,7 @@
 package edu.up.cs301.fish;
 
+import java.io.Serializable;
+
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.actionMsg.GameAction;
 
@@ -15,7 +17,7 @@ import edu.up.cs301.game.actionMsg.GameAction;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishMovePenguinAction extends GameAction {
+public class FishMovePenguinAction extends GameAction implements Serializable {
 
     public int x;
     public int y;

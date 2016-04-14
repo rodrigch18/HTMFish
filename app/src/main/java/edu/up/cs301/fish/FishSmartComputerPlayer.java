@@ -1,5 +1,7 @@
 package edu.up.cs301.fish;
 
+import java.io.Serializable;
+
 import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
@@ -17,7 +19,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishSmartComputerPlayer {
+public class FishSmartComputerPlayer implements Serializable {
 
     /**
      * Smart Computer Player constructor

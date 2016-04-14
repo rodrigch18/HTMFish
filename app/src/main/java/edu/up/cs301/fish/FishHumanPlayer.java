@@ -1,16 +1,11 @@
 package edu.up.cs301.fish;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Switch;
 import android.widget.TextView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.cs301.animation.HexagonSurfaceView;
@@ -31,7 +26,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchListener {
+public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchListener, Serializable {
 
     private ArrayList<TextView> playerScoreTextView = new ArrayList<TextView>();
     private ArrayList<TextView> playerPlayerTextView = new ArrayList<TextView>();
@@ -78,14 +73,14 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
     }
 
     private int getK(){
-        return k;
+        return this.k;
     }
 
     /**
      * Returns the GUI's top view object
      */
     public View getTopView(){
-        return myActivity.findViewById(R.id.viewBoard);
+        return myActivity.findViewById(R.id.top_gui_layout);
     }
 
     /**
