@@ -59,7 +59,7 @@ public class Hex {
     public boolean getOccupied() { return occupied;}
 
     public String toString(){
-        return (x + " " + y);
+        return (this.x + " " + this.y + " " + this.occupied);
     }
 
 

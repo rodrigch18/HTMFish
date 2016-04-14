@@ -96,9 +96,9 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
      * @param info - info from the game
      */
     public void receiveInfo(GameInfo info){
-        Log.i("HUMAN Recieving", " Info");
+       // Log.i("HUMAN Recieving", " Info");
         if (info instanceof FishGameState) {
-            Log.i("HUMAN Recieving", " FishGameState");
+         //   Log.i("HUMAN Recieving", " FishGameState");
             newState = (FishGameState) info;
             humanBoard = new Hex[10][10];
             penArray = new Penguin[newState.numOfPlayers][newState.numPenguin];
@@ -232,8 +232,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                         (yTouch - (humanBoard[i][j].y + 65)) *
                                                 (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
 
-//                                    newState.setPeng(newState.getPeng(this.playerNum, pengsOwned),
-//                                            humanBoard[i][j].x, humanBoard[i][j].y, this.playerNum);
+//
                                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
                                             newState.getPeng(this.playerNum, pengsOwned),humanBoard[i][j].x, humanBoard[i][j].y, this.playerNum);
                                     pengsOwned++;
@@ -294,8 +293,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                         (yTouch - (humanBoard[i][j].y + 65)) *
                                                 (yTouch - (humanBoard[i][j].y + 65)) <= 65 * 65) {
 
-                                   // newState.movePeng(this.playerNum, penArray[this.playerNum][this.k],
-                                    //        humanBoard[i][j].x, humanBoard[i][j].y, this.k);
+
                                     firstTouch = false;
 
 
@@ -305,6 +303,9 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                     humanBoard[i][j].occupied = true;
                                   //  Log.i("SECOND TOUCH", "stuff");
                                   //  Log.i("SECOND TOUCH", "Set Happens");
+
+                                    Log.i(" SECOND TOUCH", "" + humanBoard[i][j].toString());
+
                                     game.sendAction(movePenguinAction);
                                     //boardView.invalidate();
                                     return true;

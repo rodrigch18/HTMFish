@@ -23,8 +23,6 @@ public class FishLocalGame extends LocalGame{
     FishGameState fishGameState;
     int numPlayers;
     String[] playersNames;
-    int numTile = 0;
-    int numPeng = 0;
 
     /**
      * Fish Local Game constructor that takes no parameters
@@ -82,36 +80,39 @@ public class FishLocalGame extends LocalGame{
         boolean isEnd = false;
         boolean allOc = true;
         int totalScore = 0;
+        int numTile = 0;
+        int numPeng = 0;
 
-//        for (int i = 0; i < 10; i++) {
-//            for (int j = 0; j < 10; j++) {
-//                if (fishGameState.board[i][j] != null) {
-//                    if(fishGameState.board[i][j].getOccupied() == false){
-//                        allOc = false;
-//                    }
-//                    numTile++;
-//                }
-//            }
-//        }
-//
-//        for (int i = 0; i < fishGameState.numOfPlayers; i++) {
-//            for (int j = 0; j < fishGameState.numPenguin; j++) {
-//                if (fishGameState.pengA[i][j] != null) {
-//                    numPeng++;
-//                }
-//            }
-//        }
-//
-//        if(numTile == numPeng){
-//            isEnd = true;
-//        }
-
-        for(int i = 0; i < fishGameState.numOfPlayers; i++){
-            totalScore = fishGameState.getPlayerScore(i) + totalScore;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (fishGameState.board[i][j] != null) {
+                    if(fishGameState.board[i][j].getOccupied() == false){
+                        allOc = false;
+                    }
+                    numTile++;
+                }
+            }
         }
 
+        for (int i = 0; i < fishGameState.numOfPlayers; i++) {
+            for (int j = 0; j < fishGameState.numPenguin; j++) {
+                if (fishGameState.pengA[i][j] != null) {
+                    numPeng++;
+                }
+            }
+        }
 
-        if (totalScore >= 50) {
+        if(numTile == numPeng){
+            isEnd = true;
+        }
+        Log.i("NUMBER CHECK",numTile + " " + numPeng);
+
+//        for(int i = 0; i < fishGameState.numOfPlayers; i++){
+//            totalScore = fishGameState.getPlayerScore(i) + totalScore;
+//        }
+
+
+        if (isEnd == true || allOc == true) {
 
             int maxScore = fishGameState.player[0];
             int winner = 0;

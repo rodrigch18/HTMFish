@@ -51,9 +51,9 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
      */
     protected void receiveInfo(GameInfo info)
     {
-        Log.i("CPU recieve info", "info");
+      //  Log.i("CPU recieve info", "info");
         if (info instanceof FishGameState) {
-            Log.i("CPU FishGameState", "info");
+         //   Log.i("CPU FishGameState", "info");
 
             newState = (FishGameState) info;
 
@@ -100,14 +100,12 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
                         y = (int) (Math.random() * 1000) + 150;
 
                         inHex =checkIfInHex(x,y);
-                        Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
+                     //   Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
                     }
                     while(inHex != true);
 
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                            new Penguin(getXboard(), getYboard()),getXboard(), getYboard(), this.playerNum);
-                    newState.setPeng(newState.getPeng(this.playerNum, pengsOwned), getXboard(),
-                            getYboard(), this.playerNum);
+                            newState.getPeng(this.playerNum, pengsOwned) ,getXboard(), getYboard(), this.playerNum);
 
 
                     //Log.i("CPU set", x + " " + y);
@@ -117,7 +115,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
                     //Log.i("peng Owned by Comp", pengsOwned + " " + newState.numPenguin);
                     if (pengsOwned == newState.numPenguin) {
                         this.onStart=false;
-                        Log.i("On Start", "" + onStart);
+                       // Log.i("On Start", "" + onStart);
 
                     }
                 }
@@ -149,8 +147,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
                             newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).x, listOfTiles.get(randI).y,randPeng);
-                    //newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
-                    //       getXboard(), getYboard(), randPeng);
+
 
                     game.sendAction(movePenguinAction);
                 }
