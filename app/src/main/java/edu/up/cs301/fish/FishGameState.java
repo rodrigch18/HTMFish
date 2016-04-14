@@ -365,7 +365,7 @@ public class FishGameState extends GameState{
     }
 
     public boolean checkIfOccupied(Hex selectedHex){
-        return selectedHex.occupied;
+        return selectedHex.getOccupied();
     }
 
 

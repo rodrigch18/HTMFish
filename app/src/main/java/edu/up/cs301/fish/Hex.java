@@ -38,11 +38,11 @@ public class Hex {
     public Hex(int xPos, int yPos) {
         //sets tileVal to either 1, 2 , or 3
 
-        x = xPos;
-        y = yPos;
-        occupied = false;
+        this.x = xPos;
+        this.y = yPos;
+        this.occupied = false;
 
-        tileVal = (int)(Math.random()*3)+1;
+        this.tileVal = (int)(Math.random()*3)+1;
 
     }
 
@@ -53,10 +53,13 @@ public class Hex {
 
     // tile values
     public int getTileVal() {
-        return tileVal;
+        return this.tileVal;
     }
 
-    public boolean getOccupied() { return occupied;}
+    public boolean getOccupied() { return this.occupied;}
+
+    public void setOccupied(boolean occ) { this.occupied = occ;}
+
 
     public String toString(){
         return (this.x + " " + this.y + " " + this.occupied);
