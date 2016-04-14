@@ -399,7 +399,8 @@ public class FishGameState extends GameState{
        // setPlayerScore(id, getPlayerScore(id) + val);
         setPlayerScore(id, val);
 
-        pengA[id][pengIndex] = new Penguin(newPosX,newPosY);
+        pengA[id][pengIndex] = new Penguin(newPosX,newPosY,false
+                ,pengA[id][pengIndex].getIsDead());
 
         //sets new position of penguin --moves it
        p.setCurrPosX(newPosX);

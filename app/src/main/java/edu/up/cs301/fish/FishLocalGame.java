@@ -105,14 +105,14 @@ public class FishLocalGame extends LocalGame{
         if(numTile == numPeng){
             isEnd = true;
         }
-        Log.i("NUMBER CHECK",numTile + " " + numPeng);
+       // Log.i("NUMBER CHECK",numTile + " " + numPeng);
 
 //        for(int i = 0; i < fishGameState.numOfPlayers; i++){
 //            totalScore = fishGameState.getPlayerScore(i) + totalScore;
 //        }
 
 
-        if (isEnd == true || allOc == true) {
+        if (isEnd == true && allOc == true) {
 
             int maxScore = fishGameState.player[0];
             int winner = 0;

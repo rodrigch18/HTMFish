@@ -2,6 +2,7 @@ package edu.up.cs301.fish;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,11 +27,10 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @version 3/31/16
  */
 
-public class FishDumbComputerPlayer extends GameComputerPlayer {
+public class FishDumbComputerPlayer extends GameComputerPlayer implements Serializable {
 
     int pengsOwned = 0;
     FishGameState newState;
-    ArrayList<Hex> listOfTiles;
     int xBoard;
     int yBoard;
 
@@ -91,21 +91,34 @@ public class FishDumbComputerPlayer extends GameComputerPlayer {
                 //creates pengs -giselle thinks
                 if(this.onStart) {
 
-                    int x;
-                    int y;
+//                    int x;
+//                    int y;
+//
+//                    boolean inHex = false;
+//                    do {
+//                        x = (int) (Math.random() * 1000) + 335;
+//                        y = (int) (Math.random() * 1000) + 150;
+//
+//                        inHex =checkIfInHex(x,y);
+//                     //   Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
+//                    }
+//                    while(inHex != true);
 
-                    boolean inHex = false;
-                    do {
-                        x = (int) (Math.random() * 1000) + 335;
-                        y = (int) (Math.random() * 1000) + 150;
-
-                        inHex =checkIfInHex(x,y);
-                     //   Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
+                    ArrayList<Hex> listOfTiles = new ArrayList<Hex>();
+                    for (int i = 0; i< 10; i++){
+                        for (int j = 0; j< 10; j++){
+                            if(newState.board[i][j] != null && newState.board[i][j].getOccupied() == false &&
+                                    newState.board[i][j].getTileVal() == 1){
+                                listOfTiles.add(newState.board[i][j]);
+                            }
+                        }
                     }
-                    while(inHex != true);
+
+                    int randI = (int) (Math.random() * listOfTiles.size());
 
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                            newState.getPeng(this.playerNum, pengsOwned) ,getXboard(), getYboard(), this.playerNum);
+                            newState.getPeng(this.playerNum, pengsOwned) ,  listOfTiles.get(randI).x,
+                            listOfTiles.get(randI).y, this.playerNum);
 
 
                     //Log.i("CPU set", x + " " + y);

@@ -27,38 +27,43 @@ public class Penguin {
     private int currPosX;
     private int currPosY;
     private Penguin aPeng;
+    private boolean isSelected;
+    private boolean isDead;
 
     public Penguin(){
-
+        isSelected = false;
+        isDead = false;
     }
 
-    public Penguin(int x, int y){
+    public Penguin(int x, int y, boolean isSelected, boolean isDead){
+        this.isSelected = isSelected;
+        this.isDead = isDead;
         this.currPosX = x;
         this.currPosY = y;
     }
 
-    /**
-     * Penguin Constructor that takes no parameters
-     */
-    public Penguin(int x, int y, Penguin peng){
-        this.aPeng = peng;
-        peng.setCurrPosX(x);
-        peng.setCurrPosY(y);
-    }
-
-    /**
-     * Deep Copy Penguin Constructor
-     *
-     * @param p - a given penguin on the board
-     */
-    public Penguin(Penguin p){
-        this.currPosX = p.getCurrPosX();
-        this.currPosY = p.getCurrPosY();
-    }
+//    /**
+//     * Penguin Constructor that takes no parameters
+//     */
+//    public Penguin(int x, int y, Penguin peng){
+//        this.aPeng = peng;
+//        peng.setCurrPosX(x);
+//        peng.setCurrPosY(y);
+//    }
+//
+//    /**
+//     * Deep Copy Penguin Constructor
+//     *
+//     * @param p - a given penguin on the board
+//     */
+//    public Penguin(Penguin p){
+//        this.currPosX = p.getCurrPosX();
+//        this.currPosY = p.getCurrPosY();
+//    }
 
     //position of a player's penguin
     public int getCurrPosX() {
-        return currPosX;
+        return this.currPosX;
     }
 
     public void setCurrPosX(int newCurrPosX) {
@@ -66,11 +71,29 @@ public class Penguin {
     }
 
     public int getCurrPosY() {
-        return currPosY;
+        return this.currPosY;
     }
 
     public void setCurrPosY(int newCurrPosY) {
         this.currPosY = newCurrPosY;
     }
+
+    public boolean getIsSelected() {
+        return this.isSelected;
+    }
+
+    public void setIsSelected(boolean newSelected) {
+        this.isSelected = newSelected;
+    }
+
+    public boolean getIsDead() {
+        return this.isDead;
+    }
+
+    public void setIsDead(boolean newDeath) {
+        this.isDead = newDeath;
+    }
+
+
 
 }

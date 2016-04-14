@@ -182,7 +182,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
         drawPenguin(pengB,canvas);
 
-        theState.onStart = false;
+       theState.onStart = false;
 
 
     }
@@ -241,18 +241,53 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
                     switch (player) {
                         case 0:
-                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
                             break;
                         case 1:
-                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
                             break;
                         case 2:
-                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
                             break;
                         case 3:
-                            pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
                             break;
                     }
+
+//                    switch (player) {
+//                        case 0:
+//                            if(theState.pengA[player][peng].getIsSelected()){
+//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
+//                            }
+//                            else{
+//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
+//                            }
+//                            break;
+//                        case 1:
+//                            if(theState.pengA[player][peng].getIsSelected()){
+//
+//                            }
+//                            else {
+//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
+//                            }
+//                            break;
+//                        case 2:
+//                            if(theState.pengA[player][peng].getIsSelected()){
+//
+//                            }
+//                            else {
+//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
+//                            }
+//                            break;
+//                        case 3:
+//                            if(theState.pengA[player][peng].getIsSelected()){
+//
+//                            }
+//                            else {
+//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
+//                            }
+//                            break;
+//                    }
 
                     resizedBitmap = Bitmap.createScaledBitmap(pengBitmap, 100, 100, true);
 
@@ -262,12 +297,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         }
     }
 
-//    public boolean onTouch(View v, MotionEvent event) {
-//
-//        this.event = event;
-//
-//        return true;
-//    };
+
 
 }
 
