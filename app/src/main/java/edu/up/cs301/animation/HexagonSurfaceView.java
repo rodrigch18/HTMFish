@@ -254,6 +254,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                             break;
                     }
 
+
 //                    switch (player) {
 //                        case 0:
 //                            if(theState.pengA[player][peng].getIsSelected()){
