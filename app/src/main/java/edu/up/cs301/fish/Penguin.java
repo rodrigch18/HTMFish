@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import java.io.Serializable;
+
 import edu.up.cs301.game.R;
 
 /**
@@ -20,13 +22,13 @@ import edu.up.cs301.game.R;
  * @version 3/28/16
  */
 
-public class Penguin {
+public class Penguin implements Serializable{
+
     // player that owns given penguin
     protected int player;
     // x,y coordinates of given penguin
     private int currPosX;
     private int currPosY;
-    private Penguin aPeng;
     private boolean isSelected;
     private boolean isDead;
 
@@ -40,6 +42,13 @@ public class Penguin {
         this.isDead = isDead;
         this.currPosX = x;
         this.currPosY = y;
+    }
+
+    public Penguin(Penguin aPeng){
+        this.isSelected = aPeng.getIsSelected();
+        this.isDead = aPeng.getIsDead();
+        this.currPosX = aPeng.getCurrPosX();
+        this.currPosY = aPeng.getCurrPosY();
     }
 
 //    /**

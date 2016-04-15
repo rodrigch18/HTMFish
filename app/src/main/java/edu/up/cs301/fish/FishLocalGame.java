@@ -51,7 +51,7 @@ public class FishLocalGame extends LocalGame implements Serializable{
             }
             fishGameState = new FishGameState(numPlayers, playersNames);
         }
-        FishGameState temp = new FishGameState(fishGameState, numPlayers, playersNames);
+        FishGameState temp = new FishGameState(fishGameState);
        // Log.i("SENDING INFO", "some");
         p.sendInfo(temp);
     }

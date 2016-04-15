@@ -29,10 +29,10 @@ public class Hex implements Serializable{
 
     protected int tileVal;
 
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
-    public boolean occupied;
+    private boolean occupied;
     /**
      * Hex constructor that takes no parameters
      * It sets the tile values randomly (1,2, or 3)
@@ -53,6 +53,13 @@ public class Hex implements Serializable{
         this.occupied = occupied;
     }
 
+    public Hex(Hex aHex){
+        this.x = aHex.getX();
+        this.y = aHex.getY();
+        this.occupied = aHex.getOccupied();
+        this.tileVal = aHex.getTileVal();
+    }
+
     // tile values
     public int getTileVal() {
         return this.tileVal;
@@ -62,6 +69,13 @@ public class Hex implements Serializable{
 
     public void setOccupied(boolean occ) { this.occupied = occ;}
 
+    public int getX() { return this.x;}
+
+    public void setX(int newX) { this.x = newX;}
+
+    public int getY() { return this.y;}
+
+    public void setY(int newY) { this.y = newY;}
 
     public String toString(){
         return (this.x + " " + this.y + " " + this.occupied);

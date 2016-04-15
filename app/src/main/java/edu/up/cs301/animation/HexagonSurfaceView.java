@@ -215,7 +215,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
                     resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 170, 170, true);
 
-                    canvas.drawBitmap(resizedBitmap, aBoard[i][j].x - 20, aBoard[i][j].y - 75, paint);
+                    canvas.drawBitmap(resizedBitmap, aBoard[i][j].getX() - 20, aBoard[i][j].getY() - 75, paint);
                 }
                 else {
                     aBoard[i][j] = null;

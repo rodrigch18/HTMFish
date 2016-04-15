@@ -152,9 +152,9 @@ public class FishGameState extends GameState implements Serializable{
         currPosY = new int[numPenguin * numOfPlayers];
     }
 
-    public FishGameState(FishGameState fishGameState, int numPlayers, String[] playersNames) {
-        numOfPlayers = numPlayers;
-        playerName = playersNames;
+    public FishGameState(FishGameState fishGameState) {
+        numOfPlayers = fishGameState.numOfPlayers;
+        playerName = fishGameState.playerName;
 
         board = new Hex[10][10];
 
@@ -162,7 +162,7 @@ public class FishGameState extends GameState implements Serializable{
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     if(fishGameState.board[i][j] != null) {
-                        board[i][j] = fishGameState.board[i][j];
+                        board[i][j] = new Hex(fishGameState.board[i][j]);
                     }
                     else{
                         board[i][j] = null;
@@ -177,7 +177,7 @@ public class FishGameState extends GameState implements Serializable{
                 for (int i = 0; i < 2; i++) {
                     for (int j = 0; j < 4; j++) {
                         if(fishGameState.pengA[i][j] != null) {
-                            pengA[i][j] = fishGameState.pengA[i][j];
+                            pengA[i][j] = new Penguin(fishGameState.pengA[i][j]);
                         }
                         else{
                             pengA[i][j] = null;
@@ -190,7 +190,7 @@ public class FishGameState extends GameState implements Serializable{
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         if(fishGameState.pengA[i][j] != null) {
-                            pengA[i][j] = fishGameState.pengA[i][j];
+                            pengA[i][j] = new Penguin(fishGameState.pengA[i][j]);
                         }
                         else{
                             pengA[i][j] = null;
@@ -203,7 +203,7 @@ public class FishGameState extends GameState implements Serializable{
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 2; j++) {
                         if(fishGameState.pengA[i][j] != null) {
-                            pengA[i][j] = fishGameState.pengA[i][j];
+                            pengA[i][j] = new Penguin(fishGameState.pengA[i][j]);
                         }
                         else{
                             pengA[i][j] = null;
@@ -350,12 +350,10 @@ public class FishGameState extends GameState implements Serializable{
     public void setPeng(Penguin p, int newPosX, int newPosY, int playerIndex) {
 
 
-        p.setCurrPosX(newPosX);
-        p.setCurrPosY(newPosY);
 
-        for(int i = 0; i < pengA[0].length; i++) {
+        for(int i = 0; i < numPenguin; i++) {
             if(pengA[playerIndex][i] == null){
-                pengA[playerIndex][i] = p;
+                pengA[playerIndex][i] = new Penguin(p);
             }
         }
 
@@ -388,7 +386,7 @@ public class FishGameState extends GameState implements Serializable{
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 10; j++){
                 if(board[i][j] != null){
-                    if(p.getCurrPosX() == board[i][j].x && p.getCurrPosY() == board[i][j].y) {
+                    if(p.getCurrPosX() == board[i][j].getX() && p.getCurrPosY() == board[i][j].getY()) {
                         val = board[i][j].getTileVal();
                         board[i][j]=null;
                     }
@@ -404,8 +402,8 @@ public class FishGameState extends GameState implements Serializable{
                 ,pengA[id][pengIndex].getIsDead());
 
         //sets new position of penguin --moves it
-       p.setCurrPosX(newPosX);
-       p.setCurrPosY(newPosY);
+//       p.setCurrPosX(newPosX);
+//       p.setCurrPosY(newPosY);
 
     }
 

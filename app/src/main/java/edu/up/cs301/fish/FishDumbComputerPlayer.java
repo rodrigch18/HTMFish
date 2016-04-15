@@ -117,8 +117,8 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                     int randI = (int) (Math.random() * listOfTiles.size());
 
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                            newState.getPeng(this.playerNum, pengsOwned) ,  listOfTiles.get(randI).x,
-                            listOfTiles.get(randI).y, this.playerNum);
+                            newState.getPeng(this.playerNum, pengsOwned) ,  listOfTiles.get(randI).getX(),
+                            listOfTiles.get(randI).getY(), this.playerNum);
 
 
                     //Log.i("CPU set", x + " " + y);
@@ -159,7 +159,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
-                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).x, listOfTiles.get(randI).y,randPeng);
+                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).getX(), listOfTiles.get(randI).getY(),randPeng);
 
 
                     game.sendAction(movePenguinAction);
@@ -194,22 +194,22 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
             for (int j = 0; j < 10; j++) {
                 if (newState.board[i][j] != null) {
 
-                    if (((x - (newState.board[i][j].x + 65)) * (x - (newState.board[i][j].x + 65)) +
-                            (y - (newState.board[i][j].y + 65)) * (y - (newState.board[i][j].y + 65))
+                    if (((x - (newState.board[i][j].getX() + 65)) * (x - (newState.board[i][j].getX() + 65)) +
+                            (y - (newState.board[i][j].getY() + 65)) * (y - (newState.board[i][j].getY() + 65))
                             <= 65 * 65)) {
-                        if(!newState.board[i][j].occupied) {
+                        if(!newState.board[i][j].getOccupied()) {
                             if(this.onStart==true){
                                 if(newState.board[i][j].getTileVal()==1) {
-                                    setXboard(newState.board[i][j].x);
-                                    setYboard(newState.board[i][j].y);
-                                    newState.board[i][j].occupied = true;
+                                    setXboard(newState.board[i][j].getX());
+                                    setYboard(newState.board[i][j].getY());
+                                    newState.board[i][j].setOccupied(true);
                                     return true;
                                 }
                             }
                             else {
-                                    setXboard(newState.board[i][j].x);
-                                    setYboard(newState.board[i][j].y);
-                                    newState.board[i][j].occupied = true;
+                                    setXboard(newState.board[i][j].getX());
+                                    setYboard(newState.board[i][j].getY());
+                                    newState.board[i][j].setOccupied(true);
                                     return true;
                             }
 
