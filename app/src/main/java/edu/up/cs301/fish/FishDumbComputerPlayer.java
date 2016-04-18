@@ -124,6 +124,17 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                     //Log.i("CPU set", x + " " + y);
                     game.sendAction(setPenguinAction);
 
+                    for (int i = 0; i< 10; i++){
+                        for (int j = 0; j< 10; j++){
+                            if(newState.board[i][j] != null){
+                                if(listOfTiles.get(randI).x == newState.board[i][j].x &&
+                                        listOfTiles.get(randI).y == newState.board[i][j].y){
+                                    newState.board[i][j].setOccupied(true);
+                                }
+                            }
+                        }
+                    }
+
                     pengsOwned++;
                     //Log.i("peng Owned by Comp", pengsOwned + " " + newState.numPenguin);
                     if (pengsOwned == newState.numPenguin) {
@@ -163,6 +174,18 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 
 
                     game.sendAction(movePenguinAction);
+
+                    for (int i = 0; i< 10; i++){
+                        for (int j = 0; j< 10; j++){
+                            if(newState.board[i][j] != null){
+                                if(listOfTiles.get(randI).x == newState.board[i][j].x &&
+                                        listOfTiles.get(randI).y == newState.board[i][j].y){
+                                    newState.board[i][j].setOccupied(true);
+                                }
+                            }
+                        }
+                    }
+
                 }
 
             }
