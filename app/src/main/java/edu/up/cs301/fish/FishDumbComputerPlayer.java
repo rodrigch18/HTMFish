@@ -117,12 +117,23 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                     int randI = (int) (Math.random() * listOfTiles.size());
 
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                            newState.getPeng(this.playerNum, pengsOwned) ,  listOfTiles.get(randI).x,
-                            listOfTiles.get(randI).y, this.playerNum);
+                            newState.getPeng(this.playerNum, pengsOwned) ,  listOfTiles.get(randI).getX(),
+                            listOfTiles.get(randI).getY(), this.playerNum);
 
 
                     //Log.i("CPU set", x + " " + y);
                     game.sendAction(setPenguinAction);
+
+                    for (int i = 0; i< 10; i++){
+                        for (int j = 0; j< 10; j++){
+                            if(newState.board[i][j] != null){
+                                if(listOfTiles.get(randI).getX() == newState.board[i][j].getX() &&
+                                        listOfTiles.get(randI).getY() == newState.board[i][j].getY()){
+                                    newState.board[i][j].setOccupied(true);
+                                }
+                            }
+                        }
+                    }
 
                     pengsOwned++;
                     //Log.i("peng Owned by Comp", pengsOwned + " " + newState.numPenguin);
@@ -159,10 +170,22 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
-                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).x, listOfTiles.get(randI).y,randPeng);
+                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).getX(), listOfTiles.get(randI).getY(),randPeng);
 
 
                     game.sendAction(movePenguinAction);
+
+                    for (int i = 0; i< 10; i++){
+                        for (int j = 0; j< 10; j++){
+                            if(newState.board[i][j] != null){
+                                if(listOfTiles.get(randI).getX() == newState.board[i][j].getX() &&
+                                        listOfTiles.get(randI).getY() == newState.board[i][j].getY()){
+                                    newState.board[i][j].setOccupied(true);
+                                }
+                            }
+                        }
+                    }
+
                 }
 
             }
@@ -188,36 +211,36 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
         onStart = onStartNow;
     }
 
-    protected boolean checkIfInHex(int x, int y){
-
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (newState.board[i][j] != null) {
-
-                    if (((x - (newState.board[i][j].x + 65)) * (x - (newState.board[i][j].x + 65)) +
-                            (y - (newState.board[i][j].y + 65)) * (y - (newState.board[i][j].y + 65))
-                            <= 65 * 65)) {
-                        if(!newState.board[i][j].occupied) {
-                            if(this.onStart==true){
-                                if(newState.board[i][j].getTileVal()==1) {
-                                    setXboard(newState.board[i][j].x);
-                                    setYboard(newState.board[i][j].y);
-                                    newState.board[i][j].occupied = true;
-                                    return true;
-                                }
-                            }
-                            else {
-                                    setXboard(newState.board[i][j].x);
-                                    setYboard(newState.board[i][j].y);
-                                    newState.board[i][j].occupied = true;
-                                    return true;
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
+//    protected boolean checkIfInHex(int x, int y){
+//
+//        for (int i = 0; i < 10; i++) {
+//            for (int j = 0; j < 10; j++) {
+//                if (newState.board[i][j] != null) {
+//
+//                    if (((x - (newState.board[i][j].x + 65)) * (x - (newState.board[i][j].x + 65)) +
+//                            (y - (newState.board[i][j].y + 65)) * (y - (newState.board[i][j].y + 65))
+//                            <= 65 * 65)) {
+//                        if(!newState.board[i][j].occupied) {
+//                            if(this.onStart==true){
+//                                if(newState.board[i][j].getTileVal()==1) {
+//                                    setXboard(newState.board[i][j].x);
+//                                    setYboard(newState.board[i][j].y);
+//                                    newState.board[i][j].occupied = true;
+//                                    return true;
+//                                }
+//                            }
+//                            else {
+//                                    setXboard(newState.board[i][j].x);
+//                                    setYboard(newState.board[i][j].y);
+//                                    newState.board[i][j].occupied = true;
+//                                    return true;
+//                            }
+//
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return false;
+//    }
 }

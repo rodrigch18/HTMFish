@@ -15,6 +15,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.Serializable;
+
 import edu.up.cs301.fish.FishGameState;
 import edu.up.cs301.fish.FishMainActivity;
 import edu.up.cs301.fish.Hex;
@@ -25,7 +27,7 @@ import edu.up.cs301.game.R;
 /**
  * Created by rodrigch18 on 3/31/2016.
  */
-public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Serializable {
 
     FishGameState theState = null;
     GameMainActivity myAct = null;
@@ -215,7 +217,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
                     resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 170, 170, true);
 
-                    canvas.drawBitmap(resizedBitmap, aBoard[i][j].x - 20, aBoard[i][j].y - 75, paint);
+                    canvas.drawBitmap(resizedBitmap, aBoard[i][j].getX() - 20, aBoard[i][j].getY() - 75, paint);
                 }
                 else {
                     aBoard[i][j] = null;

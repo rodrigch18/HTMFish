@@ -161,7 +161,9 @@ public class FishGameState extends GameState{
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     if(fishGameState.board[i][j] != null) {
-                        board[i][j] = fishGameState.board[i][j];
+                        //this.board[i][j] = new Hex(fishGameState.board[i][j].getX(), fishGameState.board[i][j].getY(), fishGameState.board[i][j].getTileVal(), fishGameState.board[i][j].getOccupied());
+
+                        this.board[i][j] = fishGameState.board[i][j];
                     }
                     else{
                         board[i][j] = null;
@@ -352,16 +354,16 @@ public class FishGameState extends GameState{
         p.setCurrPosX(newPosX);
         p.setCurrPosY(newPosY);
 
-        for(int i = 0; i < pengA[0].length; i++) {
-            if(pengA[playerIndex][i] == null){
-                pengA[playerIndex][i] = p;
-            }
-        }
+//        for(int i = 0; i < pengA[0].length; i++) {
+//            if(pengA[playerIndex][i] == null){
+//                pengA[playerIndex][i] = p;
+//            }
+//        }
 
     }
 
     public Penguin getPeng(int id, int pengidx){
-        return pengA[id][pengidx];
+        return this.pengA[id][pengidx];
     }
 
     public boolean checkIfOccupied(Hex selectedHex){
@@ -387,7 +389,7 @@ public class FishGameState extends GameState{
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 10; j++){
                 if(board[i][j] != null){
-                    if(p.getCurrPosX() == board[i][j].x && p.getCurrPosY() == board[i][j].y) {
+                    if(p.getCurrPosX() == board[i][j].getX() && p.getCurrPosY() == board[i][j].getY()) {
                         val = board[i][j].getTileVal();
                         board[i][j]=null;
                     }
@@ -399,8 +401,8 @@ public class FishGameState extends GameState{
        // setPlayerScore(id, getPlayerScore(id) + val);
         setPlayerScore(id, val);
 
-        pengA[id][pengIndex] = new Penguin(newPosX,newPosY,false
-                ,pengA[id][pengIndex].getIsDead());
+//        pengA[id][pengIndex] = new Penguin(newPosX,newPosY,false
+//                ,pengA[id][pengIndex].getIsDead());
 
         //sets new position of penguin --moves it
        p.setCurrPosX(newPosX);

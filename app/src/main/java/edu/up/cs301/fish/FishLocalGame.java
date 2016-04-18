@@ -112,7 +112,7 @@ public class FishLocalGame extends LocalGame{
 //        }
 
 
-        if (isEnd == true && allOc == true) {
+        if (isEnd == true || allOc == true) {
 
             int maxScore = fishGameState.player[0];
             int winner = 0;

@@ -177,14 +177,14 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                     if (newState.board[i][j] != null) {
                         if ((!newState.board[i][j].getOccupied()) && (newState.board[i][j].getTileVal() == 1)) {
                             if(onStart) {
-                                if ((xTouch - (newState.board[i][j].x + 65)) *
-                                        (xTouch - (newState.board[i][j].x + 65)) +
-                                        (yTouch - (newState.board[i][j].y + 65)) *
-                                                (yTouch - (newState.board[i][j].y + 65)) <= 65 * 65) {
+                                if ((xTouch - (newState.board[i][j].getX() + 65)) *
+                                        (xTouch - (newState.board[i][j].getX() + 65)) +
+                                        (yTouch - (newState.board[i][j].getY() + 65)) *
+                                                (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
 
 //
                                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                                            newState.getPeng(this.playerNum, pengsOwned),newState.board[i][j].x, newState.board[i][j].y, this.playerNum);
+                                            newState.getPeng(this.playerNum, pengsOwned),newState.board[i][j].getX(), newState.board[i][j].getY(), this.playerNum);
                                     pengsOwned++;
                                     //Log.i("TOUCH", humanBoard[i][j].x + " " + humanBoard[i][j].y);
 
@@ -218,13 +218,13 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                             if (newState.board[i][j].getOccupied()) {
 
 
-                                if ((xTouch - (newState.board[i][j].x + 65)) *
-                                        (xTouch - (newState.board[i][j].x + 65)) +
-                                        (yTouch - (newState.board[i][j].y + 65)) *
-                                                (yTouch - (newState.board[i][j].y + 65)) <= 65 * 65) {
+                                if ((xTouch - (newState.board[i][j].getX() + 65)) *
+                                        (xTouch - (newState.board[i][j].getX() + 65)) +
+                                        (yTouch - (newState.board[i][j].getY() + 65)) *
+                                                (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
                                     for (int k = 0; k < newState.pengA[this.playerNum].length; k++) {
-                                        if (newState.pengA[this.playerNum][k].getCurrPosX() == newState.board[i][j].x
-                                                && newState.pengA[this.playerNum][k].getCurrPosY() == newState.board[i][j].y) {
+                                        if (newState.pengA[this.playerNum][k].getCurrPosX() == newState.board[i][j].getX()
+                                                && newState.pengA[this.playerNum][k].getCurrPosY() == newState.board[i][j].getY()) {
                                             //this.i = i;
                                             //this.j = j;
                                             this.k = k;
@@ -238,10 +238,10 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                         }
                         else if (firstTouch) {
                             if (!(newState.board[i][j].getOccupied())) {
-                                if ((xTouch - (newState.board[i][j].x + 65)) *
-                                        (xTouch - (newState.board[i][j].x + 65)) +
-                                        (yTouch - (newState.board[i][j].y + 65)) *
-                                                (yTouch - (newState.board[i][j].y + 65)) <= 65 * 65) {
+                                if ((xTouch - (newState.board[i][j].getX() + 65)) *
+                                        (xTouch - (newState.board[i][j].getX() + 65)) +
+                                        (yTouch - (newState.board[i][j].getY() + 65)) *
+                                                (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
 
 
                                     firstTouch = false;
@@ -249,7 +249,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
                                     FishMovePenguinAction movePenguinAction = new
                                             FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
-                                            newState.board[i][j].x, newState.board[i][j].y, this.k);
+                                            newState.board[i][j].getX(), newState.board[i][j].getY(), this.k);
                                     newState.board[i][j].setOccupied(true);
                                   //  Log.i("SECOND TOUCH", "stuff");
                                   //  Log.i("SECOND TOUCH", "Set Happens");

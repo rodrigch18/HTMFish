@@ -8,6 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 
+import java.io.Serializable;
+
 import edu.up.cs301.game.R;
 
 /**
@@ -23,14 +25,14 @@ import edu.up.cs301.game.R;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class Hex {
+public class Hex implements Serializable{
 
-    protected int tileVal;
+    private int tileVal;
 
-    public int x;
-    public int y;
+    private int x;
+    private int y;
 
-    public boolean occupied;
+    private boolean occupied;
     /**
      * Hex constructor that takes no parameters
      * It sets the tile values randomly (1,2, or 3)
@@ -46,9 +48,23 @@ public class Hex {
 
     }
 
-    public Hex(int tileVal, boolean occupied){
-        this.tileVal = tileVal;
-        this.occupied = occupied;
+//    public Hex(int tileVal, boolean occupied){
+//        this.tileVal = tileVal;
+//        this.occupied = occupied;
+//    }
+
+    public Hex(int x, int y, int tile, boolean oc){
+        this.x = x;
+        this.y = y;
+        this.tileVal = tile;
+        this.occupied = oc;
+    }
+
+    public Hex(Hex aHex){
+        this.tileVal = aHex.getTileVal();
+        this.occupied = aHex.getOccupied();
+        this.x = aHex.getX();
+        this.y = aHex.getY();
     }
 
     // tile values
@@ -60,6 +76,17 @@ public class Hex {
 
     public void setOccupied(boolean occ) { this.occupied = occ;}
 
+    public int getX() { return this.x;}
+
+    public void setX(int x) { this.x = x;}
+
+    public int getY() {
+        return this.y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public String toString(){
         return (this.x + " " + this.y + " " + this.occupied);
