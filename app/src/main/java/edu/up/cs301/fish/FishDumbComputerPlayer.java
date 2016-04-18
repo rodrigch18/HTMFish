@@ -156,21 +156,40 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 //                    }
 //                    while(inHex != true);
 
-                    ArrayList<Hex> listOfTiles = new ArrayList<Hex>();
+//                    ArrayList<Hex> listOfTiles = new ArrayList<Hex>();
+//                    for (int i = 0; i< 10; i++){
+//                        for (int j = 0; j< 10; j++){
+//                            if(newState.board[i][j] != null && newState.board[i][j].getOccupied() == false){
+//                                listOfTiles.add(newState.board[i][j]);
+//                            }
+//                        }
+//                    }
+
+                    int aI=0;
+                    int aJ=0;
+
                     for (int i = 0; i< 10; i++){
                         for (int j = 0; j< 10; j++){
-                            if(newState.board[i][j] != null && newState.board[i][j].getOccupied() == false){
-                                listOfTiles.add(newState.board[i][j]);
+                            if(newState.board[i][j] != null){
+                                if(newState.getPeng(this.playerNum, randPeng).getCurrPosX() == newState.board[i][j].getX()
+                                        && newState.getPeng(this.playerNum, randPeng).getCurrPosY() == newState.board[i][j].getY()){
+
+                                    aI = i;
+                                    aJ = j;
+
+                                }
                             }
                         }
                     }
 
-                    int randI = (int) (Math.random() * listOfTiles.size());
 
+                    ArrayList<Hex> listOfLegal = newState.checkIsLegalMove(aI, aJ);
+
+                    int randI = (int) (Math.random() * listOfLegal.size());
 
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
-                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).getX(), listOfTiles.get(randI).getY(),randPeng, this.playerNum);
+                            newState.getPeng(this.playerNum, randPeng), listOfLegal.get(randI).getX(), listOfLegal.get(randI).getY(),randPeng, this.playerNum);
 
 
                     game.sendAction(movePenguinAction);
@@ -178,8 +197,8 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                     for (int i = 0; i< 10; i++){
                         for (int j = 0; j< 10; j++){
                             if(newState.board[i][j] != null){
-                                if(listOfTiles.get(randI).getX() == newState.board[i][j].getX() &&
-                                        listOfTiles.get(randI).getY() == newState.board[i][j].getY()){
+                                if(listOfLegal.get(randI).getX() == newState.board[i][j].getX() &&
+                                        listOfLegal.get(randI).getY() == newState.board[i][j].getY()){
                                     newState.board[i][j].setOccupied(true);
                                 }
                             }

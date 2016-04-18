@@ -308,25 +308,25 @@ public class FishGameState extends GameState implements Serializable{
     /**
      * Create list of tiles adjacent to current tile in defined direction
      *
-     * @param x- current x coordinate
-     * @param y- current x coordinate
+     * @param i- current x coordinate
+     * @param j- current x coordinate
      * @param xDelta - change in x coordinates
      * @param yDelta - change in y coordinates
      * @param results - list of positions on board that are valid places to move to
      * @return
      */
-    public ArrayList<Hex> findAdjInDir(int x, int y,  int xDelta, int yDelta, ArrayList<Hex> results)
+    public ArrayList<Hex> findAdjInDir(int i, int j,  int xDelta, int yDelta, ArrayList<Hex> results)
     {
         do
         {
-            x = x + xDelta;
-            y = y + yDelta;
-            if (board[x][y] != null)
+            i = i + xDelta;
+            j = j + yDelta;
+            if (board[i][j] != null && this.board[i][j].getOccupied() == false)
             {
-                results.add(board[x][y]);
+                results.add(board[i][j]);
             }
         }
-        while(board[x][y] != null && board[x][y].getOccupied() == false);
+        while(board[i][j] != null && this.board[i][j].getOccupied() == false);
 
         return results;
     }
@@ -335,28 +335,21 @@ public class FishGameState extends GameState implements Serializable{
      * Checks if the tapped spot is a valid move from current position using findAdjInDir,
      * which is used to make lists of valid moves in all 6 directions from hex
      *
-     * @param currPX
-     * @param currPY
-     * @param tappedPosX
-     * @param tappedPosY
      */
-    public void checkIsLegalMove(int currPX,int currPY, int tappedPosX, int tappedPosY) {
+    public ArrayList<Hex> checkIsLegalMove(int i,int j) {
 
         ArrayList<Hex> results = new ArrayList<Hex>();
 
-        findAdjInDir(currPX, currPY, 1, 0, results);
-        findAdjInDir(currPX, currPY, -1, 0, results);
-        findAdjInDir(currPX, currPY, 1, 1, results);
-        findAdjInDir(currPX, currPY, 0, 1, results);
-        findAdjInDir(currPX, currPY, 1, -1, results);
-        findAdjInDir(currPX, currPY, 0, -1, results);
+        if((i > 0 && j > 0) || (i < 10 && j < 10)) {
+            findAdjInDir(i, j, 1, 0, results);
+            findAdjInDir(i, j, -1, 0, results);
+            findAdjInDir(i, j, 1, 1, results);
+            findAdjInDir(i, j, 0, 1, results);
+            findAdjInDir(i, j, 1, -1, results);
+            findAdjInDir(i, j, 0, -1, results);
+        }
 
-        if(results.contains(board[tappedPosX][tappedPosY])) {
-            isLegalMove = true;
-        }
-        else {
-            isLegalMove = false;
-        }
+        return results;
     }
 
 

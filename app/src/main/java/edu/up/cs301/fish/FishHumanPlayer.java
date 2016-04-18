@@ -244,21 +244,22 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                                 (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
 
 
-                                    firstTouch = false;
+                                        firstTouch = false;
 
 
-                                    FishMovePenguinAction movePenguinAction = new
-                                            FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
-                                            newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
-                                    newState.board[i][j].setOccupied(true);
-                                  //  Log.i("SECOND TOUCH", "stuff");
-                                  //  Log.i("SECOND TOUCH", "Set Happens");
+                                        FishMovePenguinAction movePenguinAction = new
+                                                FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
+                                                newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
 
-                                   // Log.i(" SECOND TOUCH", "" + newState.board[i][j].toString());
+                                        newState.board[i][j].setOccupied(true);
+                                        //  Log.i("SECOND TOUCH", "stuff");
+                                        //  Log.i("SECOND TOUCH", "Set Happens");
 
-                                    game.sendAction(movePenguinAction);
-                                    //boardView.invalidate();
-                                    return true;
+                                        // Log.i(" SECOND TOUCH", "" + newState.board[i][j].toString());
+
+                                        game.sendAction(movePenguinAction);
+                                        //boardView.invalidate();
+                                        return true;
                                 }
                             }
                         }
