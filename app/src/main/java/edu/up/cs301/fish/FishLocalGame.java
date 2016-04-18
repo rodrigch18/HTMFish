@@ -140,7 +140,7 @@ public class FishLocalGame extends LocalGame{
 
             fishGameState.setPeng(((FishSetPenguinAction) action).getPenguin(),
                     ((FishSetPenguinAction) action).getX(),((FishSetPenguinAction) action).getY(),
-                    ((FishSetPenguinAction) action).getaPlayersNum());
+                    ((FishSetPenguinAction) action).getaPlayersNum(), ((FishSetPenguinAction) action).getaPengIndex());
 
 
             int i = fishGameState.getId()+1;
@@ -157,7 +157,7 @@ public class FishLocalGame extends LocalGame{
 
             fishGameState.movePeng(fishGameState.getId(), ((FishMovePenguinAction) action).getPenguin(),
                     ((FishMovePenguinAction) action).getX(), ((FishMovePenguinAction) action).getY(),
-                    ((FishMovePenguinAction) action).pengIndex);
+                    ((FishMovePenguinAction) action).getPengIndex(), ((FishMovePenguinAction) action).getPlayerIndex());
 
             //newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
              //       getXboard(), getYboard(), randPeng);

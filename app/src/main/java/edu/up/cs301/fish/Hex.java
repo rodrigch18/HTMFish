@@ -53,12 +53,12 @@ public class Hex implements Serializable{
 //        this.occupied = occupied;
 //    }
 
-    public Hex(int x, int y, int tile, boolean oc){
-        this.x = x;
-        this.y = y;
-        this.tileVal = tile;
-        this.occupied = oc;
-    }
+//    public Hex(int x, int y, int tile, boolean oc){
+//        this.x = x;
+//        this.y = y;
+//        this.tileVal = tile;
+//        this.occupied = oc;
+//    }
 
     public Hex(Hex aHex){
         this.tileVal = aHex.getTileVal();

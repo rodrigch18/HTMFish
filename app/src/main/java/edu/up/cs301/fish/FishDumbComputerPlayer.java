@@ -118,7 +118,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
                             newState.getPeng(this.playerNum, pengsOwned) ,  listOfTiles.get(randI).getX(),
-                            listOfTiles.get(randI).getY(), this.playerNum);
+                            listOfTiles.get(randI).getY(), this.playerNum, pengsOwned);
 
 
                     //Log.i("CPU set", x + " " + y);
@@ -170,7 +170,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
-                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).getX(), listOfTiles.get(randI).getY(),randPeng);
+                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).getX(), listOfTiles.get(randI).getY(),randPeng, this.playerNum);
 
 
                     game.sendAction(movePenguinAction);

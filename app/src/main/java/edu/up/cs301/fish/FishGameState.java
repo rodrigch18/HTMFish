@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.cs301.animation.HexagonSurfaceView;
@@ -31,7 +32,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  * @author Elijah Fisher
  * @version 3/28/16
  */
-public class FishGameState extends GameState{
+public class FishGameState extends GameState implements Serializable{
 
 
 
@@ -152,8 +153,19 @@ public class FishGameState extends GameState{
     }
 
     public FishGameState(FishGameState fishGameState, int numPlayers, String[] playersNames) {
-        numOfPlayers = numPlayers;
-        playerName = playersNames;
+
+
+        this.numOfPlayers = Integer.valueOf(numPlayers);
+
+
+
+        this.playerName= new String[numPlayers];
+
+        for(int i =0; i<playersNames.length; i++) {
+            if(playersNames[i] != null) {
+                this.playerName[i] = new String(playersNames[i]);
+            }
+        }
 
         board = new Hex[10][10];
 
@@ -161,9 +173,9 @@ public class FishGameState extends GameState{
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     if(fishGameState.board[i][j] != null) {
-                        //this.board[i][j] = new Hex(fishGameState.board[i][j].getX(), fishGameState.board[i][j].getY(), fishGameState.board[i][j].getTileVal(), fishGameState.board[i][j].getOccupied());
+                        this.board[i][j] = new Hex(fishGameState.board[i][j]);
 
-                        this.board[i][j] = fishGameState.board[i][j];
+                        //this.board[i][j] = fishGameState.board[i][j];
                     }
                     else{
                         board[i][j] = null;
@@ -178,7 +190,7 @@ public class FishGameState extends GameState{
                 for (int i = 0; i < 2; i++) {
                     for (int j = 0; j < 4; j++) {
                         if(fishGameState.pengA[i][j] != null) {
-                            pengA[i][j] = fishGameState.pengA[i][j];
+                            pengA[i][j] = new Penguin(fishGameState.pengA[i][j]);
                         }
                         else{
                             pengA[i][j] = null;
@@ -348,17 +360,24 @@ public class FishGameState extends GameState{
     }
 
 
-    public void setPeng(Penguin p, int newPosX, int newPosY, int playerIndex) {
+    public void setPeng(Penguin p, int newPosX, int newPosY, int playerIndex, int penguinIndex) {
 
+        for (int i = 0; i< 10; i++){
+            for (int j = 0; j< 10; j++){
+                if(this.board[i][j] != null){
+                    if(this.board[i][j].getX() == newPosX &&
+                            this.board[i][j].getY() == newPosY){
+                        this.board[i][j].setOccupied(true);
+                    }
+                }
+            }
+        }
 
         p.setCurrPosX(newPosX);
         p.setCurrPosY(newPosY);
 
-//        for(int i = 0; i < pengA[0].length; i++) {
-//            if(pengA[playerIndex][i] == null){
-//                pengA[playerIndex][i] = p;
-//            }
-//        }
+        pengA[playerIndex][penguinIndex] = new Penguin(p);
+
 
     }
 
@@ -381,7 +400,7 @@ public class FishGameState extends GameState{
      * @param newPosX new x position that penguin will move to
      * @param newPosY new y position that penguin will move to
      */
-    public void movePeng(int id, Penguin p, int newPosX, int newPosY, int pengIndex) {
+    public void movePeng(int id, Penguin p, int newPosX, int newPosY, int pengIndex, int playerIndex) {
 
        // Log.i("MOVING", "THE PENGUIN");
         int val = 0;
@@ -397,6 +416,17 @@ public class FishGameState extends GameState{
             }
         }
 
+        for (int i = 0; i< 10; i++){
+            for (int j = 0; j< 10; j++){
+                if(this.board[i][j] != null){
+                    if(this.board[i][j].getX() == newPosX &&
+                            this.board[i][j].getY() == newPosY){
+                        this.board[i][j].setOccupied(true);
+                    }
+                }
+            }
+        }
+
         //add value of curr tile to score of right player
        // setPlayerScore(id, getPlayerScore(id) + val);
         setPlayerScore(id, val);
@@ -405,8 +435,10 @@ public class FishGameState extends GameState{
 //                ,pengA[id][pengIndex].getIsDead());
 
         //sets new position of penguin --moves it
-       p.setCurrPosX(newPosX);
-       p.setCurrPosY(newPosY);
+        p.setCurrPosX(newPosX);
+        p.setCurrPosY(newPosY);
+
+        pengA[playerIndex][pengIndex] = new Penguin(p);
 
     }
 

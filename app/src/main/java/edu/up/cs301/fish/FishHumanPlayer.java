@@ -184,7 +184,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
 //
                                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                                            newState.getPeng(this.playerNum, pengsOwned),newState.board[i][j].getX(), newState.board[i][j].getY(), this.playerNum);
+                                            newState.getPeng(this.playerNum, pengsOwned),newState.board[i][j].getX(), newState.board[i][j].getY(), this.playerNum, pengsOwned);
                                     pengsOwned++;
                                     //Log.i("TOUCH", humanBoard[i][j].x + " " + humanBoard[i][j].y);
 
@@ -249,7 +249,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
                                     FishMovePenguinAction movePenguinAction = new
                                             FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
-                                            newState.board[i][j].getX(), newState.board[i][j].getY(), this.k);
+                                            newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
                                     newState.board[i][j].setOccupied(true);
                                   //  Log.i("SECOND TOUCH", "stuff");
                                   //  Log.i("SECOND TOUCH", "Set Happens");
