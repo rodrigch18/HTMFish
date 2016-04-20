@@ -139,7 +139,7 @@ public class FishLocalGame extends LocalGame{
                 fishGameState.setId(i);
             }
             fishGameState.checkPenguins();
-            fishGameState.removeIsland();
+//            fishGameState.removeIsland();
 
             return true;
 
@@ -148,7 +148,7 @@ public class FishLocalGame extends LocalGame{
         else if (action instanceof FishPassAction){
 
             fishGameState.checkPenguins();
-            fishGameState.removeIsland();
+//            fishGameState.removeIsland();
 
             int i = fishGameState.getId()+1;
 

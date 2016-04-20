@@ -1,26 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="/Users/gisellemarston/Library/Android/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-v4-18.0.0_b9dee6d00c4c217226374a6c0e6d4bc65d70fc98/classes.dex" />
-    </item>
-    <item
-        jar="/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="6f2eaa0e512efa2ae3c5d18dc3005f023a31c799">
-        <dex dex="/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_bd18f4b1fe43664e61b3e5d7d920c24ad70b6052/classes.dex" />
-    </item>
-    <item
-        jar="/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="6c6d0aaf6e63afd0d2c60fe9c324bcf5752338fc">
-        <dex dex="/Users/gisellemarston/Desktop/Classes Spring 2016/CS301/HTMFish/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_15bef00fd1ed210c1d7e3146c4ae3ab2df70e3ad/classes.dex" />
-    </item>
-
-</items>
+<items version="2" />
