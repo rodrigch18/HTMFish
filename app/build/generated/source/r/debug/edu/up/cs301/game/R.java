@@ -91,8 +91,12 @@ public final class R {
         public static final int hula_peng=0x7f030003;
         public static final int one_fish=0x7f030004;
         public static final int painter_peng=0x7f030005;
-        public static final int three_fish=0x7f030006;
-        public static final int two_fish=0x7f030007;
+        public static final int selected_angel_peng=0x7f030006;
+        public static final int selected_drunk_peng=0x7f030007;
+        public static final int selected_hula_peng=0x7f030008;
+        public static final int selected_painter_peng=0x7f030009;
+        public static final int three_fish=0x7f03000a;
+        public static final int two_fish=0x7f03000b;
     }
     public static final class string {
         public static final int add_player=0x7f080000;

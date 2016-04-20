@@ -23,7 +23,7 @@ import edu.up.cs301.game.R;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
 public class Hex implements Serializable{
 
@@ -47,18 +47,6 @@ public class Hex implements Serializable{
         this.tileVal = (int)(Math.random()*3)+1;
 
     }
-
-//    public Hex(int tileVal, boolean occupied){
-//        this.tileVal = tileVal;
-//        this.occupied = occupied;
-//    }
-
-//    public Hex(int x, int y, int tile, boolean oc){
-//        this.x = x;
-//        this.y = y;
-//        this.tileVal = tile;
-//        this.occupied = oc;
-//    }
 
     public Hex(Hex aHex){
         this.tileVal = aHex.getTileVal();

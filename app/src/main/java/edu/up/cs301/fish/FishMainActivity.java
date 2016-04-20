@@ -18,7 +18,7 @@ import edu.up.cs301.game.config.GamePlayerType;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
 public class FishMainActivity extends GameMainActivity {
 
@@ -37,12 +37,19 @@ public class FishMainActivity extends GameMainActivity {
                 return new FishDumbComputerPlayer(name);
             }});
 
+        playerTypes.add(new GamePlayerType("Smart Computer Player") {
+            public GamePlayer createPlayer(String name) {
+                return new FishSmartComputerPlayer(name);
+            }});
+
+
 
         // Create a game configuration class for Pig:
         GameConfig defaultConfig = new GameConfig(playerTypes, 2, 4, "Hey, That's my Fish", PORT_NUMBER);
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer", 1); // player 1: a human player
         defaultConfig.setRemoteData("Remote Human Player", "", 0);
+
 
         return defaultConfig;
     }

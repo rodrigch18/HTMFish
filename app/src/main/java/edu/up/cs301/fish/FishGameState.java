@@ -30,7 +30,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
 public class FishGameState extends GameState implements Serializable{
 
@@ -73,7 +73,6 @@ public class FishGameState extends GameState implements Serializable{
 
         numOfPlayers = numPlayers;
         playerName = playersNames;
-       // Log.i("Number of Players","" + numOfPlayers);
         id = 0;
 
 
@@ -227,10 +226,7 @@ public class FishGameState extends GameState implements Serializable{
         }
 
         this.id = fishGameState.getId();
-        //gets all the currents scores of the players
-     //   for (int i=0; i<numOfPlayers; i++) {
-     //       this.playerScore[i] = fishGameState.getPlayerScore(i);
-     //   }
+
         //same as before
         if(numOfPlayers == 2){
             numPenguin = 4;
@@ -247,13 +243,7 @@ public class FishGameState extends GameState implements Serializable{
             playerScore[i] = fishGameState.getPlayerScore(i);
         }
 
-        //Sets the positions of the penguins
-   //     for(int p=0; p<numOfPlayers; p++) {    //TEST
-   //         for (int peng=0; peng<numPenguin; peng++) {
-    //            this.currPosX[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosX();
-    //            this.currPosY[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosY();
-     //       }
-     //   }
+
     }
 
     //player ID
@@ -318,12 +308,6 @@ public class FishGameState extends GameState implements Serializable{
     public ArrayList<Hex> findAdjInDir(double x, double y,  double xDelta, double yDelta, ArrayList<Hex> results)
     {
 
-//        if((i == 2 || i  == 4 || i == 6 || i == 8) && xDelta == -1 && yDelta == -1){
-//            return results;
-//        }
-//        else if((i == 2 || i  == 4 || i == 6 || i == 8) && xDelta == 1 && yDelta == -1){
-//            return results;
-//        }
 
         do
         {
@@ -429,7 +413,6 @@ public class FishGameState extends GameState implements Serializable{
      */
     public void movePeng(int id, Penguin p, int newPosX, int newPosY, int pengIndex, int playerIndex) {
 
-       // Log.i("MOVING", "THE PENGUIN");
         int val = 0;
 
         for(int i = 0; i < 10; i++){
@@ -458,8 +441,6 @@ public class FishGameState extends GameState implements Serializable{
        // setPlayerScore(id, getPlayerScore(id) + val);
         setPlayerScore(id, val);
 
-//        pengA[id][pengIndex] = new Penguin(newPosX,newPosY,false
-//                ,pengA[id][pengIndex].getIsDead());
 
         //sets new position of penguin --moves it
         p.setCurrPosX(newPosX);
@@ -469,7 +450,36 @@ public class FishGameState extends GameState implements Serializable{
 
     }
 
+    public void checkPenguins() {
+        for(int i=0; i<numOfPlayers;i++){
+            for(int j=0; j<numPenguin;j++){
 
+                boolean hasTile = false;
+
+                for(int x=0; x<10; x++){
+                    for(int y=0; y<10; y++){
+                        if(board[x][y] != null) {
+                            if (board[x][y].getX() == pengA[i][j].getCurrPosX()
+                                    && board[x][y].getY() == pengA[i][j].getCurrPosY()) {
+                                ArrayList<Hex> temp = checkIsLegalMove(x, y);
+                                if (temp.size() == 0) {
+                                    pengA[i][j].setIsDead(true);
+                                    setPlayerScore(i, board[x][y].getTileVal());
+                                    board[x][y] = null;
+                                }
+                                hasTile = true;
+                            }
+                        }
+
+                    }
+                }
+                if(!hasTile){
+                    pengA[i][j].setIsDead(true);
+                }
+
+            }
+        }
+    }
     /**
      * Makes one-tile islands null if there are all adjacent tiles are null
      *
@@ -480,12 +490,24 @@ public class FishGameState extends GameState implements Serializable{
 
         for(int x=1; x < 9; x++){
             for(int y=1; y<9; y++){
-                if (currBoard[x+1][y] == null && currBoard[x+1][y+1] == null
-                        && currBoard[x+1][y-1] == null && currBoard[x][y-1] == null
-                        && currBoard[x][y+1] == null && currBoard[x-1][y] == null){
+                if (y % 2 == 0) {
+                    if (currBoard[x][y-1] == null && currBoard[x+1][y-1] == null
+                            && currBoard[x-1][y] == null && currBoard[x+1][y+1] == null
+                            && currBoard[x][y+1] == null && currBoard[x-1][y] == null){
 
-                    currBoard[x][y] = null;
+                        currBoard[x][y] = null;
+                    }
                 }
+                else {
+                    if (currBoard[x-1][y-1] == null && currBoard[x][y-1] == null
+                            && currBoard[x-1][y] == null && currBoard[x+1][y] == null
+                            && currBoard[x-1][y+1] == null && currBoard[x][y+1] == null){
+
+                        currBoard[x][y] = null;
+                    }
+
+                }
+
             }
         }
         return currBoard;
