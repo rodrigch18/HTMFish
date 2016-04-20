@@ -1,34 +1,34 @@
 [
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/one_fish.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/one_fish.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\drunk_peng.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\drunk_peng.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/drunk_peng.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/drunk_peng.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\angel_peng.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\angel_peng.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/painter_peng.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/painter_peng.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\painter_peng.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\painter_peng.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/hula_peng.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/hula_peng.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\two_fish.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\two_fish.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/three_fish.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/three_fish.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\hula_peng.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\hula_peng.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/angel_peng.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/angel_peng.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\three_fish.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\three_fish.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/fish_launcher.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/fish_launcher.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\one_fish.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\one_fish.png"
     },
     {
-        "merged": "/home/christian/StudioProjects/HTMFish/app/build/intermediates/res/merged/debug/mipmap-xxxhdpi-v4/two_fish.png",
-        "source": "/home/christian/StudioProjects/HTMFish/app/src/main/res/mipmap-xxxhdpi/two_fish.png"
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\fish_launcher.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\fish_launcher.png"
     }
 ]

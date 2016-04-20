@@ -308,25 +308,34 @@ public class FishGameState extends GameState implements Serializable{
     /**
      * Create list of tiles adjacent to current tile in defined direction
      *
-     * @param i- current x coordinate
-     * @param j- current x coordinate
+     * @param x- current x coordinate
+     * @param y- current x coordinate
      * @param xDelta - change in x coordinates
      * @param yDelta - change in y coordinates
      * @param results - list of positions on board that are valid places to move to
      * @return
      */
-    public ArrayList<Hex> findAdjInDir(int i, int j,  int xDelta, int yDelta, ArrayList<Hex> results)
+    public ArrayList<Hex> findAdjInDir(double x, double y,  double xDelta, double yDelta, ArrayList<Hex> results)
     {
+
+//        if((i == 2 || i  == 4 || i == 6 || i == 8) && xDelta == -1 && yDelta == -1){
+//            return results;
+//        }
+//        else if((i == 2 || i  == 4 || i == 6 || i == 8) && xDelta == 1 && yDelta == -1){
+//            return results;
+//        }
+
         do
         {
-            i = i + xDelta;
-            j = j + yDelta;
-            if (board[i][j] != null && this.board[i][j].getOccupied() == false)
+            x = x + xDelta;
+            y = y + yDelta;
+
+            if (board[(int)x][(int)y] != null && this.board[(int)x][(int)y].getOccupied() == false)
             {
-                results.add(board[i][j]);
+                results.add(board[(int)x][(int)y]);
             }
         }
-        while(board[i][j] != null && this.board[i][j].getOccupied() == false);
+        while(board[(int)x][(int)y] != null && this.board[(int)x][(int)y].getOccupied() == false);
 
         return results;
     }
@@ -336,18 +345,43 @@ public class FishGameState extends GameState implements Serializable{
      * which is used to make lists of valid moves in all 6 directions from hex
      *
      */
-    public ArrayList<Hex> checkIsLegalMove(int i,int j) {
+    public ArrayList<Hex> checkIsLegalMove(int x,int y) {
 
         ArrayList<Hex> results = new ArrayList<Hex>();
 
-        if((i > 0 && j > 0) || (i < 10 && j < 10)) {
-            findAdjInDir(i, j, 1, 0, results);
-            findAdjInDir(i, j, -1, 0, results);
-            findAdjInDir(i, j, 1, 1, results);
-            findAdjInDir(i, j, 0, 1, results);
-            findAdjInDir(i, j, 1, -1, results);
-            findAdjInDir(i, j, 0, -1, results);
+        //northwest
+        if (y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, -0.5,-1, results);
+        } else {
+            findAdjInDir(x, y, -0.5,-1, results);
         }
+        //northeast
+        if (y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, +0.5,-1, results);
+        } else {
+            findAdjInDir(x, y, +0.5,-1, results);
+        }
+
+        //southwest
+        if (y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, -0.5,+1, results);
+        } else{
+            findAdjInDir(x, y,-0.5,+1, results);
+        }
+
+        //southeast
+        if(y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, +0.5,+1, results);
+        }else {
+            findAdjInDir(x, y , +0.5,+1, results);
+        }
+
+        //east
+        findAdjInDir(x, y, +1, 0, results);
+
+        //west
+        findAdjInDir(x, y,-1, 0, results);
+
 
         return results;
     }
