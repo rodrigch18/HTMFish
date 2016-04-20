@@ -1,11 +1,16 @@
 package edu.up.cs301.fish;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import edu.up.cs301.animation.HexagonSurfaceView;
@@ -16,7 +21,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
  * Hey, That's My Fish HumanPlayer
- *
+ * <p/>
  * This class is a GUI for a human to
  * play Hey That's My Fish.
  *
@@ -24,9 +29,9 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
-public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchListener, Serializable {
+public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchListener {
 
     private ArrayList<TextView> playerScoreTextView = new ArrayList<TextView>();
     private ArrayList<TextView> playerPlayerTextView = new ArrayList<TextView>();
@@ -37,50 +42,33 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
     HexagonSurfaceView boardView = null;
     Paint p = new Paint();
     int pengsOwned = 0;
-    boolean firstTouch =false;
+    boolean firstTouch = false;
     boolean onStart = true;
-//    int i;
-//    int j;
     int k;
+    ArrayList<Hex> listOfLegalMoves = new ArrayList<Hex>();
 
     /**
      * Fish Human Player constructor
      *
      * @param name - player name
      */
-    public FishHumanPlayer(String name){
+    public FishHumanPlayer(String name) {
         super(name);
     }
 
-//    private void setI(int i){
-//        this.i =i;
-//    }
-//
-//    private int getI(){
-//        return i;
-//    }
-//
-//    private void setJ(int k){
-//        this.j =j;
-//    }
-//
-//    private int getJ(){
-//        return j;
-//    }
-
-    private void setK(int k){
-        this.k =k;
+    private void setK(int k) {
+        this.k = k;
     }
 
-    private int getK(){
-        return this.k;
+    private int getK() {
+        return k;
     }
 
     /**
      * Returns the GUI's top view object
      */
-    public View getTopView(){
-        return myActivity.findViewById(R.id.top_gui_layout);
+    public View getTopView() {
+        return myActivity.findViewById(R.id.viewBoard);
     }
 
     /**
@@ -88,20 +76,30 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
      *
      * @param info - info from the game
      */
-    public void receiveInfo(GameInfo info){
-       // Log.i("HUMAN Recieving", " Info");
+    public void receiveInfo(GameInfo info) {
         if (info instanceof FishGameState) {
-         //   Log.i("HUMAN Recieving", " FishGameState");
             newState = (FishGameState) info;
 
-
+            int deadPengs= 0;
+            newState = (FishGameState) info;
+            for(int p=0; p<newState.numPenguin; p++) {
+                if(newState.pengA[this.playerNum][p].getIsDead())
+                {
+                    deadPengs++;
+                }
+            }
+            if(deadPengs == newState.numPenguin){
+                FishPassAction passAction = new FishPassAction(this);
+                game.sendAction(passAction);
+                return;
+            }
 
             boardView.setOnTouchListener(this);
 
-            switch (newState.numOfPlayers){
+            switch (newState.numOfPlayers) {
                 case 2:
 
-                    for(int i=0; i<2; i++){
+                    for (int i = 0; i < 2; i++) {
                         playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
                         playerPlayerTextView.get(i).setText("" + newState.playerName[i]);
                     }
@@ -114,7 +112,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
                 case 3:
 
-                    for(int i=0; i<3; i++){
+                    for (int i = 0; i < 3; i++) {
                         playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
                         playerPlayerTextView.get(i).setText("" + newState.playerName[i]);
                     }
@@ -126,7 +124,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
                 case 4:
 
-                    for(int i=0; i<4; i++){
+                    for (int i = 0; i < 4; i++) {
                         playerScoreTextView.get(i).setText("" + newState.getPlayerScore(i));
                         playerPlayerTextView.get(i).setText("" + newState.playerName[i]);
                     }
@@ -135,15 +133,13 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
             }
 
 
-
             boardView.setTheState(newState);
             boardView.setMyAct(myActivity);
-            whosTurn.setText("Player: "+allPlayerNames[newState.getId()]+"'s Turn");
+            whosTurn.setText("Player: " + allPlayerNames[newState.getId()] + "'s Turn");
 
             this.boardView.invalidate();
 
-        }
-        else {
+        } else {
             flash(-65636, 33);
         }
     }
@@ -154,16 +150,12 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
      *
      * @param event - touch/tap
      */
-    public boolean onTouch(View v, MotionEvent event){
+    public boolean onTouch(View v, MotionEvent event) {
 
-        if(event.getAction() == MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
             int xTouch = (int) event.getX();
             int yTouch = (int) event.getY();
-
-           // Log.i("IS TOUCHED", xTouch + " " + yTouch);
-
-           // Log.i("peng", "" + pengsOwned);
 
             //coordinates of tapped spot
             outerloop:
@@ -171,29 +163,28 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                 for (int j = 0; j < 10; j++) {
                     if (newState.board[i][j] != null) {
                         if ((!newState.board[i][j].getOccupied()) && (newState.board[i][j].getTileVal() == 1)) {
-                            if(onStart) {
+                            if (onStart) {
                                 if ((xTouch - (newState.board[i][j].getX() + 65)) *
                                         (xTouch - (newState.board[i][j].getX() + 65)) +
                                         (yTouch - (newState.board[i][j].getY() + 65)) *
                                                 (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
 
-//
+
                                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
-                                            newState.getPeng(this.playerNum, pengsOwned),newState.board[i][j].getX(), newState.board[i][j].getY(), this.playerNum);
+                                            newState.getPeng(this.playerNum, pengsOwned), newState.board[i][j].getX(), newState.board[i][j].getY(), this.playerNum, pengsOwned);
                                     pengsOwned++;
-                                    //Log.i("TOUCH", humanBoard[i][j].x + " " + humanBoard[i][j].y);
 
                                     newState.board[i][j].setOccupied(true);
                                     game.sendAction(setPenguinAction);
 
                                     if (newState.numOfPlayers == 2 && pengsOwned == 4) {
-                                        onStart =false;
+                                        onStart = false;
                                         break outerloop;
                                     } else if (newState.numOfPlayers == 3 && pengsOwned == 3) {
-                                        onStart =false;
+                                        onStart = false;
                                         break outerloop;
                                     } else if (newState.numOfPlayers == 4 && pengsOwned == 2) {
-                                        onStart =false;
+                                        onStart = false;
                                         break outerloop;
                                     }
 
@@ -212,48 +203,60 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
                             if (newState.board[i][j].getOccupied()) {
 
-
                                 if ((xTouch - (newState.board[i][j].getX() + 65)) *
                                         (xTouch - (newState.board[i][j].getX() + 65)) +
                                         (yTouch - (newState.board[i][j].getY() + 65)) *
                                                 (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
                                     for (int k = 0; k < newState.pengA[this.playerNum].length; k++) {
-                                        //if (newState.pengA[this.playerNum][k].getCurrPosX() == newState.board[i][j].getX()
-                                                //&& newState.pengA[this.playerNum][k].getCurrPosY() == newState.board[i][j].getY()) {
-                                            //this.i = i;
-                                            //this.j = j;
+                                        if (newState.pengA[this.playerNum][k].getCurrPosX() == newState.board[i][j].getX()
+                                                && newState.pengA[this.playerNum][k].getCurrPosY() == newState.board[i][j].getY()
+                                                && !newState.pengA[this.playerNum][k].getIsDead()) {
+
                                             this.k = k;
                                             firstTouch = true;
-                                           // Log.i("Penguin Selected", "stuff");
                                             return true;
-                                       // }
+                                        }
                                     }
                                 }
                             }
-                        }
-                        else if (firstTouch) {
+                        } else if (firstTouch) {
                             if (!(newState.board[i][j].getOccupied())) {
                                 if ((xTouch - (newState.board[i][j].getX() + 65)) *
                                         (xTouch - (newState.board[i][j].getX() + 65)) +
                                         (yTouch - (newState.board[i][j].getY() + 65)) *
                                                 (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
+                                    int aX = 0;
+                                    int aY = 0;
+                                    for (int x = 0; x < 10; x++) {
+                                        for (int y = 0; y < 10; y++) {
+                                            if (newState.board[x][y] != null) {
+                                                if (newState.getPeng(this.playerNum, k).getCurrPosX() == newState.board[x][y].getX()
+                                                        && newState.getPeng(this.playerNum, k).getCurrPosY() == newState.board[x][y].getY()) {
+
+                                                    aX = x;
+                                                    aY = y;
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    ArrayList<Hex> listOfLegalMoves = newState.checkIsLegalMove(aX, aY);
+
+                                    if (listOfLegalMoves.contains(newState.board[i][j])) {
+
+                                        firstTouch = false;
 
 
-                                    firstTouch = false;
+                                        FishMovePenguinAction movePenguinAction = new
+                                                FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
+                                                newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
 
+                                        newState.board[i][j].setOccupied(true);
 
-                                    FishMovePenguinAction movePenguinAction = new
-                                            FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
-                                            newState.board[i][j].getX(), newState.board[i][j].getY(), this.k);
-                                    newState.board[i][j].setOccupied(true);
-                                  //  Log.i("SECOND TOUCH", "stuff");
-                                  //  Log.i("SECOND TOUCH", "Set Happens");
-
-                                   // Log.i(" SECOND TOUCH", "" + newState.board[i][j].toString());
-
-                                    game.sendAction(movePenguinAction);
-                                    //boardView.invalidate();
-                                    return true;
+                                        game.sendAction(movePenguinAction);
+                                        return true;
+                                    }
                                 }
                             }
                         }
@@ -262,13 +265,6 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                 }
             }
             boardView.invalidate();
-
-            //FishGameState gameState = new FishGameState();
-
-//        if(newState.onStart = true){
-//            newState.setPeng(new Penguin(X,Y),X,Y);
-//        }
-
 
             return true;
         }
@@ -281,28 +277,27 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
      *
      * @param activity - activity under which we are running
      */
-    public void setAsGui(GameMainActivity activity){
+    public void setAsGui(GameMainActivity activity) {
         // remember the activity
         myActivity = activity;
 
         // Load the layout resource for our GUI
         activity.setContentView(R.layout.htmfish_layout);
 
-        boardView = (HexagonSurfaceView)activity.findViewById(R.id.viewBoard);
+        boardView = (HexagonSurfaceView) activity.findViewById(R.id.viewBoard);
 
-        this.whosTurn = (TextView)activity.findViewById(R.id.whoseTurn);
+        this.whosTurn = (TextView) activity.findViewById(R.id.whoseTurn);
 
         //Initialize the widget reference member variables
-        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore1));
-        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore2));
-        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore3));
-        this.playerScoreTextView.add((TextView)activity.findViewById(R.id.viewScore4));
+        this.playerScoreTextView.add((TextView) activity.findViewById(R.id.viewScore1));
+        this.playerScoreTextView.add((TextView) activity.findViewById(R.id.viewScore2));
+        this.playerScoreTextView.add((TextView) activity.findViewById(R.id.viewScore3));
+        this.playerScoreTextView.add((TextView) activity.findViewById(R.id.viewScore4));
 
-        this.playerPlayerTextView.add((TextView)activity.findViewById(R.id.viewPlayer1));
-        this.playerPlayerTextView.add((TextView)activity.findViewById(R.id.viewPlayer2));
-        this.playerPlayerTextView.add((TextView)activity.findViewById(R.id.viewPlayer3));
-        this.playerPlayerTextView.add((TextView)activity.findViewById(R.id.viewPlayer4));
-
+        this.playerPlayerTextView.add((TextView) activity.findViewById(R.id.viewPlayer1));
+        this.playerPlayerTextView.add((TextView) activity.findViewById(R.id.viewPlayer2));
+        this.playerPlayerTextView.add((TextView) activity.findViewById(R.id.viewPlayer3));
+        this.playerPlayerTextView.add((TextView) activity.findViewById(R.id.viewPlayer4));
 
 
     }

@@ -30,7 +30,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
 public class FishGameState extends GameState implements Serializable{
 
@@ -73,7 +73,6 @@ public class FishGameState extends GameState implements Serializable{
 
         numOfPlayers = numPlayers;
         playerName = playersNames;
-       // Log.i("Number of Players","" + numOfPlayers);
         id = 0;
 
 
@@ -152,9 +151,20 @@ public class FishGameState extends GameState implements Serializable{
         currPosY = new int[numPenguin * numOfPlayers];
     }
 
-    public FishGameState(FishGameState fishGameState) {
-        numOfPlayers = fishGameState.numOfPlayers;
-        playerName = fishGameState.playerName;
+    public FishGameState(FishGameState fishGameState, int numPlayers, String[] playersNames) {
+
+
+        this.numOfPlayers = Integer.valueOf(numPlayers);
+
+
+
+        this.playerName= new String[numPlayers];
+
+        for(int i =0; i<playersNames.length; i++) {
+            if(playersNames[i] != null) {
+                this.playerName[i] = new String(playersNames[i]);
+            }
+        }
 
         board = new Hex[10][10];
 
@@ -162,7 +172,9 @@ public class FishGameState extends GameState implements Serializable{
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 10; j++) {
                     if(fishGameState.board[i][j] != null) {
-                        board[i][j] = new Hex(fishGameState.board[i][j]);
+                        this.board[i][j] = new Hex(fishGameState.board[i][j]);
+
+                        //this.board[i][j] = fishGameState.board[i][j];
                     }
                     else{
                         board[i][j] = null;
@@ -190,7 +202,7 @@ public class FishGameState extends GameState implements Serializable{
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
                         if(fishGameState.pengA[i][j] != null) {
-                            pengA[i][j] = new Penguin(fishGameState.pengA[i][j]);
+                            pengA[i][j] = fishGameState.pengA[i][j];
                         }
                         else{
                             pengA[i][j] = null;
@@ -203,7 +215,7 @@ public class FishGameState extends GameState implements Serializable{
                 for (int i = 0; i < 4; i++) {
                     for (int j = 0; j < 2; j++) {
                         if(fishGameState.pengA[i][j] != null) {
-                            pengA[i][j] = new Penguin(fishGameState.pengA[i][j]);
+                            pengA[i][j] = fishGameState.pengA[i][j];
                         }
                         else{
                             pengA[i][j] = null;
@@ -214,10 +226,7 @@ public class FishGameState extends GameState implements Serializable{
         }
 
         this.id = fishGameState.getId();
-        //gets all the currents scores of the players
-     //   for (int i=0; i<numOfPlayers; i++) {
-     //       this.playerScore[i] = fishGameState.getPlayerScore(i);
-     //   }
+
         //same as before
         if(numOfPlayers == 2){
             numPenguin = 4;
@@ -234,13 +243,7 @@ public class FishGameState extends GameState implements Serializable{
             playerScore[i] = fishGameState.getPlayerScore(i);
         }
 
-        //Sets the positions of the penguins
-   //     for(int p=0; p<numOfPlayers; p++) {    //TEST
-   //         for (int peng=0; peng<numPenguin; peng++) {
-    //            this.currPosX[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosX();
-    //            this.currPosY[p * numPenguin + peng] = fishGameState.penguin[p].getCurrPosY();
-     //       }
-     //   }
+
     }
 
     //player ID
@@ -302,18 +305,21 @@ public class FishGameState extends GameState implements Serializable{
      * @param results - list of positions on board that are valid places to move to
      * @return
      */
-    public ArrayList<Hex> findAdjInDir(int x, int y,  int xDelta, int yDelta, ArrayList<Hex> results)
+    public ArrayList<Hex> findAdjInDir(double x, double y,  double xDelta, double yDelta, ArrayList<Hex> results)
     {
+
+
         do
         {
             x = x + xDelta;
             y = y + yDelta;
-            if (board[x][y] != null)
+
+            if (board[(int)x][(int)y] != null && this.board[(int)x][(int)y].getOccupied() == false)
             {
-                results.add(board[x][y]);
+                results.add(board[(int)x][(int)y]);
             }
         }
-        while(board[x][y] != null && board[x][y].getOccupied() == false);
+        while(board[(int)x][(int)y] != null && this.board[(int)x][(int)y].getOccupied() == false);
 
         return results;
     }
@@ -322,45 +328,72 @@ public class FishGameState extends GameState implements Serializable{
      * Checks if the tapped spot is a valid move from current position using findAdjInDir,
      * which is used to make lists of valid moves in all 6 directions from hex
      *
-     * @param currPX
-     * @param currPY
-     * @param tappedPosX
-     * @param tappedPosY
      */
-    public void checkIsLegalMove(int currPX,int currPY, int tappedPosX, int tappedPosY) {
+    public ArrayList<Hex> checkIsLegalMove(int x,int y) {
 
         ArrayList<Hex> results = new ArrayList<Hex>();
 
-        findAdjInDir(currPX, currPY, 1, 0, results);
-        findAdjInDir(currPX, currPY, -1, 0, results);
-        findAdjInDir(currPX, currPY, 1, 1, results);
-        findAdjInDir(currPX, currPY, 0, 1, results);
-        findAdjInDir(currPX, currPY, 1, -1, results);
-        findAdjInDir(currPX, currPY, 0, -1, results);
+        //northwest
+        if (y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, -0.5,-1, results);
+        } else {
+            findAdjInDir(x, y, -0.5,-1, results);
+        }
+        //northeast
+        if (y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, +0.5,-1, results);
+        } else {
+            findAdjInDir(x, y, +0.5,-1, results);
+        }
 
-        if(results.contains(board[tappedPosX][tappedPosY])) {
-            isLegalMove = true;
+        //southwest
+        if (y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, -0.5,+1, results);
+        } else{
+            findAdjInDir(x, y,-0.5,+1, results);
         }
-        else {
-            isLegalMove = false;
+
+        //southeast
+        if(y % 2 == 0) {
+            findAdjInDir(x + 0.5, y, +0.5,+1, results);
+        }else {
+            findAdjInDir(x, y , +0.5,+1, results);
         }
+
+        //east
+        findAdjInDir(x, y, +1, 0, results);
+
+        //west
+        findAdjInDir(x, y,-1, 0, results);
+
+
+        return results;
     }
 
 
-    public void setPeng(Penguin p, int newPosX, int newPosY, int playerIndex) {
+    public void setPeng(Penguin p, int newPosX, int newPosY, int playerIndex, int penguinIndex) {
 
-
-
-        for(int i = 0; i < numPenguin; i++) {
-            if(pengA[playerIndex][i] == null){
-                pengA[playerIndex][i] = new Penguin(p);
+        for (int i = 0; i< 10; i++){
+            for (int j = 0; j< 10; j++){
+                if(this.board[i][j] != null){
+                    if(this.board[i][j].getX() == newPosX &&
+                            this.board[i][j].getY() == newPosY){
+                        this.board[i][j].setOccupied(true);
+                    }
+                }
             }
         }
+
+        p.setCurrPosX(newPosX);
+        p.setCurrPosY(newPosY);
+
+        pengA[playerIndex][penguinIndex] = new Penguin(p);
+
 
     }
 
     public Penguin getPeng(int id, int pengidx){
-        return pengA[id][pengidx];
+        return this.pengA[id][pengidx];
     }
 
     public boolean checkIfOccupied(Hex selectedHex){
@@ -378,9 +411,8 @@ public class FishGameState extends GameState implements Serializable{
      * @param newPosX new x position that penguin will move to
      * @param newPosY new y position that penguin will move to
      */
-    public void movePeng(int id, Penguin p, int newPosX, int newPosY, int pengIndex) {
+    public void movePeng(int id, Penguin p, int newPosX, int newPosY, int pengIndex, int playerIndex) {
 
-       // Log.i("MOVING", "THE PENGUIN");
         int val = 0;
 
         for(int i = 0; i < 10; i++){
@@ -394,20 +426,60 @@ public class FishGameState extends GameState implements Serializable{
             }
         }
 
+        for (int i = 0; i< 10; i++){
+            for (int j = 0; j< 10; j++){
+                if(this.board[i][j] != null){
+                    if(this.board[i][j].getX() == newPosX &&
+                            this.board[i][j].getY() == newPosY){
+                        this.board[i][j].setOccupied(true);
+                    }
+                }
+            }
+        }
+
         //add value of curr tile to score of right player
        // setPlayerScore(id, getPlayerScore(id) + val);
         setPlayerScore(id, val);
 
-        pengA[id][pengIndex] = new Penguin(newPosX,newPosY,false
-                ,pengA[id][pengIndex].getIsDead());
 
         //sets new position of penguin --moves it
-//       p.setCurrPosX(newPosX);
-//       p.setCurrPosY(newPosY);
+        p.setCurrPosX(newPosX);
+        p.setCurrPosY(newPosY);
+
+        pengA[playerIndex][pengIndex] = new Penguin(p);
 
     }
 
+    public void checkPenguins() {
+        for(int i=0; i<numOfPlayers;i++){
+            for(int j=0; j<numPenguin;j++){
 
+                boolean hasTile = false;
+
+                for(int x=0; x<10; x++){
+                    for(int y=0; y<10; y++){
+                        if(board[x][y] != null) {
+                            if (board[x][y].getX() == pengA[i][j].getCurrPosX()
+                                    && board[x][y].getY() == pengA[i][j].getCurrPosY()) {
+                                ArrayList<Hex> temp = checkIsLegalMove(x, y);
+                                if (temp.size() == 0) {
+                                    pengA[i][j].setIsDead(true);
+                                    setPlayerScore(i, board[x][y].getTileVal());
+                                    board[x][y] = null;
+                                }
+                                hasTile = true;
+                            }
+                        }
+
+                    }
+                }
+                if(!hasTile){
+                    pengA[i][j].setIsDead(true);
+                }
+
+            }
+        }
+    }
     /**
      * Makes one-tile islands null if there are all adjacent tiles are null
      *
@@ -418,12 +490,24 @@ public class FishGameState extends GameState implements Serializable{
 
         for(int x=1; x < 9; x++){
             for(int y=1; y<9; y++){
-                if (currBoard[x+1][y] == null && currBoard[x+1][y+1] == null
-                        && currBoard[x+1][y-1] == null && currBoard[x][y-1] == null
-                        && currBoard[x][y+1] == null && currBoard[x-1][y] == null){
+                if (y % 2 == 0) {
+                    if (currBoard[x][y-1] == null && currBoard[x+1][y-1] == null
+                            && currBoard[x-1][y] == null && currBoard[x+1][y+1] == null
+                            && currBoard[x][y+1] == null && currBoard[x-1][y] == null){
 
-                    currBoard[x][y] = null;
+                        currBoard[x][y] = null;
+                    }
                 }
+                else {
+                    if (currBoard[x-1][y-1] == null && currBoard[x][y-1] == null
+                            && currBoard[x-1][y] == null && currBoard[x+1][y] == null
+                            && currBoard[x-1][y+1] == null && currBoard[x][y+1] == null){
+
+                        currBoard[x][y] = null;
+                    }
+
+                }
+
             }
         }
         return currBoard;

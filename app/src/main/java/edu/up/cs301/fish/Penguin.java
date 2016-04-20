@@ -19,13 +19,11 @@ import edu.up.cs301.game.R;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
 
 public class Penguin implements Serializable{
 
-    // player that owns given penguin
-    protected int player;
     // x,y coordinates of given penguin
     private int currPosX;
     private int currPosY;
@@ -50,25 +48,6 @@ public class Penguin implements Serializable{
         this.currPosX = aPeng.getCurrPosX();
         this.currPosY = aPeng.getCurrPosY();
     }
-
-//    /**
-//     * Penguin Constructor that takes no parameters
-//     */
-//    public Penguin(int x, int y, Penguin peng){
-//        this.aPeng = peng;
-//        peng.setCurrPosX(x);
-//        peng.setCurrPosY(y);
-//    }
-//
-//    /**
-//     * Deep Copy Penguin Constructor
-//     *
-//     * @param p - a given penguin on the board
-//     */
-//    public Penguin(Penguin p){
-//        this.currPosX = p.getCurrPosX();
-//        this.currPosY = p.getCurrPosY();
-//    }
 
     //position of a player's penguin
     public int getCurrPosX() {

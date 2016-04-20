@@ -24,7 +24,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/31/16
+ * @version 4/20/16
  */
 
 public class FishDumbComputerPlayer extends GameComputerPlayer implements Serializable {
@@ -51,26 +51,22 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
      */
     protected void receiveInfo(GameInfo info)
     {
-      //  Log.i("CPU recieve info", "info");
+        Log.i("CPU recieve info", "info");
         if (info instanceof FishGameState) {
-         //   Log.i("CPU FishGameState", "info");
-
+            Log.i("CPU FishGameState", "info");
+            int deadPengs= 0;
             newState = (FishGameState) info;
-
-            //Log.i("CPU PLAYER ID", "" + newState.getId());
-//            newState.board = new Hex[10][10];
-//
-//            if (newState.board != null) {
-//                for (int i = 0; i < 10; i++) {
-//                    for (int j = 0; j < 10; j++) {
-//                        if (newState.board[i][j] != null) {
-//                            newState.board[i][j] = newState.board[i][j];
-//                        } else {
-//                            newState.board[i][j] = null;
-//                        }
-//                    }
-//                }
-//            }
+            for(int p=0; p<newState.numPenguin; p++) {
+                if(newState.pengA[this.playerNum][p].getIsDead())
+                {
+                    deadPengs++;
+                }
+            }
+            if(deadPengs == newState.numPenguin){
+                FishPassAction passAction = new FishPassAction(this);
+                game.sendAction(passAction);
+                return;
+            }
 
 
             sleep(1000);
@@ -79,30 +75,11 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                 return;
             } else {
 
-//                if(newState.numOfPlayers == 2 && pengsOwned == 4){
-//                    return;
-//                } else if(newState.numOfPlayers == 3 && pengsOwned == 3){
-//                    return;
-//                } else if(newState.numOfPlayers == 4 && pengsOwned == 2){
-//                    return;
-//                }
+
 
 
                 //creates pengs -giselle thinks
                 if(this.onStart) {
-
-//                    int x;
-//                    int y;
-//
-//                    boolean inHex = false;
-//                    do {
-//                        x = (int) (Math.random() * 1000) + 335;
-//                        y = (int) (Math.random() * 1000) + 150;
-//
-//                        inHex =checkIfInHex(x,y);
-//                     //   Log.i("CHeckInHEx", x+" "+y+" "+ checkIfInHex(x,y));
-//                    }
-//                    while(inHex != true);
 
                     ArrayList<Hex> listOfTiles = new ArrayList<Hex>();
                     for (int i = 0; i< 10; i++){
@@ -118,17 +95,16 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 
                     FishSetPenguinAction setPenguinAction = new FishSetPenguinAction(this,
                             newState.getPeng(this.playerNum, pengsOwned) ,  listOfTiles.get(randI).getX(),
-                            listOfTiles.get(randI).getY(), this.playerNum);
+                            listOfTiles.get(randI).getY(), this.playerNum, pengsOwned);
 
 
-                    //Log.i("CPU set", x + " " + y);
                     game.sendAction(setPenguinAction);
 
                     for (int i = 0; i< 10; i++){
                         for (int j = 0; j< 10; j++){
                             if(newState.board[i][j] != null){
-                                if(listOfTiles.get(randI).x == newState.board[i][j].x &&
-                                        listOfTiles.get(randI).y == newState.board[i][j].y){
+                                if(listOfTiles.get(randI).getX() == newState.board[i][j].getX() &&
+                                        listOfTiles.get(randI).getY() == newState.board[i][j].getY()){
                                     newState.board[i][j].setOccupied(true);
                                 }
                             }
@@ -136,41 +112,46 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                     }
 
                     pengsOwned++;
-                    //Log.i("peng Owned by Comp", pengsOwned + " " + newState.numPenguin);
                     if (pengsOwned == newState.numPenguin) {
                         this.onStart=false;
-                       // Log.i("On Start", "" + onStart);
 
                     }
                 }
                 else if (!this.onStart)
                 {
-                    int randPeng = (int) (Math.random() * pengsOwned );
+                    int randPeng;
+                    do {
+                        randPeng = (int) (Math.random() * pengsOwned);
+                    }
+                    while(newState.getPeng(this.playerNum,randPeng).getIsDead());
 
-//                    Log.i("CPU MOVE", getXboard() + " " + getYboard() + " " + randPeng);
-//                    do {
-//                        x = (int) (Math.random() * 1000) + 335;
-//                        y = (int) (Math.random() * 1000) + 150;
-//
-//                        inHex = checkIfInHex(x,y);
-//                    }
-//                    while(inHex != true);
 
-                    ArrayList<Hex> listOfTiles = new ArrayList<Hex>();
+
+                    int aI=0;
+                    int aJ=0;
+
                     for (int i = 0; i< 10; i++){
                         for (int j = 0; j< 10; j++){
-                            if(newState.board[i][j] != null && newState.board[i][j].getOccupied() == false){
-                                listOfTiles.add(newState.board[i][j]);
+                            if(newState.board[i][j] != null){
+                                if(newState.getPeng(this.playerNum, randPeng).getCurrPosX() == newState.board[i][j].getX()
+                                        && newState.getPeng(this.playerNum, randPeng).getCurrPosY() == newState.board[i][j].getY()){
+
+                                    aI = i;
+                                    aJ = j;
+
+                                }
                             }
                         }
                     }
 
-                    int randI = (int) (Math.random() * listOfTiles.size());
 
+                    ArrayList<Hex> listOfLegal = newState.checkIsLegalMove(aI, aJ);
+
+                    int randI = (int) (Math.random() * listOfLegal.size());
 
 
                     FishMovePenguinAction movePenguinAction = new FishMovePenguinAction(this,
-                            newState.getPeng(this.playerNum, randPeng), listOfTiles.get(randI).getX(), listOfTiles.get(randI).getY(),randPeng);
+                            newState.getPeng(this.playerNum, randPeng), listOfLegal.get(randI).getX(), listOfLegal.get(randI).getY(),randPeng, this.playerNum);
 
 
                     game.sendAction(movePenguinAction);
@@ -178,8 +159,8 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                     for (int i = 0; i< 10; i++){
                         for (int j = 0; j< 10; j++){
                             if(newState.board[i][j] != null){
-                                if(listOfTiles.get(randI).x == newState.board[i][j].x &&
-                                        listOfTiles.get(randI).y == newState.board[i][j].y){
+                                if(listOfLegal.get(randI).getX() == newState.board[i][j].getX() &&
+                                        listOfLegal.get(randI).getY() == newState.board[i][j].getY()){
                                     newState.board[i][j].setOccupied(true);
                                 }
                             }
@@ -211,36 +192,5 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
         onStart = onStartNow;
     }
 
-    protected boolean checkIfInHex(int x, int y){
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (newState.board[i][j] != null) {
-
-                    if (((x - (newState.board[i][j].getX() + 65)) * (x - (newState.board[i][j].getX() + 65)) +
-                            (y - (newState.board[i][j].getY() + 65)) * (y - (newState.board[i][j].getY() + 65))
-                            <= 65 * 65)) {
-                        if(!newState.board[i][j].getOccupied()) {
-                            if(this.onStart==true){
-                                if(newState.board[i][j].getTileVal()==1) {
-                                    setXboard(newState.board[i][j].getX());
-                                    setYboard(newState.board[i][j].getY());
-                                    newState.board[i][j].setOccupied(true);
-                                    return true;
-                                }
-                            }
-                            else {
-                                    setXboard(newState.board[i][j].getX());
-                                    setYboard(newState.board[i][j].getY());
-                                    newState.board[i][j].setOccupied(true);
-                                    return true;
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
 }

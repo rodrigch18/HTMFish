@@ -23,11 +23,11 @@ import edu.up.cs301.game.R;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
 public class Hex implements Serializable{
 
-    protected int tileVal;
+    private int tileVal;
 
     private int x;
     private int y;
@@ -48,16 +48,11 @@ public class Hex implements Serializable{
 
     }
 
-    public Hex(int tileVal, boolean occupied){
-        this.tileVal = tileVal;
-        this.occupied = occupied;
-    }
-
     public Hex(Hex aHex){
+        this.tileVal = aHex.getTileVal();
+        this.occupied = aHex.getOccupied();
         this.x = aHex.getX();
         this.y = aHex.getY();
-        this.occupied = aHex.getOccupied();
-        this.tileVal = aHex.getTileVal();
     }
 
     // tile values
@@ -71,11 +66,15 @@ public class Hex implements Serializable{
 
     public int getX() { return this.x;}
 
-    public void setX(int newX) { this.x = newX;}
+    public void setX(int x) { this.x = x;}
 
-    public int getY() { return this.y;}
+    public int getY() {
+        return this.y;
+    }
 
-    public void setY(int newY) { this.y = newY;}
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public String toString(){
         return (this.x + " " + this.y + " " + this.occupied);

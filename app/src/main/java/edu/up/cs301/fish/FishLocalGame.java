@@ -2,7 +2,7 @@ package edu.up.cs301.fish;
 
 import android.util.Log;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
@@ -18,9 +18,9 @@ import edu.up.cs301.game.actionMsg.GameAction;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 3/28/16
+ * @version 4/20/16
  */
-public class FishLocalGame extends LocalGame implements Serializable{
+public class FishLocalGame extends LocalGame{
 
     FishGameState fishGameState;
     int numPlayers;
@@ -30,11 +30,6 @@ public class FishLocalGame extends LocalGame implements Serializable{
      * Fish Local Game constructor that takes no parameters
      */
     public FishLocalGame(){
-        //this.numPlayers = Integer.valueOf(this.players.length);
-        //playersNames= new String[this.numPlayers];
-        //fishGameState = new FishGameState(this.numPlayers, playersNames);
-
-
     }
 
     /**
@@ -51,8 +46,7 @@ public class FishLocalGame extends LocalGame implements Serializable{
             }
             fishGameState = new FishGameState(numPlayers, playersNames);
         }
-        FishGameState temp = new FishGameState(fishGameState);
-       // Log.i("SENDING INFO", "some");
+        FishGameState temp = new FishGameState(fishGameState, numPlayers, playersNames);
         p.sendInfo(temp);
     }
 
@@ -62,8 +56,6 @@ public class FishLocalGame extends LocalGame implements Serializable{
      * @param playerIdx - specific player
      */
     protected boolean canMove(int playerIdx){
-
-        //Log.i("Can Move","" + playerIdx + fishGameState.getId());
 
         if(playerIdx == fishGameState.getId()) {
             return true;
@@ -79,42 +71,19 @@ public class FishLocalGame extends LocalGame implements Serializable{
      *          if game is not over
      */
     protected String checkIfGameOver() {
-        boolean isEnd = false;
-        boolean allOc = true;
-        int totalScore = 0;
-        int numTile = 0;
-        int numPeng = 0;
+        boolean isEnd = true;
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (fishGameState.board[i][j] != null) {
-                    if(fishGameState.board[i][j].getOccupied() == false){
-                        allOc = false;
-                    }
-                    numTile++;
+        for(int i=0; i<fishGameState.numOfPlayers;i++){
+            for(int j=0; j<fishGameState.numPenguin;j++){
+
+                if (!fishGameState.pengA[i][j].getIsDead()){
+                    isEnd = false;
+                    break;
                 }
             }
         }
 
-        for (int i = 0; i < fishGameState.numOfPlayers; i++) {
-            for (int j = 0; j < fishGameState.numPenguin; j++) {
-                if (fishGameState.pengA[i][j] != null) {
-                    numPeng++;
-                }
-            }
-        }
-
-        if(numTile == numPeng){
-            isEnd = true;
-        }
-       // Log.i("NUMBER CHECK",numTile + " " + numPeng);
-
-//        for(int i = 0; i < fishGameState.numOfPlayers; i++){
-//            totalScore = fishGameState.getPlayerScore(i) + totalScore;
-//        }
-
-
-        if (isEnd == true || allOc == true) {
+        if (isEnd) {
 
             int maxScore = fishGameState.player[0];
             int winner = 0;
@@ -142,7 +111,7 @@ public class FishLocalGame extends LocalGame implements Serializable{
 
             fishGameState.setPeng(((FishSetPenguinAction) action).getPenguin(),
                     ((FishSetPenguinAction) action).getX(),((FishSetPenguinAction) action).getY(),
-                    ((FishSetPenguinAction) action).getaPlayersNum());
+                    ((FishSetPenguinAction) action).getaPlayersNum(), ((FishSetPenguinAction) action).getaPengIndex());
 
 
             int i = fishGameState.getId()+1;
@@ -159,10 +128,7 @@ public class FishLocalGame extends LocalGame implements Serializable{
 
             fishGameState.movePeng(fishGameState.getId(), ((FishMovePenguinAction) action).getPenguin(),
                     ((FishMovePenguinAction) action).getX(), ((FishMovePenguinAction) action).getY(),
-                    ((FishMovePenguinAction) action).pengIndex);
-
-            //newState.movePeng(this.playerNum, newState.getPeng(this.playerNum, randPeng),
-             //       getXboard(), getYboard(), randPeng);
+                    ((FishMovePenguinAction) action).getPengIndex(), ((FishMovePenguinAction) action).getPlayerIndex());
 
             int i = fishGameState.getId()+1;
 
@@ -172,11 +138,27 @@ public class FishLocalGame extends LocalGame implements Serializable{
             else {
                 fishGameState.setId(i);
             }
-           // Log.i("New PLAYER ID", "" + fishGameState.getId());
-            //Log.i("RETURNING TRUE", "some");
+            fishGameState.checkPenguins();
+            fishGameState.removeIsland(fishGameState.board);
+
             return true;
 
 
+        }
+        else if (action instanceof FishPassAction){
+
+            fishGameState.checkPenguins();
+            fishGameState.removeIsland(fishGameState.board);
+
+            int i = fishGameState.getId()+1;
+
+            if(i==numPlayers) {
+                fishGameState.setId(0);
+            }
+            else {
+                fishGameState.setId(i);
+            }
+            return true;
         }
         return false;
 
