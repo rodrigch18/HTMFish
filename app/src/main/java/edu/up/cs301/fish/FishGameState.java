@@ -483,34 +483,33 @@ public class FishGameState extends GameState implements Serializable{
     /**
      * Makes one-tile islands null if there are all adjacent tiles are null
      *
-     * @param currBoard - current board with any gaps
-     * @return new board when islands are taken out
+     *
      */
-    public Hex[][] removeIsland(Hex[][] currBoard) {
+    public void removeIsland() {
 
         for(int x=1; x < 9; x++){
             for(int y=1; y<9; y++){
                 if (y % 2 == 0) {
-                    if (currBoard[x][y-1] == null && currBoard[x+1][y-1] == null
-                            && currBoard[x-1][y] == null && currBoard[x+1][y+1] == null
-                            && currBoard[x][y+1] == null && currBoard[x-1][y] == null){
+                    if (board[x][y-1] == null && board[x+1][y-1] == null
+                            && board[x-1][y] == null && board[x+1][y+1] == null
+                            && board[x][y+1] == null && board[x-1][y] == null){
 
-                        currBoard[x][y] = null;
+                        board[x][y] = null;
                     }
                 }
                 else {
-                    if (currBoard[x-1][y-1] == null && currBoard[x][y-1] == null
-                            && currBoard[x-1][y] == null && currBoard[x+1][y] == null
-                            && currBoard[x-1][y+1] == null && currBoard[x][y+1] == null){
+                    if (board[x-1][y-1] == null && board[x][y-1] == null
+                            && board[x-1][y] == null && board[x+1][y] == null
+                            && board[x-1][y+1] == null && board[x][y+1] == null){
 
-                        currBoard[x][y] = null;
+                        board[x][y] = null;
                     }
 
                 }
 
             }
         }
-        return currBoard;
+
     }
 
 }

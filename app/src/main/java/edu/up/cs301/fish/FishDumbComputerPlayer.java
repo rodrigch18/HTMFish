@@ -69,7 +69,8 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
             }
 
 
-            sleep(1000);
+
+            //sleep(50);
             //Log.i("CPU WOKE", newState.getId() + " " + this.playerNum);
             if (newState.getId() != this.playerNum) {
                 return;
@@ -119,6 +120,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                 }
                 else if (!this.onStart)
                 {
+                    newState.checkPenguins();
                     int randPeng;
                     do {
                         randPeng = (int) (Math.random() * pengsOwned);

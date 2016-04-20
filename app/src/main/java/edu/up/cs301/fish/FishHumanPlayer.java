@@ -44,6 +44,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
     int pengsOwned = 0;
     boolean firstTouch = false;
     boolean onStart = true;
+    boolean firstFalse = false;
     int k;
     ArrayList<Hex> listOfLegalMoves = new ArrayList<Hex>();
 
@@ -93,6 +94,8 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                 game.sendAction(passAction);
                 return;
             }
+
+
 
             boardView.setOnTouchListener(this);
 
@@ -179,12 +182,15 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
                                     if (newState.numOfPlayers == 2 && pengsOwned == 4) {
                                         onStart = false;
+                                        firstFalse = true;
                                         break outerloop;
                                     } else if (newState.numOfPlayers == 3 && pengsOwned == 3) {
                                         onStart = false;
+                                        firstFalse = true;
                                         break outerloop;
                                     } else if (newState.numOfPlayers == 4 && pengsOwned == 2) {
                                         onStart = false;
+                                        firstFalse = true;
                                         break outerloop;
                                     }
 
@@ -194,77 +200,82 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                     }
                 }
             }
+            if(!firstFalse) {
+                for (int i = 0; i < 10; i++) {
+                    for (int j = 0; j < 10; j++) {
+                        if (newState.board[i][j] != null && !onStart) {
 
-            for (int i = 0; i < 10; i++) {
-                for (int j = 0; j < 10; j++) {
-                    if (newState.board[i][j] != null && !onStart) {
+                            if (!firstTouch) {
 
-                        if (!firstTouch) {
+                                if (newState.board[i][j].getOccupied()) {
 
-                            if (newState.board[i][j].getOccupied()) {
+                                    if ((xTouch - (newState.board[i][j].getX() + 65)) *
+                                            (xTouch - (newState.board[i][j].getX() + 65)) +
+                                            (yTouch - (newState.board[i][j].getY() + 65)) *
+                                                    (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
+                                        for (int k = 0; k < newState.pengA[this.playerNum].length; k++) {
+                                            if (newState.pengA[this.playerNum][k].getCurrPosX() == newState.board[i][j].getX()
+                                                    && newState.pengA[this.playerNum][k].getCurrPosY() == newState.board[i][j].getY()
+                                                    && !newState.pengA[this.playerNum][k].getIsDead()) {
 
-                                if ((xTouch - (newState.board[i][j].getX() + 65)) *
-                                        (xTouch - (newState.board[i][j].getX() + 65)) +
-                                        (yTouch - (newState.board[i][j].getY() + 65)) *
-                                                (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
-                                    for (int k = 0; k < newState.pengA[this.playerNum].length; k++) {
-                                        if (newState.pengA[this.playerNum][k].getCurrPosX() == newState.board[i][j].getX()
-                                                && newState.pengA[this.playerNum][k].getCurrPosY() == newState.board[i][j].getY()
-                                                && !newState.pengA[this.playerNum][k].getIsDead()) {
+                                                this.k = k;
+                                                firstTouch = true;
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                }
+                            } else if (firstTouch) {
+                                if (!(newState.board[i][j].getOccupied())) {
+                                    if ((xTouch - (newState.board[i][j].getX() + 65)) *
+                                            (xTouch - (newState.board[i][j].getX() + 65)) +
+                                            (yTouch - (newState.board[i][j].getY() + 65)) *
+                                                    (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
+                                        int aX = 0;
+                                        int aY = 0;
+                                        for (int x = 0; x < 10; x++) {
+                                            for (int y = 0; y < 10; y++) {
+                                                if (newState.board[x][y] != null) {
+                                                    if (newState.getPeng(this.playerNum, k).getCurrPosX() == newState.board[x][y].getX()
+                                                            && newState.getPeng(this.playerNum, k).getCurrPosY() == newState.board[x][y].getY()) {
 
-                                            this.k = k;
-                                            firstTouch = true;
+                                                        aX = x;
+                                                        aY = y;
+
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        ArrayList<Hex> listOfLegalMoves = newState.checkIsLegalMove(aX, aY);
+
+                                        if (listOfLegalMoves.contains(newState.board[i][j])) {
+
+                                            firstTouch = false;
+
+
+                                            FishMovePenguinAction movePenguinAction = new
+                                                    FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
+                                                    newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
+
+                                            newState.board[i][j].setOccupied(true);
+
+                                            game.sendAction(movePenguinAction);
                                             return true;
                                         }
                                     }
                                 }
                             }
-                        } else if (firstTouch) {
-                            if (!(newState.board[i][j].getOccupied())) {
-                                if ((xTouch - (newState.board[i][j].getX() + 65)) *
-                                        (xTouch - (newState.board[i][j].getX() + 65)) +
-                                        (yTouch - (newState.board[i][j].getY() + 65)) *
-                                                (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
-                                    int aX = 0;
-                                    int aY = 0;
-                                    for (int x = 0; x < 10; x++) {
-                                        for (int y = 0; y < 10; y++) {
-                                            if (newState.board[x][y] != null) {
-                                                if (newState.getPeng(this.playerNum, k).getCurrPosX() == newState.board[x][y].getX()
-                                                        && newState.getPeng(this.playerNum, k).getCurrPosY() == newState.board[x][y].getY()) {
 
-                                                    aX = x;
-                                                    aY = y;
-
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                    ArrayList<Hex> listOfLegalMoves = newState.checkIsLegalMove(aX, aY);
-
-                                    if (listOfLegalMoves.contains(newState.board[i][j])) {
-
-                                        firstTouch = false;
-
-
-                                        FishMovePenguinAction movePenguinAction = new
-                                                FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
-                                                newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
-
-                                        newState.board[i][j].setOccupied(true);
-
-                                        game.sendAction(movePenguinAction);
-                                        return true;
-                                    }
-                                }
-                            }
                         }
-
                     }
                 }
             }
+            else{
+                firstFalse = false;
+            }
             boardView.invalidate();
+
 
             return true;
         }

@@ -60,7 +60,8 @@ public class FishSmartComputerPlayer extends GameComputerPlayer implements Seria
                 return;
             }
 
-            sleep(1000);
+
+            //sleep(50);
             if (newState.getId() != this.playerNum) {
                 return;
             } else {
@@ -107,6 +108,7 @@ public class FishSmartComputerPlayer extends GameComputerPlayer implements Seria
                 }
                 else if (!this.onStart)
                 {
+                    newState.checkPenguins();
                     int randPeng;
                     do {
                         randPeng = (int) (Math.random() * pengsOwned);
@@ -130,7 +132,6 @@ public class FishSmartComputerPlayer extends GameComputerPlayer implements Seria
                             }
                         }
                     }
-
 
                     ArrayList<Hex> listOfLegal = newState.checkIsLegalMove(aI, aJ);
 
