@@ -241,56 +241,56 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                     Bitmap pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options);
                     Bitmap resizedBitmap;
 
-                    switch (player) {
-                        case 0:
-                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
-                            break;
-                        case 1:
-                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
-                            break;
-                        case 2:
-                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
-                            break;
-                        case 3:
-                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
-                            break;
-                    }
-
-
 //                    switch (player) {
 //                        case 0:
-//                            if(theState.pengA[player][peng].getIsSelected()){
-//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
-//                            }
-//                            else{
 //                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
-//                            }
 //                            break;
 //                        case 1:
-//                            if(theState.pengA[player][peng].getIsSelected()){
-//
-//                            }
-//                            else {
 //                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
-//                            }
 //                            break;
 //                        case 2:
-//                            if(theState.pengA[player][peng].getIsSelected()){
-//
-//                            }
-//                            else {
 //                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
-//                            }
 //                            break;
 //                        case 3:
-//                            if(theState.pengA[player][peng].getIsSelected()){
-//
-//                            }
-//                            else {
 //                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
-//                            }
 //                            break;
 //                    }
+
+
+                    switch (player) {
+                        case 0:
+                            if(theState.pengA[player][peng].getIsSelected()){
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_angel_peng, options); //decode bitmap in constructor
+                            }
+                            else{
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
+                            }
+                            break;
+                        case 1:
+                            if(theState.pengA[player][peng].getIsSelected()){
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_hula_peng, options); //decode bitmap in constructor
+                            }
+                            else {
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
+                            }
+                            break;
+                        case 2:
+                            if(theState.pengA[player][peng].getIsSelected()){
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_painter_peng, options); //decode bitmap in constructor
+                            }
+                            else {
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
+                            }
+                            break;
+                        case 3:
+                            if(theState.pengA[player][peng].getIsSelected()){
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_drunk_peng, options); //decode bitmap in constructor
+                            }
+                            else {
+                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
+                            }
+                            break;
+                    }
 
                     resizedBitmap = Bitmap.createScaledBitmap(pengBitmap, 100, 100, true);
 

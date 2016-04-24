@@ -91,6 +91,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
             }
             if(deadPengs == newState.numPenguin){
                 FishPassAction passAction = new FishPassAction(this);
+                boardView.invalidate();
                 game.sendAction(passAction);
                 return;
             }
@@ -220,6 +221,8 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
                                                 this.k = k;
                                                 firstTouch = true;
+                                                newState.getPeng(this.playerNum, this.k).setIsSelected(true);
+                                                boardView.invalidate();
                                                 return true;
                                             }
                                         }
@@ -231,36 +234,58 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                             (xTouch - (newState.board[i][j].getX() + 65)) +
                                             (yTouch - (newState.board[i][j].getY() + 65)) *
                                                     (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
-                                        int aX = 0;
-                                        int aY = 0;
-                                        for (int x = 0; x < 10; x++) {
-                                            for (int y = 0; y < 10; y++) {
-                                                if (newState.board[x][y] != null) {
-                                                    if (newState.getPeng(this.playerNum, k).getCurrPosX() == newState.board[x][y].getX()
-                                                            && newState.getPeng(this.playerNum, k).getCurrPosY() == newState.board[x][y].getY()) {
 
-                                                        aX = x;
-                                                        aY = y;
+                                        Log.i("SECOND TOUCH X", newState.board[i][j].getX() + " " + newState.pengA[this.playerNum][k].getCurrPosX());
 
+                                        Log.i("SECOND TOUCH Y", newState.board[i][j].getY() + " " + newState.pengA[this.playerNum][k].getCurrPosY());
+
+
+                                            int aX = 0;
+                                            int aY = 0;
+                                            for (int x = 0; x < 10; x++) {
+                                                for (int y = 0; y < 10; y++) {
+                                                    if (newState.board[x][y] != null) {
+                                                        if (newState.getPeng(this.playerNum, k).getCurrPosX() == newState.board[x][y].getX()
+                                                                && newState.getPeng(this.playerNum, k).getCurrPosY() == newState.board[x][y].getY()) {
+
+                                                            aX = x;
+                                                            aY = y;
+
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
 
-                                        ArrayList<Hex> listOfLegalMoves = newState.checkIsLegalMove(aX, aY);
+                                            ArrayList<Hex> listOfLegalMoves = newState.checkIsLegalMove(aX, aY);
 
-                                        if (listOfLegalMoves.contains(newState.board[i][j])) {
+                                            if (listOfLegalMoves.contains(newState.board[i][j])) {
 
+                                                firstTouch = false;
+
+
+                                                FishMovePenguinAction movePenguinAction = new
+                                                        FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
+                                                        newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
+
+                                                newState.board[i][j].setOccupied(true);
+                                                newState.getPeng(this.playerNum, this.k).setIsSelected(false);
+                                                boardView.invalidate();
+                                                game.sendAction(movePenguinAction);
+                                                return true;
+                                            }
+
+                                    }
+                                }
+                                else{
+                                    if ((xTouch - (newState.board[i][j].getX() + 65)) *
+                                            (xTouch - (newState.board[i][j].getX() + 65)) +
+                                            (yTouch - (newState.board[i][j].getY() + 65)) *
+                                                    (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
+                                        if (newState.board[i][j].getX() == newState.pengA[this.playerNum][k].getCurrPosX()
+                                                && newState.board[i][j].getY() == newState.pengA[this.playerNum][k].getCurrPosY()) {
                                             firstTouch = false;
-
-
-                                            FishMovePenguinAction movePenguinAction = new
-                                                    FishMovePenguinAction(this, newState.getPeng(this.playerNum, k),
-                                                    newState.board[i][j].getX(), newState.board[i][j].getY(), this.k, this.playerNum);
-
-                                            newState.board[i][j].setOccupied(true);
-
-                                            game.sendAction(movePenguinAction);
+                                            newState.getPeng(this.playerNum, this.k).setIsSelected(false);
+                                            boardView.invalidate();
                                             return true;
                                         }
                                     }
