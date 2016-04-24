@@ -16,12 +16,12 @@
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-hdpi\\selected_drunk_peng.png"
     },
     {
-        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\three_fish.png",
-        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-hdpi\\three_fish.png"
-    },
-    {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\angel_peng.png",
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-hdpi\\angel_peng.png"
+    },
+    {
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\three_fish.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-hdpi\\three_fish.png"
     },
     {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\hula_peng.png",

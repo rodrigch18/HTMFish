@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Objective: capture the most fish."
+        android:id="@+id/textView6" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To start the game, place your penguin on one-fish tiles. If there are 2 players, each player will have 4 penguins. If there are 3 players, each will have 3 penguins. If there are 4 players, each will have 2 penguins."
+        android:id="@+id/textView" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To move a penguin, tap one of your penguins, then tap the tile you would like to move it to. A penguin can move in any of the six directions surrounding its tile, but it cannot jump over spaces or other penguins.If you make a mistake, you can deselect a penguin by tapping on it."
+        android:id="@+id/textView3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You lose penguins if a penguin can no longer make valid moves."
+        android:id="@+id/textView5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The game ends when every player loses their penguins."
+        android:id="@+id/textView4" />
+
+    <Button
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:id="@+id/button"
+        android:layout_gravity="right"
+        android:clickable="true" />
+
+</LinearLayout>

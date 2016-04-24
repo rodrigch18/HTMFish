@@ -31,11 +31,11 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/whoseTurn"
                 android:textColor="@color/black"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:singleLine="false" />
 
             <TextView
@@ -48,14 +48,28 @@
                 android:autoText="false"
                 android:singleLine="true" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
                 android:layout_height="0dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/viewScore1"
-                android:textColor="#FFFF0000"
-                android:layout_weight="3"
-                android:textSize="75dp" />
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageView"
+                    android:layout_weight="1"
+                    android:src="@drawable/angel_peng" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/viewScore1"
+                    android:textColor="#FFFF0000"
+                    android:layout_weight="1"
+                    android:textSize="40dp" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,14 +79,28 @@
                 android:textColor="#FF0000FF"
                 android:layout_weight="1" />
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/viewScore2"
-                android:layout_weight="3"
-                android:textColor="#FF0000FF"
-                android:textSize="75dp" />
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView2"
+                    android:layout_weight="1"
+                    android:src="@drawable/hula_peng" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/viewScore2"
+                    android:layout_weight="1"
+                    android:textColor="#FF0000FF"
+                    android:textSize="40dp" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -84,14 +112,28 @@
                 android:autoText="false"
                 android:singleLine="true" />
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/viewScore3"
-                android:textColor="@color/green"
-                android:layout_weight="3"
-                android:textSize="75dp" />
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView3"
+                    android:layout_weight="1"
+                    android:src="@drawable/painter_peng" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/viewScore3"
+                    android:textColor="@color/green"
+                    android:layout_weight="1"
+                    android:textSize="40dp" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -103,15 +145,29 @@
                 android:autoText="false"
                 android:singleLine="true" />
 
-            <TextView
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/viewScore4"
-                android:textColor="@color/black"
-                android:layout_weight="3"
-                android:singleLine="false"
-                android:textSize="75dp" />
+                android:layout_weight="2">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imageView4"
+                    android:layout_weight="1"
+                    android:src="@drawable/drunk_peng" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/viewScore4"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    android:singleLine="false"
+                    android:textSize="40dp" />
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

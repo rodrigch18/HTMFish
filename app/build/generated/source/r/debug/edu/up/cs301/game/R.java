@@ -45,10 +45,14 @@ public final class R {
         public static final int backButton2=0x7f0a0003;
         public static final int configTableLayout=0x7f0a0008;
         public static final int delPlayerButton=0x7f0a0012;
+        public static final int imageView=0x7f0a001c;
+        public static final int imageView2=0x7f0a001f;
+        public static final int imageView3=0x7f0a0022;
+        public static final int imageView4=0x7f0a0025;
         public static final int ipCodeLabel=0x7f0a000a;
         public static final int localGameTab=0x7f0a0004;
         public static final int localTabLayout=0x7f0a0005;
-        public static final int menu_settings=0x7f0a0023;
+        public static final int menu_settings=0x7f0a0027;
         public static final int playGameButton=0x7f0a0002;
         public static final int playerNameEditText=0x7f0a0010;
         public static final int playerNameHeadingText=0x7f0a000c;
@@ -69,13 +73,13 @@ public final class R {
         public static final int top_gui_layout=0x7f0a0018;
         public static final int viewBoard=0x7f0a0019;
         public static final int viewPlayer1=0x7f0a001b;
-        public static final int viewPlayer2=0x7f0a001d;
-        public static final int viewPlayer3=0x7f0a001f;
-        public static final int viewPlayer4=0x7f0a0021;
-        public static final int viewScore1=0x7f0a001c;
-        public static final int viewScore2=0x7f0a001e;
-        public static final int viewScore3=0x7f0a0020;
-        public static final int viewScore4=0x7f0a0022;
+        public static final int viewPlayer2=0x7f0a001e;
+        public static final int viewPlayer3=0x7f0a0021;
+        public static final int viewPlayer4=0x7f0a0024;
+        public static final int viewScore1=0x7f0a001d;
+        public static final int viewScore2=0x7f0a0020;
+        public static final int viewScore3=0x7f0a0023;
+        public static final int viewScore4=0x7f0a0026;
         public static final int whoseTurn=0x7f0a001a;
     }
     public static final class layout {

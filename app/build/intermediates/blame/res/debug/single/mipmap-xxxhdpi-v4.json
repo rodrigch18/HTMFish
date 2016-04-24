@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\drunk_peng.png",
-        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\drunk_peng.png"
-    },
-    {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\drunk_peng.png",
+        "source": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\src\\main\\res\\mipmap-xxxhdpi\\drunk_peng.png"
     },
     {
         "merged": "C:\\Users\\Christian\\AndroidStudioProjects\\HTMFish\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\selected_drunk_peng.png",
