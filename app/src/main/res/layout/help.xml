@@ -1,44 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#3E80B4"
+    android:orientation="vertical" >
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/txt_dia"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Objective: capture the most fish."
-        android:id="@+id/textView6" />
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="Welcome to Hey, That’s My Fish! The rules are as follows, below:" />
+
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To start the game, place your penguin on one-fish tiles. If there are 2 players, each player will have 4 penguins. If there are 3 players, each will have 3 penguins. If there are 4 players, each will have 2 penguins."
-        android:id="@+id/textView" />
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="1. When you begin, you must place your penguins on ‘1 fish’ tiles."
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="To move a penguin, tap one of your penguins, then tap the tile you would like to move it to. A penguin can move in any of the six directions surrounding its tile, but it cannot jump over spaces or other penguins.If you make a mistake, you can deselect a penguin by tapping on it."
-        android:id="@+id/textView3" />
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="a.	2 players = 4 Penguins each"
+        android:layout_marginLeft="30dp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You lose penguins if a penguin can no longer make valid moves."
-        android:id="@+id/textView5" />
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="b.	3 players = 3 Penguins each"
+        android:layout_marginLeft="30dp" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The game ends when every player loses their penguins."
-        android:id="@+id/textView4" />
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="c.	4 players = 2 Penguins each"
+        android:layout_marginLeft="30dp" />
 
-    <Button
-        android:layout_width="245dp"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="OK"
-        android:id="@+id/button"
-        android:layout_gravity="right"
-        android:clickable="true" />
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="2.	Then, tap on one of your Penguins and tap another tile in any of the adjacent paths. (More than 1 tile is possible)"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="a.	You cannot move over bodies of water "
+        android:layout_marginLeft="30dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="b.	You cannot move through other Penguins "
+        android:layout_marginLeft="30dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:text="And your objective is… to obtain the most amount of Fish. Remember, Fish are friends, not food.  The game is over when all penguins are dead. "
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#3E80B4"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:background="@android:color/white"
+            android:clickable="true"
+            android:text="OK"
+            android:textColor="#5DBCD2"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp" />
+
+    </LinearLayout>
 
 </LinearLayout>

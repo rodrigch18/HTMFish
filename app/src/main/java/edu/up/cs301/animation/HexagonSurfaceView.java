@@ -25,16 +25,22 @@ import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.R;
 
 /**
+ * Hey, That's My Fish HexagonSurfaceView
+ * <p/>
+ * Surface view for hexagon grid
+ *
+ * @author Giselle Marston
+ * @author Christian Rodriguez
+ * @author Elias Paraiso
+ * @author Elijah Fisher
  * @version 4/20/16
  */
 public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Callback, Serializable {
 
     FishGameState theState = null;
     GameMainActivity myAct = null;
-    //MotionEvent event = null;
 
     Paint paint = new Paint();
-
 
 
     /**
@@ -53,7 +59,7 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
      * Constructor of Hexagon Game Board SurfaceView
      *
      * @param context implied context that the surface view is drawn on
-     * @param attrs attributes of possible construction
+     * @param attrs   attributes of possible construction
      */
     public HexagonSurfaceView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -63,10 +69,10 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
     }
 
     /**
-     *  Constructor of Hexagon Game Board SurfaceView
+     * Constructor of Hexagon Game Board SurfaceView
      *
-     * @param context implied context that the surface view is drawn on
-     * @param attrs  attributes of possible construction
+     * @param context      implied context that the surface view is drawn on
+     * @param attrs        attributes of possible construction
      * @param defStyleAttr style definition of attributes of possible construction
      */
     public HexagonSurfaceView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -76,54 +82,53 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         setWillNotDraw(false);
     }
 
-    public void setTheState(FishGameState newState) { this.theState = newState; }
+    public void setTheState(FishGameState newState) {
+        this.theState = newState;
+    }
 
-    public void setMyAct(GameMainActivity newAct){this.myAct = newAct; }
-
-    //public MotionEvent getEvent(){return this.event;}
+    public void setMyAct(GameMainActivity newAct) {
+        this.myAct = newAct;
+    }
 
     /**
      * Surface Holder Changes
-     *
+     * <p/>
      * Change in surface dimensions caught by holder
      *
      * @param holder holder of canvas
      * @param format format of canvas
-     * @param width width of canvas
+     * @param width  width of canvas
      * @param height height of canvas
      */
 
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-        // TODO Auto-generated method stub
     }
 
     /**
      * Surface Holder Creates
-     *
+     * <p/>
      * Creation of a new surface called by the surface holder
      *
      * @param holder holder of canvas
      */
 
     public void surfaceCreated(SurfaceHolder holder) {
-        // TODO Auto-generated method stub
     }
 
     /**
      * Surface Holder Destroys
-     *
+     * <p/>
      * Destruction of the already held surface by the holder
      *
      * @param holder holder of canvas
      */
 
     public void surfaceDestroyed(SurfaceHolder holder) {
-        // TODO Auto-generated method stub
     }
 
     /**
      * onDraw of Hexagon Board
-     *
+     * <p/>
      * draws the hexagon board and the circle objects
      *
      * @param canvas the parameter of the canvas created at app run
@@ -135,30 +140,25 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
 
 
         if (theState == null) {
-            // TODO
             return;
         }
         if (myAct == null) {
-            // TODO
             return;
         }
         if (theState.board == null) {
-            // TODO
             return;
         }
         if (theState.pengA == null) {
-            // TODO
             return;
         }
 
         Penguin[][] pengB = new Penguin[theState.player.length][theState.pengA[0].length];
 
-        for(int i = 0; i < 10; i++){
-            for(int j = 0; j < 10; j++){
-                if(theState.board[i][j] != null){
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (theState.board[i][j] != null) {
                     hexB[i][j] = theState.board[i][j];
-                }
-                else{
+                } else {
                     hexB[i][j] = null;
                 }
 
@@ -166,35 +166,32 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
         }
 
 
-        makeBoard(hexB,canvas);
+        makeBoard(hexB, canvas);
 
-        for(int player=0; player<theState.player.length;player++){
-            for(int peng=0; peng<theState.pengA[0].length;peng++) {
+        for (int player = 0; player < theState.player.length; player++) {
+            for (int peng = 0; peng < theState.pengA[0].length; peng++) {
 
-                if(theState.pengA[player][peng] != null) {
+                if (theState.pengA[player][peng] != null) {
 
                     pengB[player][peng] = theState.pengA[player][peng];
 
-                }
-                else{
+                } else {
                     pengB[player][peng] = null;
                 }
             }
         }
 
-        drawPenguin(pengB,canvas);
+        drawPenguin(pengB, canvas);
 
-       theState.onStart = false;
-
-
+        theState.onStart = false;
     }
 
-    public void makeBoard(Hex[][] aBoard, Canvas canvas){
+    public void makeBoard(Hex[][] aBoard, Canvas canvas) {
 
-        for(int i = 0; i < 10; i++) {
-            for(int j = 0; j < 10; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
 
-                if(aBoard[i][j] != null) {
+                if (aBoard[i][j] != null) {
 
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inScaled = false;
@@ -218,22 +215,21 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                     resizedBitmap = Bitmap.createScaledBitmap(myBitmap, 170, 170, true);
 
                     canvas.drawBitmap(resizedBitmap, aBoard[i][j].getX() - 20, aBoard[i][j].getY() - 75, paint);
-                }
-                else {
+                } else {
                     aBoard[i][j] = null;
                 }
             }
         }
     }
 
-    public void drawPenguin(Penguin[][] aPeng, Canvas canvas){
+    public void drawPenguin(Penguin[][] aPeng, Canvas canvas) {
 
-        for(int player=0; player<theState.player.length;player++) {
+        for (int player = 0; player < theState.player.length; player++) {
             for (int peng = 0; peng < theState.pengA[0].length; peng++) {
 
                 if ((theState.pengA[player][peng] != null) &&
                         ((theState.pengA[player][peng].getCurrPosX() != 0) ||
-                        (theState.pengA[player][peng].getCurrPosY() != 0)) && !(theState.pengA[player][peng].getIsDead())) {
+                                (theState.pengA[player][peng].getCurrPosY() != 0)) && !(theState.pengA[player][peng].getIsDead())) {
 
                     BitmapFactory.Options options = new BitmapFactory.Options();
                     options.inScaled = false;
@@ -241,52 +237,33 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
                     Bitmap pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options);
                     Bitmap resizedBitmap;
 
-//                    switch (player) {
-//                        case 0:
-//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
-//                            break;
-//                        case 1:
-//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
-//                            break;
-//                        case 2:
-//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
-//                            break;
-//                        case 3:
-//                                pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
-//                            break;
-//                    }
-
 
                     switch (player) {
                         case 0:
-                            if(theState.pengA[player][peng].getIsSelected()){
+                            if (theState.pengA[player][peng].getIsSelected()) {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_angel_peng, options); //decode bitmap in constructor
-                            }
-                            else{
+                            } else {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.angel_peng, options); //decode bitmap in constructor
                             }
                             break;
                         case 1:
-                            if(theState.pengA[player][peng].getIsSelected()){
+                            if (theState.pengA[player][peng].getIsSelected()) {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_hula_peng, options); //decode bitmap in constructor
-                            }
-                            else {
+                            } else {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.hula_peng, options); //decode bitmap in constructor
                             }
                             break;
                         case 2:
-                            if(theState.pengA[player][peng].getIsSelected()){
+                            if (theState.pengA[player][peng].getIsSelected()) {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_painter_peng, options); //decode bitmap in constructor
-                            }
-                            else {
+                            } else {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.painter_peng, options); //decode bitmap in constructor
                             }
                             break;
                         case 3:
-                            if(theState.pengA[player][peng].getIsSelected()){
+                            if (theState.pengA[player][peng].getIsSelected()) {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.selected_drunk_peng, options); //decode bitmap in constructor
-                            }
-                            else {
+                            } else {
                                 pengBitmap = BitmapFactory.decodeResource(myAct.getResources(), R.drawable.drunk_peng, options); //decode bitmap in constructor
                             }
                             break;
@@ -299,7 +276,6 @@ public class HexagonSurfaceView extends SurfaceView implements SurfaceHolder.Cal
             }
         }
     }
-
 
 
 }

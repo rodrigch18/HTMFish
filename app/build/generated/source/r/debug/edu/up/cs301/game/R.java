@@ -43,16 +43,17 @@ public final class R {
     public static final class id {
         public static final int addPlayerButton=0x7f0a000e;
         public static final int backButton2=0x7f0a0003;
+        public static final int btn_ok=0x7f0a0021;
         public static final int configTableLayout=0x7f0a0008;
         public static final int delPlayerButton=0x7f0a0012;
-        public static final int imageView=0x7f0a001c;
-        public static final int imageView2=0x7f0a001f;
-        public static final int imageView3=0x7f0a0022;
-        public static final int imageView4=0x7f0a0025;
+        public static final int imageView=0x7f0a0026;
+        public static final int imageView2=0x7f0a0029;
+        public static final int imageView3=0x7f0a002c;
+        public static final int imageView4=0x7f0a002f;
         public static final int ipCodeLabel=0x7f0a000a;
         public static final int localGameTab=0x7f0a0004;
         public static final int localTabLayout=0x7f0a0005;
-        public static final int menu_settings=0x7f0a0027;
+        public static final int menu_help=0x7f0a0031;
         public static final int playGameButton=0x7f0a0002;
         public static final int playerNameEditText=0x7f0a0010;
         public static final int playerNameHeadingText=0x7f0a000c;
@@ -68,19 +69,28 @@ public final class R {
         public static final int tabHost=0x7f0a0000;
         public static final int tableDataRow=0x7f0a0013;
         public static final int tableHeadingRow=0x7f0a000b;
+        public static final int textView=0x7f0a0019;
         public static final int textView1=0x7f0a0009;
         public static final int textView2=0x7f0a000f;
-        public static final int top_gui_layout=0x7f0a0018;
-        public static final int viewBoard=0x7f0a0019;
-        public static final int viewPlayer1=0x7f0a001b;
-        public static final int viewPlayer2=0x7f0a001e;
-        public static final int viewPlayer3=0x7f0a0021;
-        public static final int viewPlayer4=0x7f0a0024;
-        public static final int viewScore1=0x7f0a001d;
-        public static final int viewScore2=0x7f0a0020;
-        public static final int viewScore3=0x7f0a0023;
-        public static final int viewScore4=0x7f0a0026;
-        public static final int whoseTurn=0x7f0a001a;
+        public static final int textView3=0x7f0a001d;
+        public static final int textView4=0x7f0a0020;
+        public static final int textView5=0x7f0a001a;
+        public static final int textView6=0x7f0a001b;
+        public static final int textView7=0x7f0a001c;
+        public static final int textView8=0x7f0a001e;
+        public static final int textView9=0x7f0a001f;
+        public static final int top_gui_layout=0x7f0a0022;
+        public static final int txt_dia=0x7f0a0018;
+        public static final int viewBoard=0x7f0a0023;
+        public static final int viewPlayer1=0x7f0a0025;
+        public static final int viewPlayer2=0x7f0a0028;
+        public static final int viewPlayer3=0x7f0a002b;
+        public static final int viewPlayer4=0x7f0a002e;
+        public static final int viewScore1=0x7f0a0027;
+        public static final int viewScore2=0x7f0a002a;
+        public static final int viewScore3=0x7f0a002d;
+        public static final int viewScore4=0x7f0a0030;
+        public static final int whoseTurn=0x7f0a0024;
     }
     public static final class layout {
         public static final int game_config_main=0x7f040000;
@@ -89,7 +99,8 @@ public final class R {
         public static final int game_no_gui=0x7f040003;
         public static final int game_player_list_row=0x7f040004;
         public static final int game_remote_tab=0x7f040005;
-        public static final int htmfish_layout=0x7f040006;
+        public static final int help=0x7f040006;
+        public static final int htmfish_layout=0x7f040007;
     }
     public static final class menu {
         public static final int game_main=0x7f090000;

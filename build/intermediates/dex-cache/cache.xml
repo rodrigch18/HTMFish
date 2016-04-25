@@ -1,26 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
-
-    <item
-        jar="C:\Users\Christian\AndroidStudioProjects\HTMFish\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="2a0739a94034ec4cfd38b21a991518d5557da4fb">
-        <dex dex="C:\Users\Christian\AndroidStudioProjects\HTMFish\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a9c946bcbe7462d740928724f8d74602c1770c25\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\Christian\AndroidStudioProjects\HTMFish\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="16a37f5da94fcb720b2c1aca14051ff68b19c88f">
-        <dex dex="C:\Users\Christian\AndroidStudioProjects\HTMFish\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_02e3e9caf0986a806daab1d544add9e5c9c03c36\classes.dex" />
-    </item>
-    <item
-        jar="C:\Users\Christian\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
-        jumboMode="true"
-        revision="22.0.1"
-        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
-        <dex dex="C:\Users\Christian\AndroidStudioProjects\HTMFish\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-v4-18.0.0_5babc785114938265a28778ca422e65c0c41795b\classes.dex" />
-    </item>
-
-</items>
+<items version="2" />

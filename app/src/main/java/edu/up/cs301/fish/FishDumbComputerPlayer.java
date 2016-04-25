@@ -51,9 +51,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
      */
     protected void receiveInfo(GameInfo info)
     {
-        Log.i("CPU recieve info", "info");
         if (info instanceof FishGameState) {
-            Log.i("CPU FishGameState", "info");
             int deadPengs= 0;
             newState = (FishGameState) info;
             for(int p=0; p<newState.numPenguin; p++) {
@@ -69,17 +67,11 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
             }
 
 
-
-            //sleep(50);
-            //Log.i("CPU WOKE", newState.getId() + " " + this.playerNum);
             if (newState.getId() != this.playerNum) {
                 return;
             } else {
 
-
-
-
-                //creates pengs -giselle thinks
+                //creates pengs
                 if(this.onStart) {
 
                     ArrayList<Hex> listOfTiles = new ArrayList<Hex>();

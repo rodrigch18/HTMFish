@@ -6,6 +6,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+import edu.up.cs301.animation.helpDialog;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
@@ -23,7 +24,7 @@ import edu.up.cs301.game.config.GamePlayerType;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 public class FishMainActivity extends GameMainActivity {
 
@@ -73,6 +74,8 @@ public class FishMainActivity extends GameMainActivity {
         if (item.getItemId() == R.id.menu_help) {
           //  Intent settingsIntent = new Intent(this, PrefsActivity.class);
           //  startActivity(settingsIntent);
+            helpDialog cdd=new helpDialog(this);
+            cdd.show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -86,6 +89,8 @@ public class FishMainActivity extends GameMainActivity {
      */
     @Override
     public LocalGame createLocalGame(){
+        helpDialog cdd=new helpDialog(this);
+        cdd.show();
         return new FishLocalGame(); //need to perform check later
     }
 
