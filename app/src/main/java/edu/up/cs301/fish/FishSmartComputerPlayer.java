@@ -19,7 +19,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 public class FishSmartComputerPlayer extends GameComputerPlayer implements Serializable {
 
@@ -54,6 +54,7 @@ public class FishSmartComputerPlayer extends GameComputerPlayer implements Seria
                     deadPengs++;
                 }
             }
+            //if all penguins of given player are dead, then pass their turn
             if(deadPengs == newState.numPenguin){
                 FishPassAction passAction = new FishPassAction(this);
                 game.sendAction(passAction);
@@ -106,6 +107,7 @@ public class FishSmartComputerPlayer extends GameComputerPlayer implements Seria
 
                     }
                 }
+                //penguins are allowed to be moved once the game has started and they're set
                 else if (!this.onStart)
                 {
                     newState.checkPenguins();
@@ -137,6 +139,7 @@ public class FishSmartComputerPlayer extends GameComputerPlayer implements Seria
 
                     int randI = 0;
                     int max = listOfLegal.get(0).getTileVal();
+                    //checks to see which legal move has the highest value
                     for(int i = 0; i<listOfLegal.size(); i++){
                         if(max == 3){
                             randI = 0;

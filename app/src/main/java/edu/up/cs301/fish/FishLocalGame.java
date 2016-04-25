@@ -12,13 +12,13 @@ import edu.up.cs301.game.actionMsg.GameAction;
  * Hey, That's My Fish LocalGame
  *
  * This class controls the play of the game
- * amongst players who are all on the same device.
+ * amongst players who are playing.
  *
  * @author Giselle Marston
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 public class FishLocalGame extends LocalGame{
 
@@ -139,7 +139,6 @@ public class FishLocalGame extends LocalGame{
                 fishGameState.setId(i);
             }
             fishGameState.checkPenguins();
-//            fishGameState.removeIsland();
 
             return true;
 
@@ -148,7 +147,6 @@ public class FishLocalGame extends LocalGame{
         else if (action instanceof FishPassAction){
 
             fishGameState.checkPenguins();
-//            fishGameState.removeIsland();
 
             int i = fishGameState.getId()+1;
 

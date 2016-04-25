@@ -6,7 +6,17 @@ import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.actionMsg.GameAction;
 
 /**
- * @version 4/20/16
+ * Hey, That's My Fish SetPenguinAction
+ *
+ * This class implements the action of setting the
+ * penguin on the hexagonal grid. It can only be set
+ * on '1 fish' tiles.
+ *
+ * @author Giselle Marston
+ * @author Christian Rodriguez
+ * @author Elias Paraiso
+ * @author Elijah Fisher
+ * @version 4/24/16
  */
 public class FishSetPenguinAction extends GameAction implements Serializable {
     private int x;

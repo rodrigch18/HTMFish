@@ -11,20 +11,18 @@ import edu.up.cs301.game.R;
 /**
  * Hey, That's My Fish Penguin
  *
- * This class keeps track of which penguins belong to
- * certain players as well as their positions on the
- * board.
+ * This class has characteristics of a penguin.
  *
  * @author Giselle Marston
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 
 public class Penguin implements Serializable{
 
-    // x,y coordinates of given penguin
+    //x,y coordinates of given penguin
     private int currPosX;
     private int currPosY;
     private boolean isSelected;

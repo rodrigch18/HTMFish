@@ -30,7 +30,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 public class FishGameState extends GameState implements Serializable {
 

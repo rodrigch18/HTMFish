@@ -24,7 +24,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 
 public class FishDumbComputerPlayer extends GameComputerPlayer implements Serializable {
@@ -60,6 +60,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
                     deadPengs++;
                 }
             }
+            //if all penguins of given player are dead, then pass their turn
             if(deadPengs == newState.numPenguin){
                 FishPassAction passAction = new FishPassAction(this);
                 game.sendAction(passAction);
@@ -110,6 +111,7 @@ public class FishDumbComputerPlayer extends GameComputerPlayer implements Serial
 
                     }
                 }
+                //penguins are allowed to be moved once the game has started and they're set
                 else if (!this.onStart)
                 {
                     newState.checkPenguins();

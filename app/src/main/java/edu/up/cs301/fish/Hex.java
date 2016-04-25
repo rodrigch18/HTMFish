@@ -23,7 +23,7 @@ import edu.up.cs301.game.R;
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 public class Hex implements Serializable{
 
@@ -55,7 +55,7 @@ public class Hex implements Serializable{
         this.y = aHex.getY();
     }
 
-    // tile values
+    //tile values
     public int getTileVal() {
         return this.tileVal;
     }
@@ -76,9 +76,7 @@ public class Hex implements Serializable{
         this.y = y;
     }
 
-    public String toString(){
-        return (this.x + " " + this.y + " " + this.occupied);
-    }
+    public String toString(){ return (this.x + " " + this.y + " " + this.occupied);}
 
 
 

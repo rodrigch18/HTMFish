@@ -23,14 +23,15 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 /**
  * Hey, That's My Fish HumanPlayer
  * <p/>
- * This class is a GUI for a human to
- * play Hey That's My Fish.
+ * This class is not just a GUI for a human to
+ * play Hey, That's My Fish. It communicates with the
+ * local game to send player actions.
  *
  * @author Giselle Marston
  * @author Christian Rodriguez
  * @author Elias Paraiso
  * @author Elijah Fisher
- * @version 4/20/16
+ * @version 4/24/16
  */
 public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchListener {
 
@@ -49,9 +50,8 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
     boolean firstTouch = false;
     boolean onStart = true;
     boolean firstFalse = false;
-    int k;
+    int k; //chosen penguin
 
-    ArrayList<Hex> listOfLegalMoves = new ArrayList<Hex>();
 
     /**
      * Fish Human Player constructor
@@ -85,7 +85,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
     public void receiveInfo(GameInfo info) {
         if (info instanceof FishGameState) {
             newState = (FishGameState) info;
-         //   boardView.invalidate();
+
             if (newState.getId() == this.playerNum) {
                 int deadPengs= 0;
                 newState = (FishGameState) info;
@@ -99,7 +99,6 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                     FishPassAction passAction = new FishPassAction(this);
                     boardView.invalidate();
                     game.sendAction(passAction);
-                    //return;
                 }
 
 
@@ -162,7 +161,9 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
 
 
     /**
-     * Check where the player touches/taps
+     * Check where the player touches/taps and
+     * sends the correct action depending on the
+     * GameState.
      *
      * @param event - touch/tap
      */
@@ -248,10 +249,6 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                                                 (yTouch - (newState.board[i][j].getY() + 65)) *
                                                         (yTouch - (newState.board[i][j].getY() + 65)) <= 65 * 65) {
 
-                                            Log.i("SECOND TOUCH X", newState.board[i][j].getX() + " " + newState.pengA[this.playerNum][k].getCurrPosX());
-
-                                            Log.i("SECOND TOUCH Y", newState.board[i][j].getY() + " " + newState.pengA[this.playerNum][k].getCurrPosY());
-
 
                                             int aX = 0;
                                             int aY = 0;
@@ -316,7 +313,7 @@ public class FishHumanPlayer extends GameHumanPlayer implements View.OnTouchList
                 return true;
             }
             else{
-                this.flash(-65536, 5);
+                this.flash(-65536, 5); //if it's not your turn, it will flash RED
             }
         }
         return false;
