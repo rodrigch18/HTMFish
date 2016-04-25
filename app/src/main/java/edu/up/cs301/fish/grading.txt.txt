@@ -1,0 +1,6 @@
+a.) Functionality that deserves extra points:
+	When your penguin is selected it highlights. If you tap it again it deselects.
+	A help dialog box appears at start of game and if you need it again you can get it in the action bar menu
+
+b.) Notes on playing the game
+	If you try to make an invalid move, such as tapping a tile that is not in an adjacent path from your selected tile, it will not flash red.

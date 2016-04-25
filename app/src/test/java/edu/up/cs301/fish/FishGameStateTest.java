@@ -22,59 +22,50 @@ public class FishGameStateTest {
 //    Checks if a tapped position is the player's penguin whose turn it is
 //      is illegal if it is another player's penguin or an empty tile
     @Test
-    public void testCheckSelectedPeng() throws Exception {
-        FishGameState game = new FishGameState();
-        game.numPenguin= 2;
-        game.checkSelectedPeng(0,1,2);
-        assertEquals(game.isLegalSelection, false);
+    public void testGetPenguin() throws Exception {
+        String[] names = {"me", "you"};
+        FishGameState game = new FishGameState(2,names);
+
+
+        assertEquals(game.getPeng(0,1) , game.pengA[0][1]);
     }
 
 //    tests if the two tiles are adjacent
     @Test
     public void testFindAdjInDir() throws Exception {
-        FishGameState game = new FishGameState();
+        String[] names = {"me", "you"};
+        FishGameState game = new FishGameState(2, names);
 
         ArrayList<Hex> left = new ArrayList<Hex>();
         ArrayList<Hex> right = new ArrayList<Hex>();
-        left = game.findAdjInDir(2, 2, 1,0 , left);
-        right = game.findAdjInDir(3, 2, -1,0 , right);
-        assertEquals(left, right);
+        left = game.findAdjInDir(1, 2, 1,0 , left);
+        right = game.findAdjInDir(2, 2, 1,0 , right);
+
+        assertEquals(left.size()-1, right.size());
     }
 
     //tests if the move is legal
     @Test
     public void testCheckIsLegalMove() throws Exception {
-        FishGameState game = new FishGameState();
+
+        String[] names = {"me", "you"};
+        FishGameState game = new FishGameState(2, names);
 
 
-        game.checkIsLegalMove(1,1,4,4);
-
-        assertEquals(game.isLegalMove, false);
+        assertEquals(game.checkIsLegalMove(2,2).size(), 17);
     }
 
     //tests if the penguin is moved to the tapped position
     @Test
     public void testMovePeng() throws Exception {
-        FishGameState game = new FishGameState();
-        game.movePeng(0, 0, 2, 3, 2, 2);
-        assertEquals(game.getCurrPosX(0,0),2);
-        assertEquals(game.getCurrPosY(0, 0),2);
+
+        String[] names = {"me", "you"};
+        FishGameState game = new FishGameState(2, names);
+
+        game.movePeng(0,game.pengA[0][0],1,1,0,0);
+        assertEquals(game.pengA[0][0].getCurrPosX(),1);
+        assertEquals(game.pengA[0][0].getCurrPosY(),1);
+
     }
 
-    //tests if a lone tile is set to null automatically
-    @Test
-    public void testRemoveIsland() throws Exception {
-        FishGameState game = new FishGameState();
-        Hex[][] currBoard = new Hex[10][10];
-        int x=5;
-        int y=5;
-        currBoard[x+1][y] = null;
-        currBoard[x+1][y+1] = null;
-        currBoard[x+1][y-1] = null;
-        currBoard[x][y-1] = null;
-        currBoard[x][y+1] = null;
-        currBoard[x-1][y] = null;
-        game.removeIsland(currBoard);
-        assertEquals(currBoard[5][5],null);
-    }
 }
